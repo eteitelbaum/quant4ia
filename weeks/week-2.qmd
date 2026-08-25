@@ -31,5 +31,5 @@ Lab due by 11:59pm on `r advdate2(sun, 1)`
 
 ## Assignments
 
-| 📘 Lab 1, available on [Posit Cloud](https://posit.cloud).
+| 📘 Lab 1, available on [Posit Cloud](https://posit.cloud/spaces/809085).
 

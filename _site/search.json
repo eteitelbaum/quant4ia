@@ -3291,7 +3291,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Course Schedule",
+    "title": "Week 12",
     "section": "",
     "text": "Week\nDate\nTopic\nReadings\nVideos\nModule\nSlides\nAssignments\n\n\n\n\n1\nAug 25\nCourse Intro\n\n📺\n📒\n🖥️\n\n\n\n\nAug 27\nGetting Started with Quarto\n📖\n📺\n📒\n🖥️\n\n\n\n2\nSep 1\nBar charts, histograms\n📖 📖\n📺 📺\n📒\n🖥️\n\n\n\n\nSep 3\nLine charts, scatter plots\n📖 📖\n📺 📺\n📒\n🖥️\n📘\n\n\n3\nSep 8\nDownloading and manipulating data\n📖\n📺\n📒\n🖥️\n\n\n\n\nSep 10\nSummarizing by groups\n📖\n📺\n📒\n🖥️\n📘\n\n\n4\nSep 15\nHomework 1: Visualize modernization theory\n📖\n\n\n\n🧮\n\n\n5\nSep 22\nCategorical data\n📖\n📺\n📒\n🖥️\n\n\n\n\nSep 24\nContinuous data\n📖\n📺\n📒\n🖥️\n📘\n\n\n6\nSep 29\nDescribing distributions\n📖\n\n📒\n🖥️\n\n\n\n\nOct 1\nSampling and uncertainty\n📖\n📺 📺\n📒\n🖥️\n📘\n\n\n7\nOct 6\nSingle proportion tests\n📖\n\n📒\n🖥️\n\n\n\n\nOct 8\nDifferences between two groups\n📖\n📺\n📒\n🖥️\n📘\n\n\n8\nOct 13\nNo Class\nFall Break 🍂\n\n\n\n\n\n\n\nOct 15\nHomework 2: Evaluate a claim\n📖\n\n\n\n🧮\n\n\n9\nOct 20\nFitting a line to data\n📖\n📺 📺\n📒\n🖥️\n\n\n\n\nOct 22\nLeast squares regression\n📖\n📺 📺\n📒\n🖥️\n📘\n\n\n10\nOct 27\nMultiple linear regression\n📖\n📺\n📒\n🖥️\n\n\n\n\nOct 29\nDealing with outliers\n📖 📖 📖\n📺 📺\n📒 📗\n🖥️\n📘\n\n\n11\nNov 3\nLogistic regression\n📖\n📺 📺\n📒\n🖥️\n\n\n\n\nNov 5\nInterpreting results\n\n📺\n📒\n🖥️\n📘\n\n\n12\nNov 10\nMultiple predictors and interactions\n📖\n📺\n📒\n🖥️\n\n\n\n\nNov 12\nVisualizing and communicating results\n\n📺 📺\n📒\n🖥️\n📘\n\n\n13\nNov 17\nHomework 3: Analyzing conflict\n\n\n\n\n🧮\n\n\n\nNov 24\nNo Class\nThanksgiving Break\n\n🦃🍁🥧\n\n\n\n\n14\nDec 1\nFinal project workshop\n\n\n\n🖥️\n✍️\n\n\n\nDec 3\nFinal project workshop\n\n\n\n🖥️\n\n\n\n\nDec 8\nFinal project workshop\n\n\n\n\n✍️",
     "crumbs": [
@@ -6952,5 +6952,379 @@
     "title": "Week 1",
     "section": "Assignments",
     "text": "Assignments\n📘 Quiz 1\n📘 Quiz 2\n🧮 Coding Assignment 1"
+  },
+  {
+    "objectID": "index.html#readings",
+    "href": "index.html#readings",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 r4ds, ch 7\n📖 r4ds, ch 2\n📖 r4ds, 10.1 - 10.4\n📖 r4ds, 12.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos",
+    "href": "index.html#videos",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n🖥 Make a Bar Chart in R with ggplot2\n🖥 Make a Histogram in R with ggplot2\n🖥 Make a Line Chart in R with ggplot2\n🖥 Make a Scatterplot in R with ggplot2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments",
+    "href": "index.html#assignments",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab 1, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 2).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-1",
+    "href": "index.html#readings-1",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 r4ds, ch 3",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-1",
+    "href": "index.html#videos-1",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n🖥 Transforming Data with dplyr Verbs\n🖥 Summarizing Data by Groups with dplyr Verbs",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-1",
+    "href": "index.html#assignments-1",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab 2, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 4).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-2",
+    "href": "index.html#readings-2",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 4\n📖 IMS, chap. 5.1 - 5.3",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-2",
+    "href": "index.html#videos-2",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 Exploring Categorical Data\n📺 Exploring Numerical Data",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules",
+    "href": "index.html#modules",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 5.1\n📒 Module 5.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-2",
+    "href": "index.html#assignments-2",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 5).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-3",
+    "href": "index.html#readings-3",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 5.4 - 5.5\n📖 IMS, chap. 12",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-3",
+    "href": "index.html#videos-3",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 The Right and Wrong Way to Interpret a CI\n📺 Bootstrapping Main Ideas",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules-1",
+    "href": "index.html#modules-1",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 6.1\n📒 Module 6.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-3",
+    "href": "index.html#assignments-3",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 6).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-4",
+    "href": "index.html#readings-4",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 16\n📖 IMS, chap. 11",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-4",
+    "href": "index.html#videos-4",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 Using Randomization to Analyze Gender Discrimination",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules-2",
+    "href": "index.html#modules-2",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 7.1\n📒 Module 7.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-4",
+    "href": "index.html#assignments-4",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 8).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-5",
+    "href": "index.html#readings-5",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 7.1\n📖 IMS, chap. 7.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-5",
+    "href": "index.html#videos-5",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 Linear Regression with One Variable, Part 1\n📺 Linear Regression with One Variable, Part 2\n📺 Cost Function\n📺 Cost Function Intuition",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules-3",
+    "href": "index.html#modules-3",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 9.1\n📒 Module 9.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-5",
+    "href": "index.html#assignments-5",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 9).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-6",
+    "href": "index.html#readings-6",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 8.1 and 8.2\n📖 IMS, chap. 7.3\n📖 IMS, chap. 5.7\n📖 IMS, chap. 24.6",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-6",
+    "href": "index.html#videos-6",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 Linear Regression with Multiple Variables\n📺 What Should You Do With Outliers?\n📺 Checking Model Assumptions with Residual Plots",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules-4",
+    "href": "index.html#modules-4",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 10.1\n📒 Module 10.2\n📗 Module 10.3 (Optional)",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-6",
+    "href": "index.html#assignments-6",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 10).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-7",
+    "href": "index.html#readings-7",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 9.1 and 9.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-7",
+    "href": "index.html#videos-7",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 Classification: Motivation\n📺 Logistic Regression\n📺 Odds Ratios in Logistic Regression",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules-5",
+    "href": "index.html#modules-5",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 11.1\n📒 Module 11.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-7",
+    "href": "index.html#assignments-7",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.\n#| label: setup\n#| include: false\n\nsource(\"../helper.R\")\n\n\n\n\n\n\nImportant\n\n\n\nLab due by 11:59pm on r advdate2(sun, 11).",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#readings-8",
+    "href": "index.html#readings-8",
+    "title": "Week 12",
+    "section": "Readings",
+    "text": "Readings\n📖 IMS, chap. 9.3 and 9.4",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#videos-8",
+    "href": "index.html#videos-8",
+    "title": "Week 12",
+    "section": "Videos",
+    "text": "Videos\n📺 Effect Multipliers in Logistic Regression\n📺 Display Multiple Models with Model Summary\n📺 Coefficient Plots for Single Models",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#modules-6",
+    "href": "index.html#modules-6",
+    "title": "Week 12",
+    "section": "Modules",
+    "text": "Modules\n📒 Module 12.1\n📒 Module 12.2",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "index.html#assignments-8",
+    "href": "index.html#assignments-8",
+    "title": "Week 12",
+    "section": "Assignments",
+    "text": "Assignments\n📘 Lab, available on Posit Cloud.",
+    "crumbs": [
+      "Course Information",
+      "Schedule"
+    ]
   }
 ]
