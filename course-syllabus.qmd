@@ -14,7 +14,7 @@ format:
 |
 | **Instructor**: Prof. Emmanuel Teitelbaum
 | Email: [ejt\@gwu.edu](mailto:ejt@gwu.edu)
-| Office Hours: [Tuesdays, 3-5 p.m.](https://calendly.com/emmanuel-teitelbaum/15min)
+| Office Hours: [Mondays, 3-5 p.m.](https://calendly.com/emmanuel-teitelbaum/15min)
 | 
 | **Credit Hours**: 3.0.
 
@@ -39,21 +39,27 @@ I care about your learning and also about this subject matter, and I am here to 
 
 ### Policy on AI Tools
 
-### Overview
+#### Overview
 
-AI tools (such as ChatGPT, Claude, Gemini, Copilot, and others) can be genuinely useful companions for learning to code and analyze data. This course takes a permissive approach: you may use AI tools to support your learning. Think of them as a tutor available around the clock, one you can ask to explain a concept, clarify an error message, walk through how a function works, or help you debug code that isn't running correctly.
+AI tools (such as ChatGPT, Claude, Gemini, Copilot, and others) can be genuinely useful companions for learning to code and analyze data. Think of them as a tutor available around the clock, one you can ask to explain a concept, clarify an error message, or walk through how a function works. At the same time, there is an important distinction between using AI to learn and using AI instead of learning. The goal of this course is for you to develop real skills in R, data analysis, and statistical reasoning. If you simply paste an assignment into an AI and copy the output, you will pass the assignment but miss the course, and you will struggle in future courses, in job interviews, and on the job itself, where these skills will be expected of you.
 
-That said, there is an important distinction between using AI to learn and using AI instead of learning. The goal of this course is for you to develop real skills in R, data analysis, and statistical reasoning. If you simply paste an assignment into an AI and copy the output, you will pass the assignment but miss the course. More practically, you will struggle in future courses, in job interviews, and on the job itself, where these skills will be expected of you.
+Because different assessments serve different purposes, this course sets different rules for how much you can lean on AI for each one. The progression is deliberate: labs build your fundamentals, homeworks stretch you toward independent problem-solving, and the final project is your chance to work the way a practitioner increasingly does.
 
-### Guidelines
+#### What is allowed on each assessment
 
-Try first, then consult. Whether you are working on a lab or a homework, your first move should be to consult the course materials, e.g. the modules, slides, and readings. For labs, which are guided fill-in-the-blank exercises, the hints at the bottom of each page are there for a reason. Use them before turning to AI. For homeworks, which are more open-ended and challenging, it is reasonable to ask AI for help when you are genuinely stuck, but again, consult the course materials first.
+-   **Labs — consultation only.** Labs are guided, fill-in-the-blank exercises meant to build your core skills. You may use AI to *consult*: to explain a concept, clarify an error message, or describe what a function does. You should not have AI write or fix your lab code for you. Work through the hints at the bottom of each lab first.
 
-Use AI as a consultant, not a ghostwriter. Asking an AI why your code throws an error, what a function does, or how to interpret an output is exactly the kind of use that supports your learning. Debugging is one of the most legitimate uses of AI in a coding course. Asking it to complete your assignment for you is not.
+-   **Homework — consultation and debugging.** Homeworks are more open-ended and challenging. In addition to consultation, you may use AI to help *debug* code that isn't running the way you expect. You should still write your own code and be able to explain everything you submit; do not simply paste the assignment in and copy the output.
 
-Critically evaluate AI output. AI tools make mistakes. They hallucinate functions, write syntactically incorrect code, and sometimes give confidently wrong answers. You are responsible for understanding and verifying whatever you submit.
+-   **Final project — any AI-assisted workflow.** For the final project you may use a fully AI-centered workflow, including having AI help generate and structure your code. This mirrors real-world data analysis practice. You remain fully responsible for the correctness, quality, and integrity of what you submit, and you should understand your own project well enough to present and defend it.
 
-Acknowledge your use. In your submission statement, note whether you used AI tools and confirm that your use was advisory rather than generative.
+#### General principles
+
+**Try first, then consult.** Whatever the assessment, your first move should be to consult the course materials — the modules, slides, and readings — before turning to AI.
+
+**Critically evaluate AI output.** AI tools make mistakes. They hallucinate functions, write syntactically incorrect code, and sometimes give confidently wrong answers. You are responsible for understanding and verifying whatever you submit.
+
+**Acknowledge your use.** In your submission statement, note whether and how you used AI tools on that assignment.
 
 ## Office Hours
 
