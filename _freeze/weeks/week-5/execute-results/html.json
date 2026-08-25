@@ -1,9 +1,11 @@
 {
-  "hash": "342797c8a9042f87ae1d326f89a6c3fc",
+  "hash": "f2a27126db75fac4fa429f316f2a3bd9",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 5\"\nsubtitle: \"Categorical and Continuous Data\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, September 27.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 4](https://openintro-ims.netlify.app/explore-categorical)\n| 📖 [IMS, chap. 5.1 - 5.3](https://openintro-ims.netlify.app/explore-numerical)\n\n## Videos\n\n| 📺 [Exploring Categorical Data](https://youtu.be/7NhNeADL8fA?si=InH8FFc1BIVT0ktM)\n| 📺 [Exploring Numerical Data](https://youtu.be/Xm0PPtci3JE?si=MocqDt05YqllA9k5)\n\n## Modules\n\n| 📒 [Module 5.1](/modules/module-5.1.html)\n| 📒 [Module 5.2](/modules/module-5.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 5\"\nsubtitle: \"Categorical and Continuous Data\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, September 27.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 4](https://openintro-ims.netlify.app/explore-categorical)\n| 📖 [IMS, chap. 5.1 - 5.3](https://openintro-ims.netlify.app/explore-numerical)\n\n## Videos\n\n| 📺 [Exploring Categorical Data](https://youtu.be/7NhNeADL8fA?si=InH8FFc1BIVT0ktM)\n| 📺 [Exploring Numerical Data](https://youtu.be/Xm0PPtci3JE?si=MocqDt05YqllA9k5)\n\n## Modules\n\n| 📒 [Module 5.1](/modules/module-5.1.html)\n| 📒 [Module 5.2](/modules/module-5.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809228/content/).\n",
+    "supporting": [
+      "week-5_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

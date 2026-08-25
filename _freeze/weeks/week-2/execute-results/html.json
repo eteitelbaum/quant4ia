@@ -1,9 +1,11 @@
 {
-  "hash": "5defc2bfa3e9df7e221226885cdc448e",
+  "hash": "5e9c02815da07f97b88305c1165fc7bf",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 2\"\nsubtitle: \"Basic Data Visualization\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, September 6\n:::\n\n## Readings\n\n| 📖 [r4ds, ch 7](https://r4ds.hadley.nz/data-import)\n| 📖 [r4ds, ch 2](https://r4ds.hadley.nz/data-visualize.html)\n| 📖 [r4ds, 10.1 - 10.4](https://r4ds.hadley.nz/layers.html)\n| 📖 [r4ds, 12.2](https://r4ds.hadley.nz/communication.html)\n\n## Videos\n\n| 🖥 [Make a Bar Chart in R with ggplot2](https://youtu.be/QG1oDJPoIio)\n| 🖥 [Make a Histogram in R with ggplot2](https://youtu.be/-1YhCql-gMo)\n| 🖥 [Make a Line Chart in R with ggplot2](https://youtu.be/PnmQ2MFQpIc)\n| 🖥 [Make a Scatterplot in R with ggplot2](https://youtu.be/FiosjUVyfLM)\n\n## Assignments\n\n| 📘 Lab 1, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Week 2\"\nsubtitle: \"Basic Data Visualization\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, September 6\n:::\n\n## Readings\n\n| 📖 [r4ds, ch 7](https://r4ds.hadley.nz/data-import)\n| 📖 [r4ds, ch 2](https://r4ds.hadley.nz/data-visualize.html)\n| 📖 [r4ds, 10.1 - 10.4](https://r4ds.hadley.nz/layers.html)\n| 📖 [r4ds, 12.2](https://r4ds.hadley.nz/communication.html)\n\n## Videos\n\n| 🖥 [Make a Bar Chart in R with ggplot2](https://youtu.be/QG1oDJPoIio)\n| 🖥 [Make a Histogram in R with ggplot2](https://youtu.be/-1YhCql-gMo)\n| 🖥 [Make a Line Chart in R with ggplot2](https://youtu.be/PnmQ2MFQpIc)\n| 🖥 [Make a Scatterplot in R with ggplot2](https://youtu.be/FiosjUVyfLM)\n\n## Assignments\n\n| 📘 Lab 1, available on [Posit Cloud](https://posit.cloud/spaces/809228/content/).\n\n",
+    "supporting": [
+      "week-2_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
