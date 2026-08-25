@@ -32,4 +32,4 @@ Lab due by 11:59pm on `r advdate2(sun, 11)`.
 
 ## Assignments
 
-| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).
+| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809228/content/).
