@@ -1,0 +1,59 @@
+---
+title: "Module 3.2"
+subtitle: "Summarizing Data"
+format: 
+  html:
+    code-link: true
+highlight-style: atom-one
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+## Group, summarize and arrange 
+
+{{< video https://youtu.be/mgBwVzMV-v8 title='Group, Summarize and Arrange' >}}
+
+Now that we have completed some wrangling, let's do something with our data. A common sequence in data science is [group by()](https://dplyr.tidyverse.org/reference/group_by.html), [summarize()](https://dplyr.tidyverse.org/reference/summarise.html) and [arrange()](https://dplyr.tidyverse.org/reference/arrange.html). First, we group the data by certain value or category. Then we summarize it by applying a function like `min()`, `max()`, `mean()`, `median()` or `sd()`. Finally, we order the data according to column values. 
+
+Let's go ahead and apply our three new verbs to a data frame and store the resulting new data frame in an object.  
+
+You can download the raw data from [here](https://github.com/eteitelbaum/course-datasets/blob/main/dem_women.csv) and read it into your environment with the `read_csv()` function from the `readr` package. Store it in an object called `dem_women`. 
+
+We will group the data by region, take the mean of each variable, and sort the data in descending order based on the regions' polyarchy scores. Then we will print the object to view its contents. Along the way, we can also export the data to a .csv file for future use. 
+
+::: {.callout-note}
+Remember to check your file path when reading in a CSV file. If the file is not in the same directory as your R script, you will need to specify the path to the file.
+:::
+
+```{r}
+#| label: verbs
+
+# Load packages
+
+library(dplyr)
+library(readr)
+
+dem_women <- read_csv("data/dem_women.csv") # if the path is different, adjust this code
+
+# group_by(), summarize() and arrange()
+dem_summary <- dem_women |> # save result as new object
+  group_by(region)  |> # group dem_women data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    gdp_pc = mean(gdp_pc, na.rm = TRUE), 
+    flfp = mean(flfp, na.rm = TRUE), 
+    women_rep = mean(women_rep, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Save as .csv for future use
+write_csv(dem_summary, "data/dem_summary.csv")
+
+# View the data
+glimpse(dem_summary)
+```
+
+
+

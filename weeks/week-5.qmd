@@ -1,0 +1,35 @@
+---
+title: "Week 5"
+subtitle: "Categorical and Continuous Data"
+format: html
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+source("../helper.R")
+```
+
+::: {.callout-important}
+Lab due by 11:59pm on `r advdate2(sun, 4)`.
+:::
+
+## Readings
+
+| 📖 [IMS, chap. 4](https://openintro-ims.netlify.app/explore-categorical)
+| 📖 [IMS, chap. 5.1 - 5.3](https://openintro-ims.netlify.app/explore-numerical)
+
+## Videos
+
+| 📺 [Exploring Categorical Data](https://youtu.be/7NhNeADL8fA?si=InH8FFc1BIVT0ktM)
+| 📺 [Exploring Numerical Data](https://youtu.be/Xm0PPtci3JE?si=MocqDt05YqllA9k5)
+
+## Modules
+
+| 📒 [Module 5.1](/modules/module-5.1.html)
+| 📒 [Module 5.2](/modules/module-5.2.html)
+
+## Assignments
+
+| 📘 Lab, available on [Posit Cloud](https://posit.cloud).

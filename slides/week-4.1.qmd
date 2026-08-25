@@ -1,0 +1,56 @@
+---
+title: Data Viz Review
+date: today
+date-format: long
+footer: "[IAFF 6501 Website](https://quant4ia.rocks)"
+logo: images/iaff6501-logo.png
+format:
+  revealjs:
+    theme: [simple, custom.scss]
+    transition: fade
+    slide-number: true
+    #multiplex: true
+    chalkboard: true
+execute:
+  echo: false
+  message: false
+  warning: false
+  freeze: auto
+---
+
+## Messages, Warnings and Errors {.smaller}
+
+<br>
+
+- Messages tell you what R is doing
+- Warnings tell you that something might be wrong
+- Errors tell you that something is definitely wrong
+  - Locate the error line number in the console and check your code
+  - Error line tells you *about* where the error occurred, not exact
+  - Errors are normal, don't freak out! 
+  - In fact, you should practice making errors to learn how to fix them
+
+## 
+
+Your boss wants you to...
+
+::: {.incremental}
+- Visualize trends in liberal democracy since the end of WWII for countries in South Asia
+- See how regions compare in terms of levels of corruption in 2015
+- View the relationship between GDP per capita and electoral democracy in 2020
+:::
+
+## Could You Reproduce It? 
+
+<br>
+
+- Have a look at my ["Democracy Around the World"](https://emmanuelteitelbaum.shinyapps.io/vdem-dashboard/) Shiny app
+- Can you reproduce the visualizations in the app using the V-Dem data?
+- What are the steps you would take to do so? 
+
+## Homework 1
+
+<br>
+
+- Find Homework 1 on the [course website](https://quant4ia.rocks/assignments/homework-1)
+- Get started today! 

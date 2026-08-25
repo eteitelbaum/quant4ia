@@ -1,0 +1,29 @@
+---
+title: Exercise 1
+date: today
+date-format: long
+footer: "[IAFF 6501 Website](https://quant4ia.rocks)"
+logo: images/iaff6501-logo.png
+format:
+  revealjs:
+    theme: [simple, custom.scss]
+    transition: fade
+    slide-number: true
+    #multiplex: true
+    chalkboard: true
+execute:
+  echo: false
+  message: false
+  warning: false
+  freeze: auto
+---
+
+
+<!-- TODO: Publishing platform TBD (Posit Connect Cloud?). Add publishing steps here. -->
+
+## Making PDFs
+
+- Install tinytex 
+  Type `quarto install tinytex` in terminal
+- Change document type in YAML header to pdf
+- Look at Quarto Reference and play with options

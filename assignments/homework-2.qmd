@@ -1,0 +1,114 @@
+---
+title: "Homework 2"
+subtitle: "The Impact of Community Driven Development after Conflict"
+editor: source
+output: html
+execute:
+  echo: true
+  eval: false
+bibliography: references.bib
+---
+
+::: {.callout-note appearance="minimal"}
+[Download the `.qmd` file for this assignment](https://raw.githubusercontent.com/eteitelbaum/quant4ia/main/assignments/homework-2.qmd)
+:::
+
+## Overview
+
+[Community Driven Development (CDD)](https://www.worldbank.org/en/topic/communitydrivendevelopment) programs have become increasingly popular in international development over the past several decades. CDD programs directly involve impacted communities in the selection, design, and implementation of development projects. Usually, this also involves building upon or creating community level organizations (or committees) that are involved with the projects, with the goal of creating democratic and inclusive decision-making processes. See this [3ie working paper](http://3ieimpact.org/sites/default/files/2019-01/wp30-cdd_0.pdf) for discussion of some common features of CDD.
+
+Given these design features, proponents of CDD argue that these programs should (a) improve the quality and impact of development projects (e.g., public goods) *AND* (b) improve social cohesion, inclusion, and local governance. For this reason, CDD has been implemented in a number of [post-conflict settings](https://openknowledge.worldbank.org/entities/publication/3284f88b-62db-5138-8798-e7ab2674c1bf), where the hope is that CDD can both improve development outcomes and contribute to rebuilding social cohesion and governance (which are often harmed by conflict).
+
+Does CDD improve development outcomes? Does it improve social cohesion after conflict? Your goal in this assignment is to answer these questions, using data from an evaluation of a CDD program in post-conflict Sierra Leone.
+
+The relevant files for this assignment are available in the [classwork folder](https://www.dropbox.com/scl/fo/g4tdpdwcij78nyydvr4bp/h?rlkey=hctskhle6222csnwre5ir9gz3&dl=0) in the `homework-2` file.
+
+## The GoBifo Program in Sierra Leone
+
+Sierra Leone was devastated by a [civil war](http://web.undp.org/evaluation/documents/thematic/conflict/SierraLeone.pdf) lasting from 1991 to 2002. In the post-conflict context, the Ministry of Local Government and Community Development implemented the GoBifo ("forge ahead") CDD project in Sierra Leone from 2005-2009 (with support from the World Bank and other international donors). See this [report](https://thedocs.worldbank.org/en/doc/6f445967d38ba97805febe703b2482ef-0060052022/original/Sierra-Leone-GoBifo-Strengthening-Social-Capital-through-Capacity-Development.pdf) for a detailed summary of the program.
+
+The program had two key components:
+
+-   Block grants of about 4,667 dollars (about 100 per household in each community) that communities could allocate to local development projects, skills trainings, and small-business investment.
+
+-   "Technical assistance that promoted democratic decision-making, the participation of socially marginalized women and youth in local politics, and transparent budgeting practices" [@casey2012]
+
+The GiBifo program also included an impact evaluation, conducted by economists Katherine Casey, Rachel Glennerster, and Edward Miguel. The academic paper generated from the project is in the References section [@casey2012].
+
+**Wait until after you complete your assignment to read the full paper.**
+
+Importantly, the impact evaluation included randomization: communities in the study were randomly assigned to receive the GoBifo program, or not. In this sense, the impact evaluation was similar to a clinical drug trial, where some subjects are randomly assigned to receive the medicine while others do not receive it. This aspect of the design makes it easier to assess the causal impact of this project: we can compare outcomes in the treatment (GoBifo program) and control groups, and test for whether any differences we observe are likely to be due to chance.
+
+## Data
+
+"gobifo_data.csv" provides a condensed version of the data collected by @casey2012 for their evaluation of the project. The study team gathered literally hundreds of outcome variables, and the paper includes an interesting discussion of how they analyze the data and interpret the results given the large number of outcomes they measured.
+
+The unit of analysis (or row in the dataset) is the village.
+
+For our purposes, we will focus on a smaller set of variables, summarized below:
+
+-   **Treatment** variable (named *t* in the data): this equals `treatment` if the community was randomly assigned to be in the program, and `control` if not. As a character variable, `tidymodels` will automatically recognize it as a factor. But be sure to use quotation marks when working with the two categories, e.g. `filter(t == "treatment")`.
+
+-   **Community Decision Making Infrastructure**: Is there a village development committee in the community? (*vdc*)
+
+-   **Public Goods:** Is there a functioning primary school in the community? (*f_psch*)
+
+-   Inclusion, **Gender equality** in participatory decision making (*role_wmn*).
+    -   "Enumerator account of how actively women participated in the deliberation compared to men, ranging from 5 = no difference between women and men to 1 = women not active at all compared to men"
+
+-   **Social Capital:** Trust in other in the community (*trust_own*)
+
+-   **Conflict:** Percentage of respondents in the village that reported they had NO conflicts/disputes with others that required outside intervention (*no_conflict*)
+
+## Part 1: Setup and Load Data (10 points)
+
+-   Create a folder and an RProj file for this assignment. Save "gobifo_data.csv" in that folder. Create a new Quarto document where you will complete the work for this assignment.  Make sure to include a title, your name, and the date. (1 point)
+-   Create a code chunk that loads the packages you will need: `tidyverse` and `tidymodels` (1 point)
+-   Use read_csv() to read the "gobifo_data.csv" data in to RStudio. Save the dataset as an object called "myData" (3 points)
+-   Examine the data. How many observations (villages) are there in the study?  You can use glimpse() to determine the number of rows. How many were in the treatment (**t**) group (in the program) and how many were in control? You can use summarize() for this calculation. (5 points)
+
+## Part 2: Generate Estimates and 95 Percent Confidence Intervals (30 points)
+
+The five outcome variables are: village decision making infrastructure (*vdc*), public goods (*f_psch*), gender equality (*role_wmn*), social capital (*trust_own*), and conflict (*no_conflict*).
+
+-   Use `group_by()` and `summarize()` to calculate the mean of each outcome in treatment and control villages. (5 points)
+-   Select TWO outcomes of interest. For each, generate a bootstrap distribution using `tidymodels` and calculate 95% confidence intervals for treatment and control villages separately. (10 points)
+-   Store your means and CI bounds in a tibble called `estimates`. (5 points)
+-   Interpret the confidence intervals for both outcomes. Based on these, what is your initial conclusion about whether the program had an impact? (10 points)
+
+## Part 3: Graph your estimates and confidence intervals (20 points)
+
+-   Using your `estimates` object, create one graph per outcome (two graphs total) showing the mean and 95% CI for treatment and control villages. Use either a bar plot or `geom_point()` with error bars. Graphs should be publication-ready: clear labels, appropriate colors, and a clean theme. (15 points)
+    - Optional: combine both outcomes into a single graph.
+-   In a short paragraph, interpret the graphs: what do they tell us about the program's impact? (5 points)
+
+## Part 4: Conduct Hypothesis Tests (30 points)
+
+In this section, you will conduct hypothesis tests that assess whether the GoBifo program had an impact.
+
+-   For the two outcomes you selected: clearly state the null hypothesis and the alternative hypothesis for each test. Write these out in a list. (5 points)
+-   For each outcome, calculate the treatment effect of the program: this is the mean in treatment minus the mean in control. What are the treatment effects? (5 points)
+-   For each outcome, use `tidymodels` to simulate the null distribution. Use `specify()`, `hypothesize(null = "independence")`, `generate(type = "permute")`, and `calculate()` to build it. (5 points)
+-   For each outcome, calculate the p-value using `get_p_value()` from the `infer` package. Be sure to set the `direction` argument correctly based on your alternative hypothesis (e.g. `"greater"`, `"less"`, or `"two-sided"`). (5 points)
+-   For each outcome, visualize the null distribution using `visualize()` from the `infer` package. Add `shade_p_value()` to highlight the region corresponding to the p-value. (5 points)
+-   Interpret both p-values in language that people who know nothing about statistics might understand. For each outcome, do you reject the null hypothesis? (5 points)
+
+## Part 5: Interpretation and Conclusion (10 points)
+
+Write 2-3 paragraphs that summarize the results of your analysis and accurately interpret them. What is the big picture takeaway of your analysis? What does your analysis teach us about the impact of this CDD program? Are there policy or program implications of the findings for CDD in post-conflict settings?
+
+## Extra Credit
+
+- There are three outcome variables you did not select: create visualizions that display the means and 95% confidence intervals in treatment and control groups for these three outcomes. (2 points)
+- Conduct hypothesis tests for each the three additional outcomes.  What do you conclude from each test? (2 points)
+- Write a paragraph updating your conclusion about the impact of the program and your interpretation of all of the evidence (2 points)
+- Create a single visualization that could "tell the whole story" of the results from this study. (3 points)
+
+::: {.callout-important}
+## Submission Instructions
+
+Head over to Blackboard and go to the Homework 2 assignment. Click "Create Submission" and write a brief statement saying that you have submitted the assignment and that all of the work is your own.
+
+From there, upload a compressed (zipped) version of your project folder including the **rendered** HTML file. To compress your project folder, right-click the folder and choose Compress (Mac) or Send to → Compressed (zipped) folder (Windows). Then upload the resulting .zip file.
+:::
+

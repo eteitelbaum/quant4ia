@@ -1,0 +1,330 @@
+---
+title: Summarizing Data
+date: today
+date-format: long
+footer: "[IAFF 6501 Website](https://quant4ia.rocks)"
+logo: images/iaff6501-logo.png
+format:
+  revealjs:
+    theme: [simple, custom.scss]
+    transition: fade
+    slide-number: true
+    #multiplex: true
+    chalkboard: true
+    mermaid:
+      theme: neutral
+execute:
+  echo: false
+  message: false
+  warning: false
+  freeze: auto
+---
+
+## Group, Summarize and Arrange
+
+<br>
+
+- `group_by()`, `summarize()`, `arrange()`
+- A very common sequence of `dplyr` verbs:
+  - Take an average or some other statistic for a group
+  - Rank from high to low values of summary value
+
+## Setup {.smaller}
+
+```{r}
+#| label: setup
+#| output: false
+#| echo: true
+
+# Load packages
+library(vdemdata) # to download V-Dem data
+library(dplyr)
+
+# Download the data
+democracy <- vdem |> # download the V-Dem dataset
+  filter(year == 2015)  |> # filter year, keep 2015
+  select(                  # select (and rename) these variables
+    country = country_name,     # the name before the = sign is the new name  
+    vdem_ctry_id = country_id,  # the name after the = sign is the old name
+    year, 
+    polyarchy = v2x_polyarchy,
+    libdem = v2x_libdem,
+    corruption = v2x_corr,
+    gdp_pc = e_gdppc, 
+    region = e_regionpol_6C
+    ) |>
+  mutate(
+    region = case_match(region, # replace the values in region with country names
+                     1 ~ "Eastern Europe", 
+                     2 ~ "Latin America",  
+                     3 ~ "Middle East",   
+                     4 ~ "Africa", 
+                     5 ~ "The West", 
+                     6 ~ "Asia")
+  )
+
+# View the data
+glimpse(democracy)
+```
+  
+## Summarize by Region
+
+<br>
+
+```{r}
+#| label: summarize1
+#| eval: false
+#| echo: true
+
+# group_by(), summarize() and arrange()
+dem_summary <- democracy |> # save result as new object
+  group_by(region)  |> # group data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    libdem = median(libdem, na.rm = TRUE),
+    corruption = sd(corruption, na.rm = TRUE),
+    gdp_pc = max(gdp_pc, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Print the data
+dem_summary
+```
+
+## Summarize by Region
+
+<br>
+
+```{r}
+#| label: summarize2
+
+# group_by(), summarize() and arrange()
+dem_summary <- democracy |> # save result as new object
+  group_by(region)  |> # group data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    libdem = median(libdem, na.rm = TRUE),
+    corruption = sd(corruption, na.rm = TRUE),
+    gdp_pc = max(gdp_pc, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Print the data
+dem_summary
+```
+
+##
+
+Use `group_by()` to group countries by region...
+
+<br>
+
+```{r}
+#| label: summarize3
+#| eval: false
+#| echo: true
+#| code-line-numbers: "3"
+
+# group_by(), summarize() and arrange()
+dem_summary <- democracy |> # save result as new object
+  group_by(region)  |> # group data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    libdem = median(libdem, na.rm = TRUE),
+    corruption = sd(corruption, na.rm = TRUE),
+    gdp_pc = max(gdp_pc, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Print the data
+dem_summary
+```
+
+##
+
+Use `summarize()` to get the regional means polyarchy and gpd_pc....
+
+<br>
+
+```{r}
+#| label: summarize4
+#| eval: false
+#| echo: true
+#| code-line-numbers: "4-9"
+
+# group_by(), summarize() and arrange()
+dem_summary <- democracy |> # save result as new object
+  group_by(region)  |> # group data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    libdem = median(libdem, na.rm = TRUE),
+    corruption = sd(corruption, na.rm = TRUE),
+    gdp_pc = max(gdp_pc, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Print the data
+dem_summary
+```
+
+## 
+
+Then use `arrange()` with `desc()` to sort in descending order by polyarchy score...
+
+<br>
+
+```{r}
+#| label: summarize5
+#| eval: false
+#| echo: true
+#| code-line-numbers: "10"
+
+# group_by(), summarize() and arrange()
+dem_summary <- democracy |> # save result as new object
+  group_by(region)  |> # group data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    libdem = median(libdem, na.rm = TRUE),
+    corruption = sd(corruption, na.rm = TRUE),
+    gdp_pc = max(gdp_pc, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Print the data
+dem_summary
+```
+
+## 
+
+We are printing the data frame instead of using `glimpse()` here...
+
+<br>
+
+```{r}
+#| label: summarize6
+#| eval: false
+#| echo: true
+#| code-line-numbers: "12-13"
+
+# group_by(), summarize() and arrange()
+dem_summary <- democracy |> # save result as new object
+  group_by(region)  |> # group data by region
+  summarize(           # summarize following vars (by region)
+    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs
+    libdem = median(libdem, na.rm = TRUE),
+    corruption = sd(corruption, na.rm = TRUE),
+    gdp_pc = max(gdp_pc, na.rm = TRUE)
+  ) |> 
+  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score
+
+# Print the data
+dem_summary
+```
+
+
+## Some Common Arithmetic Functions
+
+<br>
+
+- `sqrt()` square root
+- `log()` natural logarithm
+- `mean()` mean
+- `median()` median
+- `sd()` standard deviation
+
+## Try it Yourself {.scrollable}
+
+- Try running a `group_by()`, `summarize()` and `arrange()` in your Quarto document
+- Try changing the parameters to answer these questions: 
+
+1. Try summarizing the data with a [different function](https://dplyr.tidyverse.org/reference/summarise.html#useful-functions) for one or more of the variables. 
+  a. What is the median value of `polyarchy` for The West?
+  b. What is the max value of `libdem` for Eastern Europe?
+  c. What is the standard deviation of `corruption` for Africa?
+  d. What is the mean of `gdp_pc` for the Middle East?
+  
+2. Now try grouping by country instead of region. 
+
+  a. What is the median value of `polyarchy` for Sweden?
+  b. What is the max value of `libdem` New Zealand?
+  c. What is the standard deviation of `corruption` for Spain?
+  d. What is the interquartile range of `gdp_pc` for Germany?
+
+3. Sort countries in descending order based on the mean value of `gdp_pc` (instead of the median value of `polyarchy`). Which country ranks first based on this sorting?
+
+4. Now try sorting countries in ascending order based on the median value of `libdem` (hint: delete "desc" from the `arrange()` call). Which country ranks at the "top" of the list?
+
+```{r}
+#| label: timer1
+
+library(countdown)
+countdown(minutes = 5, 
+          id = "timer1", 
+          top = "0%", 
+          right = "5%",
+          color_border = "#fff",
+          color_text = "#fff",
+          color_running_background = "#42affa",
+          color_running_text = "black",
+          color_finished_background = "#E5D19D",
+          color_finished_text = "#00264A")
+```
+
+## Visualize It!
+
+<br>
+
+```{r}
+#| label: barchart1
+#| eval: false
+#| echo: true
+
+library(ggplot2)
+
+ggplot(dem_summary, aes(x = reorder(region, -polyarchy), y = polyarchy)) +
+  geom_col(fill = "steelblue") + 
+  labs(
+    x = "Region", 
+    y = "Avg. Polyarchy Score", 
+    title = "Democracy by region, 2015", 
+    caption = "Source: V-Dem Institute"
+    ) + theme_minimal()
+```
+
+## Visualize It!
+
+<br>
+
+```{r}
+#| label: barchart2
+
+library(ggplot2)
+
+ggplot(dem_summary, aes(x = reorder(region, -polyarchy), y = polyarchy)) +
+  geom_col(fill = "steelblue") + 
+  labs(
+    x = "Region", 
+    y = "Avg. Polyarchy Score", 
+    title = "Democracy by region, 2015", 
+    caption = "Source: V-Dem Institute"
+    ) + theme_minimal()
+```
+
+## Try it Yourself
+
+- Run the code and a bar chart with the `dem_summary` data you wrangled, again grouping by region (instead of country)
+- Try visualizing different variables, e.g. `libdem`, `corruption`, `gdp_pc`
+- Try different summary statistics, e.g. mean, median, standard deviation, etc.
+- Try grouping by country instead of region and visualizing that
+
+```{r}
+#| label: timer2
+
+countdown(minutes = 10, 
+          id = "timer2", 
+          top = "0%", 
+          right = "5%")
+```
+
+
+  

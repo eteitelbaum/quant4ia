@@ -1,0 +1,302 @@
+---
+title: "IAFF 6501: Quantitative Analysis for IA Practitioners"
+subtitle: "Course Syllabus"
+format:
+  html: default
+  pdf: default
+---
+
+## Course Information
+
+| **Location**: [1957 E Street, Rm. 314](https://maps.google.com/?q=1957+E+St+NW,+Washington,+DC+20052)
+|
+| **Meeting Times**: Tuesdays & Thursdays, 12:45–3:15 p.m.
+|
+| **Instructor**: Prof. Emmanuel Teitelbaum
+| Email: [ejt\@gwu.edu](mailto:ejt@gwu.edu)
+| Office Hours: [Tuesdays, 3-5 p.m.](https://calendly.com/emmanuel-teitelbaum/15min)
+| 
+| **Credit Hours**: 3.0.
+
+## Course Description
+
+This course will focus on developing data analysis and data science skills that are relevant for international affairs practitioners. Students will develop coding, data visualization, data analysis, and data presentation skills that will allow them to use data to answer questions related to international affairs and to contribute to data driven policy and programmatic decision making.
+
+## Course Objectives
+
+Course and module objectives are guides to gauge your skill and knowledge development. By the end of this course, you should be able to:
+
+-   Analyze data sets using modern computational tools (using R).
+-   Identify and access data sets, and apply data wrangling concepts to optimize data for analysis and modeling purposes.
+-   Use data visualization to summarize simple and complex relationships between and among variables in a data set.
+-   Use tools of statistical inference to test hypotheses
+-   Develop and use models for prediction/forecasting, and for causal inference
+-   Create professional and reproducible data analysis outputs (reports, websites, slides, and so on) using Quarto
+
+## Aiming For Success
+
+I care about your learning and also about this subject matter, and I am here to help you have a meaningful learning experience. I expect you to take ownership of your learning: you can get more out of the course by thoughtfully participating in discussions, actively taking notes on readings and lectures, and giving your best effort overall. I will hold you to the highest standards for academic honesty and integrity in your work. I will also encourage you to collaborate and learn from your peers through thoughtful and respectful discussion. I must highlight that communication is vital, so I hope you feel comfortable reaching out to me if you are struggling or have concerns or need [accommodations beyond accessibility](#_heading=h.41mghml). We can determine strategies to set you up for success. Finally, I look forward to collaborating with you in this course to create a meaningful experience for everyone.
+
+### Policy on AI Tools
+
+### Overview
+
+AI tools (such as ChatGPT, Claude, Gemini, Copilot, and others) can be genuinely useful companions for learning to code and analyze data. This course takes a permissive approach: you may use AI tools to support your learning. Think of them as a tutor available around the clock, one you can ask to explain a concept, clarify an error message, walk through how a function works, or help you debug code that isn't running correctly.
+
+That said, there is an important distinction between using AI to learn and using AI instead of learning. The goal of this course is for you to develop real skills in R, data analysis, and statistical reasoning. If you simply paste an assignment into an AI and copy the output, you will pass the assignment but miss the course. More practically, you will struggle in future courses, in job interviews, and on the job itself, where these skills will be expected of you.
+
+### Guidelines
+
+Try first, then consult. Whether you are working on a lab or a homework, your first move should be to consult the course materials, e.g. the modules, slides, and readings. For labs, which are guided fill-in-the-blank exercises, the hints at the bottom of each page are there for a reason. Use them before turning to AI. For homeworks, which are more open-ended and challenging, it is reasonable to ask AI for help when you are genuinely stuck, but again, consult the course materials first.
+
+Use AI as a consultant, not a ghostwriter. Asking an AI why your code throws an error, what a function does, or how to interpret an output is exactly the kind of use that supports your learning. Debugging is one of the most legitimate uses of AI in a coding course. Asking it to complete your assignment for you is not.
+
+Critically evaluate AI output. AI tools make mistakes. They hallucinate functions, write syntactically incorrect code, and sometimes give confidently wrong answers. You are responsible for understanding and verifying whatever you submit.
+
+Acknowledge your use. In your submission statement, note whether you used AI tools and confirm that your use was advisory rather than generative.
+
+## Office Hours
+
+Another way we can work toward your success in the course is through office/student hours. Please make an appointment to talk with me during this time. You can work with me to:
+
+-   Clarify any questions about the syllabus or course content
+-   Review an assignment you've completed and have questions about
+-   Step through practice problems or questions
+-   Get study strategies
+-   Discuss grades
+
+To make the meeting more effective, you can:
+
+-   Gather materials (assignments, notes, etc.) ready in advance
+-   Be ready to take notes during office hours
+-   Ask follow up questions if you need clarification
+-   Confirm any action plan at the close of the meeting
+-   Following through on any action plan
+
+## Prerequisites
+
+### Academic
+
+None
+
+### Technological
+
+#### Configuration and software
+
+To fully participate in our course, you will need regular access to broadband Internet access as well as other technology components. Please consult [GW Online's Technical Requirements and Support](https://online.gwu.edu/technical-requirements-and-support) for details on recommended configurations and software available to you. You will need to use the following tools and platforms:
+
+-   RStudio: an IDE for generating data visualizations using the programming language, R.
+-   R
+
+Both of these can be downloaded from <https://posit.co/downloads/>
+
+For our course, you should be able to:
+
+-   Access and use [GW's Blackboard system](https://blackboard.gwu.edu).
+-   Use your GW email for university-related communications [per university policy](https://registrar.gwu.edu/university-policies#email).
+-   Use productivity software (e.g., Office 365, Google Suite) to collaborate with peers and submit assignments.
+-   Use web conferencing tools (e.g., Zoom, Webex) to collaborate with peers and me.
+-   Use a mobile device and/or computer to upload documents, images, and recordings.
+-   Seek technology help and tools by contacting [GW Information Technology](https://online.gwu.edu/student-support) \| (202)-994-4948 \| [ithelp\@gwu.edu](mailto:ithelp@gwu.edu).
+
+If you need assistance with technology tools we'll use in this course, please visit the **Technology Support** link in the left navigation menu in our course on Blackboard.
+
+## Materials You'll Need
+
+You will need to download the RStudio desktop application. You can find our weekly assigned readings through GW libraries. You must use your GW credentials to access these readings. Other course materials will be provided in our Blackboard course modules.
+
+## Course Credit Hour Policy
+
+37.5 hours of work per semester is required for one credit hour. These hours will consist of 50 minutes of direct or guided interaction plus 100 minutes of independent learning per week during the course of a normal 15-week semester, which includes one week for exams.
+
+### How this applies to you
+
+Use the credit hour policy to plan and manage your workload and time spent on this course. You should expect to spend approximately 5 hours (300 minutes) per week on this course outside of class time.
+
+Please contact me if you are having difficulty managing your workload, and we can discuss strategies to help you succeed in the course.
+
+## How You Will Learn and Demonstrate Knowledge
+
+My aim is to provide you opportunities for active learning and skills development that help you meet course learning objectives and also grow in your knowledge of this field.
+
+### Instruction
+
+I've designed the following instructional components to support your learning and growth in the course.
+
+-   **Class Sessions:** Class sessions will involve a mix of lecture and active learning activities that ask you to practice the skills we are learning in a given session. Please come prepared to actively participate in class.
+
+-   **Readings:** Each week you will be responsible for various reading assignments. The readings contain essential content for completing the course assignments.
+
+### Assessment
+
+The following assessments help you gauge and demonstrate your progress in the course and support you in meeting course learning objectives.
+
+-   **Labs:** In this course, you will have frequent opportunities to apply your knowledge via lab assignments
+
+-   **3 Homework Assignments**: You will develop various skills through three assignments that ask you to apply the data analysis tools we are learning in the course. Thoughtfully and thoroughly completing these assignments helps you meet course objectives.
+
+-   **Group Project:** In your final project, you will work in teams to apply your new data analysis skills in an international affairs project. You are free to choose your own partners or to do the project solo.
+
+You'll find support for Blackboard and other tools used for course activities and assignments under the **Technology Support** link in the left navigation menu in our course on Blackboard.
+
+## Demonstrating Academic Integrity
+
+All of us in the course will comply with [the GW Code of Academic Integrity](https://studentconduct.gwu.edu/). It states that "we, the Students, Faculty, Librarians, Staff, and Administration of The George Washington University, believing academic integrity to be central to the mission of the University, commit ourselves to promoting high standards for the integrity of academic work. Commitment to academic integrity upholds educational equity, development, and dissemination of meaningful knowledge, and mutual respect that our community values and nurtures. The George Washington University Code of Academic Integrity is established to further this commitment."
+
+Academic dishonesty is defined as cheating of any kind, including misrepresenting one's own work, taking credit for the work of others without crediting them and without appropriate authorization, and the fabrication of information. For details and complete code, see the [Code of Academic Integrity.](http://studentconduct.gwu.edu/code-academic-integrity)Common examples of academic dishonesty include cheating, fabrication, plagiarism, falsification, forgery of University academic documents, and facilitating academic dishonesty by others. Learn more about avoiding these:
+
+-   [GW guidance for students on academic integrity](https://studentconduct.gwu.edu/guidance-students).
+
+-   [Plagiarism: What is it and how to avoid it](https://libguides.gwu.edu/plagiarism) from GW Libraries.
+
+-   Maintaining academic honesty can be a challenging skill to learn. If you have questions about maintaining our course standards, please talk with me early on.
+
+## Assignments
+
+1.  Labs (20%)
+2.  3 Homework assignments (15% each = 45%)
+3.  Final Group Project (35%)
+
+### Labs
+
+Students will approximately seven labs. These exercises will be oriented towards strengthening the student's ability to use the tools we will be learning in the course. The labs will help to ensure that you keep up with the material consistently throughout the semester.
+
+### Coding Homework Assignments
+
+Students will complete three coding homework assignments. These assignments are designed to provide students with the opportunity to apply their newly-acquired skills to an international affairs related question or problem.
+
+### Final Group Project
+
+Each student will complete a final project that will be developed throughout the semester. We will provide more detail and time for you to work with your group in class.
+
+## Course Grading
+
+The grading scale below maps your final point or percentage total to your final letter grade for the course.
+
+| Range  | Letter Grade |
+|:------:|:------------:|
+| 94-100 |      A       |
+| 90-93  |      A-      |
+| 87-89  |      B+      |
+| 84-86  |      B       |
+| 80-83  |      B-      |
+| 77-79  |      C+      |
+| 74-76  |      C       |
+| 70-73  |      C-      |
+| \<=69  |      F       |
+
+## Late Work
+
+We understand that sometimes emergencies arise that might prevent you from submitting work on time. If you think you might miss an assignment deadline, it is your responsibility to contact me via email. We know life happens sometimes and will be as accommodating as possible, but it **is important that you communicate with me in advance.** If we do not hear from you, I will deduct 1 percentage points from your grade for every 24 hours the assignment is late.
+
+## Incomplete Grades
+
+Incomplete grades may be given to graduate students only if for reasons beyond the student's control (such as medical or family emergency) they are unable to complete the final work of the course. Faculty should not assign an Incomplete grade if not asked by the student.
+
+For further information, please consult with your advisor.
+
+## Course Communication
+
+Communication in our course is essential. Clearing up questions earlier rather than later is a good practice, so please don't hesitate to reach out.
+
+We will communicate with you primarily through [GW's Blackboard System](https://blackboard.gwu.edu). Announcements and emails sent through Blackboard automatically go to your GW email address. Please check your GW email on a daily basis or forward it to an address you check regularly.
+
+I will respond to emails within 48 hours on weekdays, and on the next business day over weekends and holidays. I will provide feedback on assignments within five business days.
+
+Technical questions about errors, package issues, or code that won't run are best handled in person, where we can look at the problem together. Please bring these to class, ask after class, or come to office hours. Please do not email me technical questions, as email is not an effective medium for diagnosing and solving coding problems. Note that debugging is also one of the most legitimate uses of AI tools in this course, so if your code throws an error and you cannot figure out why, consulting an AI is a reasonable first step before reaching out to me.
+
+Personal questions about grades or other private matters should be sent to me by email to set up an appointment.
+
+## Netiquette
+
+Behind every name there is a person.
+
+To ensure safe and meaningful learning experiences for everyone, we all agree to:
+
+-   Remain professional, respectful, and courteous at all times on all platforms.
+-   Keep in mind this is a college class. Something that would be inappropriate in an in-person classroom is also inappropriate in an online classroom.
+-   When upset, we'll wait a day or two prior to posting. Messages posted or emailed in anger are often regretted later.
+-   Ask one another for clarification if we find a communication offensive or difficult to understand.
+-   Avoid sweeping generalizations. Back up our stated opinions with facts and reliable sources.
+-   Understand that we may disagree and that exposure to other people's opinions is part of the learning experience.
+-   Just as we would like our privacy respected, we will respect the privacy of other course participants and what they share.
+
+I (the instructor) reserve the right to delete any post or communication in our course that is deemed inappropriate without prior notification to the student. This includes anything containing language that is offensive, rude, profane, racist, or hateful. Items that are seriously off-topic or serve no purpose other than to vent frustration will also be removed.
+
+Using outside communication apps
+
+I am aware that you and your peers might communicate using tools outside of GW's Blackboard, my course website, our course Discord channel, or email systems. Rules of netiquette and appropriate communication extend to these tools as well as to Blackboard. If you see any tool being used inappropriately (i.e., any communication containing language that is offensive, rude, profane, racist, or hateful; uses that promote cheating of any kind), contact me as soon as possible to speak privately about it.
+
+(Adapted from [Lake Superior Connect, Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/))
+
+## Policies
+
+To make this a meaningful learning experience for everyone, please read and understand the following policies. [All GW policies can be found on the GW Office of Ethics, Compliance, and Privacy site](https://compliance.gwu.edu/policies). All GW community members are responsible for adhering to and activating in accordance with all university policies. Please contact me if you have any questions.
+
+## Accessibility and Accommodations
+
+### GW's Disability Support Services
+
+If you are a student with a disability, or think you may have a disability, you can let me know, and/or you can talk to [GW's Office of Disability Support Services (DSS)](https://disabilitysupport.gwu.edu/). DSS works with both students with disabilities and instructors to identify reasonable accommodations. Contact the DSS office at (202) 994-8250, by email on dss\@gwu.edu, or in-person in Rome Hall Suite 102 to establish eligibility and to coordinate reasonable accommodations. If you have already been approved for accommodations, please send me your accommodation letter and meet with me so we can develop an implementation plan together.
+
+How are course technology tools accessible to everyone? To find out, access **Technology Support Technology Tools Policies** in the Blackboard course menu.
+
+### Accommodations Beyond Disability
+
+Everyone has different needs for learning. If you don't have a documented disability but feel that you would benefit from learning support for other reasons, please don't hesitate to talk to me. If you have substantial non-academic obligations or other concerns (e.g., [food insecurity](https://studentlife.gwu.edu/store), work, childcare, athletic commitments, language barriers, financial issues, technology access, commuting, etc.) that make learning difficult, please contact me. I'll keep this information confidential, and together, we can brainstorm ways to meet your needs.
+
+### Other Needs
+
+Any student who has difficulty affording groceries or accessing sufficient food to eat every day, or who lacks a safe and stable place to live, and believes this may affect their performance in the course, is urged to contact [GW's Office of Student Financial Assistance](https://financialaid.gwu.edu/emergency-funding) for support. Furthermore, please notify me if you are comfortable doing so. Some other resources to support you are found under the course menu item **Student Resources** and include support for academic achievement and personal well-being. *(Adapted from Goldrick-Rab, 2017)*
+
+## Counseling and Psychological Services
+
+GW's Health Center offers [counseling and psychological services](http://counselingcenter.gwu.edu) to GW students. ***Please note that staff is licensed to offer short term therapy to students in Washington, DC, Maryland, and Virginia. If you are living outside these regions, the office may be able to refer you elsewhere.*** Assistance and referrals 24 hours a day, 365 days a year and can be reached on (202) 994-5300.
+
+The Center provides assistance and referral to address students' personal, social, career, and study skills problems. Services for students include: crisis and emergency mental health consultations, confidential assessment, counseling services (individual and small group), and referrals.
+
+[Virtual Workshops](https://healthcenter.gwu.edu/sites/g/files/zaxdzs1216/f/image/Virtual%20Workshop%20Flyer.pdf) are open to any student regardless of geographic location. These can be exceptionally valuable and help you build essential skills and cope with common ongoing mental health concerns. Please contact the [GW Health Center](https://healthcenter.gwu.edu) on (202) 994-5300 for more information.
+
+## Religious Observances
+
+As members of the GW community, you have the right to observe religious holidays. University policy requires that students notify their instructors during the first week of the semester if they plan to be absent from class on days of religious observance. For further details, please consult [the university policy on religious holiday observance](http://registrar.gwu.edu/university-policies#holidays).
+
+## Emergency Preparedness and Response Procedures
+
+The University has asked all faculty to inform students of these procedures, prepared by the GW Office of Public Safety and Emergency Management in collaboration with the Office of the Executive Vice President for Academic Affairs.
+
+### To Report an Emergency or Suspicious Activity
+
+Call the University Police Department at 202-994-6111 (Foggy Bottom) or 202-242-6111 (Mount Vernon).
+
+### Shelter in Place – General Guidance
+
+Although it is unlikely that we will ever need to shelter in place, it is helpful to know what to do just in case. No matter where you are, the basic steps of shelter in place will generally remain the same.
+
+-   If you are inside, stay where you are unless the building you are in is affected. If it is affected, you should evacuate. If you are outdoors, proceed into the closest building or follow instructions from emergency personnel on the scene.
+-   Locate an interior room to shelter inside. If possible, it should be above ground level and have the fewest number of windows. If sheltering in a room with windows, move away from the windows. If there is a large group of people inside a particular building, several rooms may be necessary.
+-   Shut and lock all windows (for a tighter seal) and close exterior doors.
+-   Turn off air conditioners, heaters, and fans. Close vents to ventilation systems as you are able. (University staff will turn off ventilation systems as quickly as possible).
+-   Make a list of the people with you and ask someone to call the list in to UPD so they know where you are sheltering and who is with you. If only students are present, one of the students should call in the list.
+-   Await further instructions. If possible, visit [GW Campus Advisories](https://campusadvisories.gwu.edu/) for incident updates or call the GW Information Line 202-994-5050.
+-   Make yourself comfortable and look after one other. You will get word as soon as it is safe to come out.
+
+### Evacuation
+
+An evacuation will be considered if the building we are in is affected or we must move to a location of greater safety. We will always evacuate if the fire alarm sounds. In the event of an evacuation, please gather your personal belongings quickly (purse, keys, GWorld card, etc.) and proceed to the nearest exit. Every classroom has a map at the door designating both the shortest egress and an alternate egress. Anyone who is physically unable to walk down the stairs should wait in the stairwell, behind the closed doors. Firemen will check the stairwells upon entering the building. Once you have evacuated the building, proceed to our primary rendezvous location: the court yard area between the GW Hospital and Ross Hall. In the event that this location is unavailable, we will meet on the ground level of the Visitors Parking Garage (I Street entrance, at 22nd Street). From our rendezvous location, we will await instructions to re-enter the School.
+
+### Alert DC
+
+Alert DC provides free notification by e-mail or text message during an emergency. Visit [GW Campus Advisories](https://campusadvisories.gwu.edu/) for a link and instructions on how to sign up for alerts pertaining to GW. If you receive an Alert DC notification during class, you are encouraged to share the information immediately.
+
+### GW Alert
+
+GW Alert provides popup notification to desktop and laptop computers during an emergency. In the event that we receive an alert to the computer in our classroom, we will follow the instructions given. You are also encouraged to download this application to your personal computer. Visit [GW Campus Advisories](https://campusadvisories.gwu.edu/) to learn how.
+
+### Additional Information
+
+Additional information about emergency preparedness and response at GW or the University’s operating status can be found on GW Campus Advisories or by calling the GW Information Line at 202-994-5050.
+
+## Key Dates
+
+Please defer to the due dates listed on the course website. You can also view due dates in the gradebook and under each individual course assignment item in Blackboard Ultra.

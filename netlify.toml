@@ -1,0 +1,4 @@
+# Netlify serves the pre-rendered Quarto output committed in _site/.
+# Render locally with `quarto render`, commit the _site/ folder, and push.
+[build]
+  publish = "_site"

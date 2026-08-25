@@ -1,0 +1,28 @@
+---
+title: "Week 3"
+subtitle: "Working with Data in R"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+source("../helper.R")
+```
+
+::: {.callout-important}
+Lab due by 11:59pm on `r advdate2(sun, 2)`. 
+:::
+
+## Readings
+
+| 📖 [r4ds, ch 3](https://r4ds.hadley.nz/data-transform.html)
+
+## Videos
+
+| 🖥 [Transforming Data with dplyr Verbs](https://youtu.be/ScQD47eJeAE)
+| 🖥 [Summarizing Data by Groups with dplyr Verbs](https://youtu.be/mgBwVzMV-v8)
+
+## Assignments
+
+| 📘 Lab 2, available on [Posit Cloud](https://posit.cloud).

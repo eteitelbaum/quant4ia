@@ -1,0 +1,406 @@
+---
+title: Numerical Data
+date: today
+date-format: long
+footer: "[IAFF 6501 Website](https://quant4ia.rocks)"
+logo: images/iaff6501-logo.png
+from: markdown+emoji
+format:
+  revealjs:
+    theme: [simple, custom.scss]
+    transition: fade
+    slide-number: true
+    #multiplex: true
+    chalkboard: true
+execute:
+  echo: false
+  message: false
+  warning: false
+  freeze: auto
+---
+
+## Electoral Democracy Measure {.smaller}
+
+<br>
+
+-   To what extent is the ideal of electoral democracy in its fullest sense achieved?
+-   Measure runs from 0 (lowest) to 1 (highest) 
+-   0.5 is a cutoff for distinguishing electoral democracy from electoral autocracy
+
+> The electoral principle of democracy seeks to embody the core value of making rulers responsive to citizens, achieved through electoral competition for the electorate's approval under circumstances when suffrage is extensive; political and civil society organizations can operate freely; elections are clean and not marred by fraud or systematic irregularities; and elections affect the composition of the chief executive of the country. In between elections, there is freedom of expression and an independent media capable of presenting alternative views on matters of political relevance.  -- V-Dem Codebook
+
+## Other High-Level V-Dem Measures
+
+<br>
+
+-   Liberal Democracy
+-   Egalitarian Democracy
+-   Participatory Democracy
+-   Deliberative Democracy
+
+All continuous measures, ranging from 0 to 1. Let's take a look at how to summarize data like this!
+
+## Data Setup {.smaller}
+
+<br>
+
+```{r}
+#| label: setup
+#| echo: true
+
+# Load packages 
+library(vdemdata)
+library(tidyverse)
+
+# Create dataset for year 2022, with country name, year, and electoral dem
+vdem2022 <- vdem |>
+  filter(year == 2022)  |>
+  select(
+    country = country_name, 
+    year, 
+    polyarchy = v2x_polyarchy, 
+    region = e_regionpol_6C 
+    ) |>
+  mutate(region = case_match(region, 
+                        1 ~ "Eastern Europe", 
+                        2 ~ "Latin America",  
+                        3 ~ "Middle East",   
+                        4 ~ "Africa", 
+                        5 ~ "The West", 
+                        6 ~ "Asia")) 
+```
+
+## Examine the Data
+
+<br>
+
+```{r}
+#| label: glimpse
+#| echo: true
+
+glimpse(vdem2022)
+```
+
+## 
+
+<br>
+
+How can we summarize measures of democracy? :thinking:
+
+<br>
+
+We could calculate the **mean**. 
+
+```{r}
+#| label: mean
+#| echo: true
+
+vdem2022 |>
+  summarize(mean_democracy = mean(polyarchy))
+```
+
+The mean is the average of the values. Common measure of central tendency but sensitive to outliers.
+
+## 
+
+<br>
+
+How can we summarize measures of democracy? :thinking:
+
+<br>
+
+We could calculate the **median**. 
+
+```{r}
+#| label: median
+#| echo: true
+vdem2022 |>
+  summarize(median_democracy = median(polyarchy))
+```
+
+The median is the value that separates the higher half from the lower half of the data. 
+
+## 
+
+<br> 
+
+We can also describe the shape of the distribution...
+
+-   symmetric (e.g. normal)
+-   right-skewed
+-   left-skewed
+-   unimodal (one peak)
+-   bimodal (multiple peaks)
+
+## Histograms
+
+-  Used to represent the distribution of a continuous variable
+-  The x-axis represents the range of values
+-  The y-axis represents the frequency of each value
+-  The bars represent the number of observations in each range or "bin"
+-  The shape of the histogram can tell us a lot about the distribution of the data
+
+## Symmetric Distributions
+
+```{r}
+#| label: symmetric-1
+
+x <- tibble(x = rnorm(1000, 10))
+ggplot(x, aes(x = x )) +
+  geom_histogram(binwidth = .5, fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A Normal Distribution (unimodal)"
+  )
+```
+
+## Symmetric Distributions
+
+```{r}
+#| label: symmetric-2
+
+x <- tibble(x = runif(100000, -10, 10))
+ggplot(x, aes(x = x )) +
+  geom_histogram(binwidth = 2, fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A Uniform Distribution"
+  )
+```
+
+## Skewed Distributions
+
+```{r}
+#| label: left-skewed
+
+x <- tibble(x = rbeta(10000, 100, 2))
+ggplot(x, aes(x = x )) +
+  geom_histogram( fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A LEFT Skewed Distribution"
+  )
+```
+
+## Skewed Distributions
+
+```{r}
+#| label: right-skewed
+
+x <- tibble(x = rbeta(10000, 2, 100))
+ggplot(x, aes(x = x )) +
+  geom_histogram( fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A RIGHT Skewed Distribution"
+  )
+```
+
+## Bimodal Distribution
+
+```{r}
+#| label: bimodal
+
+library(truncnorm)
+
+nn <- 1e4
+set.seed(1)
+sims <- c(rtruncnorm(nn/2, a=1, b=5, mean=2, sd=.5),
+                    rtruncnorm(nn/2, a=1, b=5, mean=4, sd=.5))
+
+x <- tibble(x = sims)
+ggplot(x, aes(x = x )) +
+  geom_histogram( fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A BIMODAL Distribution"
+  )
+```
+
+## When is the Mean Useful?
+
+```{r}
+#| label: normal-distribution
+
+x <- tibble(x = rnorm(1000, 10))
+mean <- summarize(x, mn = mean(x))
+ggplot(x, aes(x = x )) +
+  geom_histogram(binwidth = .5, fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A Normal Distribution and the Mean"
+  ) +
+  geom_vline(xintercept = 9.98, linewidth = 2, color = "darkorange")
+```
+
+## When is the Mean Useful?
+
+```{r}
+#| label: mean-right-skew
+ 
+x <- tibble(x = rbeta(10000,2, 100))
+mean <- summarize(x, mn = mean(x))
+ggplot(x, aes(x = x )) +
+  geom_histogram( fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A RIGHT Skewed Distribution and the Mean"
+  ) +
+  geom_vline(xintercept = 0.0197, linewidth = 2, color = "darkorange")
+```
+
+## When is the Mean Useful?
+
+```{r}
+#| label: mean-bimodal
+
+library(truncnorm)
+
+nn <- 1e4
+set.seed(1)
+sims <- c(rtruncnorm(nn/2, a=1, b=5, mean=2, sd=.5),
+                    rtruncnorm(nn/2, a=1, b=5, mean=4, sd=.5))
+mn <- mean(sims)
+x <- tibble(x = sims)
+ggplot(x, aes(x = x )) +
+  geom_histogram( fill = "steelblue") + theme_bw() +
+   labs(
+    x = "A made up measure", 
+    y = "Frequency", 
+    title = "A BIMODAL Distribution and the Mean"
+  ) +
+    geom_vline(xintercept = mn, linewidth = 2, color = "darkorange")
+
+```
+
+## When is the `mean` useful?
+
+<br>
+
+-   The Mean works well as a summary statistic when the distribution is relatively symmetric
+-   Not as well when distributions are skewed or bimodal (or multi-modal)
+-   With skewed distributions, the mean is sensitive to extreme values
+-   The median is more robust
+
+## Lesson
+
+::: incremental
+-   Always look at your data!!
+-   When reading or in a presentation, ask yourself:
+    -   Does the mean make sense given the distribution of the measure?
+    -   Could extreme values in a skewed distribution make the mean not as useful?
+    -   Have the analysts shown you the distribution? If not, ask about it!
+:::
+
+## Visualize Our Measure
+
+<br>
+
+```{r}
+#| label: visualize-polyarchy 
+
+mn <- mean(vdem2022$polyarchy)
+med <- median(vdem2022$polyarchy)
+
+ggplot(vdem2022, aes(x = polyarchy )) +
+  geom_histogram(binwidth = .05, fill = "steelblue") + 
+   labs(
+    x = "Electoral Democracy", 
+    y = "Frequency", 
+    title = "Distribution of Electoral Democracy in 2022", 
+    caption = "Source: V-Dem Institute"
+  ) + 
+  geom_vline(xintercept = mn, linewidth = 1, color = "darkorange") +
+  theme_minimal()
+```
+
+## Visualize Our Measure
+
+<br>
+
+```{r}
+#| label: visualize-polyarchy-2
+#| echo: true
+#| eval: false
+
+mn <- mean(vdem2022$polyarchy)
+med <- median(vdem2022$polyarchy)
+
+ggplot(vdem2022, aes(x = polyarchy )) +
+  geom_histogram(binwidth = .05, fill = "steelblue") +
+   labs(
+    x = "Electoral Democracy", 
+    y = "Frequency", 
+    title = "Distribution of Electoral Democracy in 2022", 
+    caption = "Source: V-Dem Institute"
+  ) + 
+  geom_vline(xintercept = mn, linewidth = 1, color = "darkorange") +
+  theme_minimal() 
+```
+
+## Visualize Our Measure
+
+<br>
+
+```{r}
+#| label: visualize-polyarchy-3
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1-2|5|12" 
+
+mn <- mean(vdem2022$polyarchy)
+med <- median(vdem2022$polyarchy)
+
+ggplot(vdem2022, aes(x = polyarchy )) +
+  geom_histogram(binwidth = .05, fill = "steelblue") +
+   labs(
+    x = "Electoral Democracy", 
+    y = "Frequency", 
+    title = "Distribution of Electoral Democracy in 2022", 
+    caption = "Source: V-Dem Institute"
+  ) + 
+  geom_vline(xintercept = mn, linewidth = 1, color = "darkorange") +
+  theme_minimal() 
+```
+
+## Your Turn!
+
+- Look at the [V-Dem codebook](https://v-dem.net/documents/24/codebook_v13.pdf)
+- Select a different high-level measure of democracy
+- Preprocess your data to include tha measure in your data frame
+- Calculate the mean and median and store as a variable
+- Visualize the distribution of the measure
+- Include a vertical line for the mean
+- Now try the median
+
+```{r}
+#| label: time1
+
+library(countdown)
+
+countdown(minutes = 5, 
+          id = "timer1", 
+          bottom = "5%", 
+          right = "10%",
+          color_border = "#fff",
+          color_text = "#fff",
+          color_running_background = "#42affa",
+          color_running_text = "black",
+          color_finished_background = "#E5D19D",
+          color_finished_text = "#00264A")
+```
+
+## Recap
+
+<br> 
+
+- We can use statistics like mean or median to describe the center of a variable
+- We can visualize the entire distribution to charachterize the distribution of the variable
+- We should also say something about the **spread** of the distribution 
