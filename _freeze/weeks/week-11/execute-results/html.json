@@ -1,8 +1,8 @@
 {
-  "hash": "4bb535455a97db26e345a2f9297358e9",
+  "hash": "5d8961bac44a8063067d5813568659ff",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 11\"\nsubtitle: \"Logistic Regression\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, November 8.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 9.1 and 9.2](https://openintro-ims.netlify.app/model-logistic)\n\n## Videos\n\n| 📺 [Classification: Motivation](https://youtu.be/p-ltr1C7u2o?si=TLb3y75pSaJ067ue)\n| 📺 [Logistic Regression](https://youtu.be/xuTiAW0OR40?si=sUoIr5pzHwHEpazO)\n| 📺 [Odds Ratios in Logistic Regression](https://youtu.be/oIR8YOSXudM?si=aEALe2ifW71lsJJG)\n\n## Modules\n\n| 📒 [Module 11.1](/modules/module-11.1.html)\n| 📒 [Module 11.2](/modules/module-11.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
+    "markdown": "---\ntitle: \"Week 11\"\nsubtitle: \"Logistic Regression\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, November 15.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 9.1 and 9.2](https://openintro-ims.netlify.app/model-logistic)\n\n## Videos\n\n| 📺 [Classification: Motivation](https://youtu.be/p-ltr1C7u2o?si=TLb3y75pSaJ067ue)\n| 📺 [Logistic Regression](https://youtu.be/xuTiAW0OR40?si=sUoIr5pzHwHEpazO)\n| 📺 [Odds Ratios in Logistic Regression](https://youtu.be/oIR8YOSXudM?si=aEALe2ifW71lsJJG)\n\n## Modules\n\n| 📒 [Module 11.1](/modules/module-11.1.html)\n| 📒 [Module 11.2](/modules/module-11.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

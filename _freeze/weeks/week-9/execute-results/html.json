@@ -1,8 +1,8 @@
 {
-  "hash": "b9e8a6d37bde99b1ffbb1ce3b8a5bc3b",
+  "hash": "b6f1ef40421a05ef27a4b94ca2262977",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 9\"\nsubtitle: \"Simple Linear Regression\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, October 25.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 7.1](https://openintro-ims.netlify.app/model-slr#sec-fit-line-res-cor)\n| 📖 [IMS, chap. 7.2](https://openintro-ims.netlify.app/model-slr#sec-least-squares-regression)\n\n## Videos\n\n| 📺 [Linear Regression with One Variable, Part 1](https://youtu.be/dLc-lfEEYss?si=-Zelb-HBAP-MPvnF)\n| 📺 [Linear Regression with One Variable, Part 2](https://youtu.be/KWULpBYzIYk?si=z_-wmdYlyrdpN4ys)\n| 📺 [Cost Function](https://youtu.be/CFN5zHzEuGY?si=uX_MFAbbSIzXMYQJ)\n| 📺 [Cost Function Intuition](https://youtu.be/peNRqkfukYY?si=UtakmQc9KLaQj7UH)\n\n## Modules\n\n| 📒 [Module 9.1](/modules/module-9.1.html)\n| 📒 [Module 9.2](/modules/module-9.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
+    "markdown": "---\ntitle: \"Week 9\"\nsubtitle: \"Simple Linear Regression\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, November 1.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 7.1](https://openintro-ims.netlify.app/model-slr#sec-fit-line-res-cor)\n| 📖 [IMS, chap. 7.2](https://openintro-ims.netlify.app/model-slr#sec-least-squares-regression)\n\n## Videos\n\n| 📺 [Linear Regression with One Variable, Part 1](https://youtu.be/dLc-lfEEYss?si=-Zelb-HBAP-MPvnF)\n| 📺 [Linear Regression with One Variable, Part 2](https://youtu.be/KWULpBYzIYk?si=z_-wmdYlyrdpN4ys)\n| 📺 [Cost Function](https://youtu.be/CFN5zHzEuGY?si=uX_MFAbbSIzXMYQJ)\n| 📺 [Cost Function Intuition](https://youtu.be/peNRqkfukYY?si=UtakmQc9KLaQj7UH)\n\n## Modules\n\n| 📒 [Module 9.1](/modules/module-9.1.html)\n| 📒 [Module 9.2](/modules/module-9.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
     "supporting": [
       "week-9_files"
     ],

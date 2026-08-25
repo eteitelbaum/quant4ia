@@ -1,8 +1,8 @@
 {
-  "hash": "a71d08ab4137e0ba48a7bfbae416d34b",
+  "hash": "e1499f79adc167b499f932442181de73",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 12\"\nsubtitle: \"Interpreting and Presenting Models\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, November 15.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 9.3 and 9.4](https://openintro-ims.netlify.app/model-logistic#logistic-model-with-many-variables)\n\n## Videos\n\n| 📺 [Effect Multipliers in Logistic Regression](https://youtu.be/eb5lGVHHlY0?si=BCQJhZHezE9ihLg3)\n| 📺 [Display Multiple Models with Model Summary](https://youtu.be/My6_X6x5TZw)\n| 📺 [Coefficient Plots for Single Models](https://youtu.be/gif_wkqyub8)\n\n## Modules\n\n| 📒 [Module 12.1](/modules/module-12.1.html)\n| 📒 [Module 12.2](/modules/module-12.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
+    "markdown": "---\ntitle: \"Week 12\"\nsubtitle: \"Interpreting and Presenting Models\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, November 22.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 9.3 and 9.4](https://openintro-ims.netlify.app/model-logistic#logistic-model-with-many-variables)\n\n## Videos\n\n| 📺 [Effect Multipliers in Logistic Regression](https://youtu.be/eb5lGVHHlY0?si=BCQJhZHezE9ihLg3)\n| 📺 [Display Multiple Models with Model Summary](https://youtu.be/My6_X6x5TZw)\n| 📺 [Coefficient Plots for Single Models](https://youtu.be/gif_wkqyub8)\n\n## Modules\n\n| 📒 [Module 12.1](/modules/module-12.1.html)\n| 📒 [Module 12.2](/modules/module-12.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
     "supporting": [
       "week-12_files"
     ],

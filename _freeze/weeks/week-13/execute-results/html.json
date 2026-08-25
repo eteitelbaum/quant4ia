@@ -1,8 +1,8 @@
 {
-  "hash": "4a1aa66848b9b197e4eb9ff266ab4d4c",
+  "hash": "927dccd34221cc457379fcfa91d43a21",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"Week 13\"\nsubtitle: \"Homework 3\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nHomework 3 due by 11:59pm on Sunday, November 22.\n:::\n\n## Assignments\n\n| 🧮 [Homework 3](../assignments/homework-3.qmd)\n",
+    "markdown": "---\ntitle: \"Week 13\"\nsubtitle: \"Homework 3\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nHomework 3 due by 11:59pm on Sunday, December 6.\n:::\n\n## Assignments\n\n| 🧮 [Homework 3](../assignments/homework-3.qmd)\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
