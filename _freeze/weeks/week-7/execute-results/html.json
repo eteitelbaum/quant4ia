@@ -1,0 +1,15 @@
+{
+  "hash": "014c0d6f0ed7ac6ad13fa7e35e6a532a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 7\"\nsubtitle: \"Hypothesis Tests for Proportions\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, October 11.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 16](https://openintro-ims.netlify.app/inference-one-prop)\n| 📖 [IMS, chap. 11](https://openintro-ims.netlify.app/foundations-randomization)\n\n## Videos\n\n| 📺 [Using Randomization to Analyze Gender Discrimination](https://www.youtube.com/watch?v=2pHhjx9hyM4)\n\n## Modules\n\n| 📒 [Module 7.1](/modules/module-7.1.html)\n| 📒 [Module 7.2](/modules/module-7.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

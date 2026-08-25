@@ -1,0 +1,15 @@
+{
+  "hash": "e6ead5b869206ad1844c10aa15cde86e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 8\"\nsubtitle: \"Homework 2\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nHomework 2 due by 11:59pm on Sunday, October 18.\n:::\n\n## Readings\n\n| 📖 [Casey et al.](https://academic.oup.com/qje/article-abstract/127/4/1755/1841616)\n\n## Assignments\n\n| 🧮 [Homework 2](../assignments/homework-2.qmd)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

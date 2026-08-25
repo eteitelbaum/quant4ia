@@ -1,0 +1,15 @@
+{
+  "hash": "3a7cb040b5fb41bfb9e80c078591dbce",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 14\"\nsubtitle: \"Final Project Workshop\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nProject assignment due by 11:59pm on Sunday, December 13.\n:::\n\n## Slides\n\n| 🖥️ [Workshop Slides 1](/slides/week-14.1.html)\n| 🖥️ [Workshop Slides 2](/slides/week-14.2.html)\n\n## Assignments\n\n| ✍️ [Project Assignment 3](../project/project-description.qmd)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

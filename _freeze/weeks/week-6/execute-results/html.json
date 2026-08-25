@@ -1,0 +1,17 @@
+{
+  "hash": "3f68685af2c13965187b57042eeb4fb7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 6\"\nsubtitle: \"Distributions and Sampling\"\nformat: html\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, October 4.\n:::\n\n## Readings\n\n| 📖 [IMS, chap. 5.4 - 5.5](https://openintro-ims.netlify.app/explore-numerical#sec-variance-sd)\n| 📖 [IMS, chap. 12](https://openintro-ims.netlify.app/foundations-bootstrapping)\n\n## Videos\n\n| 📺 [The Right and Wrong Way to Interpret a CI](https://www.youtube.com/watch?v=5q2ac412hv4)\n| 📺 [Bootstrapping Main Ideas](https://youtu.be/Xz0x-8-cgaQ?si=v_YCi-dU5YBdcb99)\n\n## Modules\n\n| 📒 [Module 6.1](/modules/module-6.1.html)\n| 📒 [Module 6.2](/modules/module-6.2.html)\n\n## Assignments\n\n| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
+    "supporting": [
+      "week-6_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

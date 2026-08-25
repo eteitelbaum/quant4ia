@@ -1,0 +1,15 @@
+{
+  "hash": "25db9dc66eab98dde95cdc86d087c31f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: Week 4\nsubtitle: Data Visualization Review\n---\n\n\n\n::: {.callout-important}\nHomework Assignment 1 due by 11:59pm on Sunday, September 20. \n:::\n\n## Readings\n\n| 📖 [Lipset, Some Social Requisites of Democracy](https://www-jstor-org.proxygw.wrlc.org/stable/1951731?seq=8)\n\n## Assignments\n\n| 📘 [Homework 1](../assignments/homework-1.qmd)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

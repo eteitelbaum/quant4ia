@@ -1,0 +1,15 @@
+{
+  "hash": "70716f1543a6994a606453a3ba6f07d3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week 3\"\nsubtitle: \"Working with Data in R\"\n---\n\n\n\n::: {.callout-important}\nLab due by 11:59pm on Sunday, September 13. \n:::\n\n## Readings\n\n| 📖 [r4ds, ch 3](https://r4ds.hadley.nz/data-transform.html)\n\n## Videos\n\n| 🖥 [Transforming Data with dplyr Verbs](https://youtu.be/ScQD47eJeAE)\n| 🖥 [Summarizing Data by Groups with dplyr Verbs](https://youtu.be/mgBwVzMV-v8)\n\n## Assignments\n\n| 📘 Lab 2, available on [Posit Cloud](https://posit.cloud/spaces/809085).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

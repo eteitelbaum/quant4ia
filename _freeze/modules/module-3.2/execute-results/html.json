@@ -1,0 +1,17 @@
+{
+  "hash": "c6c0f27f4351f51c13c5f1df669d8a65",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Module 3.2\"\nsubtitle: \"Summarizing Data\"\nformat: \n  html:\n    code-link: true\nhighlight-style: atom-one\nexecute:\n  echo: true\n  message: false\n  warning: false\n---\n\n## Group, summarize and arrange \n\n{{< video https://youtu.be/mgBwVzMV-v8 title='Group, Summarize and Arrange' >}}\n\nNow that we have completed some wrangling, let's do something with our data. A common sequence in data science is [group by()](https://dplyr.tidyverse.org/reference/group_by.html), [summarize()](https://dplyr.tidyverse.org/reference/summarise.html) and [arrange()](https://dplyr.tidyverse.org/reference/arrange.html). First, we group the data by certain value or category. Then we summarize it by applying a function like `min()`, `max()`, `mean()`, `median()` or `sd()`. Finally, we order the data according to column values. \n\nLet's go ahead and apply our three new verbs to a data frame and store the resulting new data frame in an object.  \n\nYou can download the raw data from [here](https://github.com/eteitelbaum/course-datasets/blob/main/dem_women.csv) and read it into your environment with the `read_csv()` function from the `readr` package. Store it in an object called `dem_women`. \n\nWe will group the data by region, take the mean of each variable, and sort the data in descending order based on the regions' polyarchy scores. Then we will print the object to view its contents. Along the way, we can also export the data to a .csv file for future use. \n\n::: {.callout-note}\nRemember to check your file path when reading in a CSV file. If the file is not in the same directory as your R script, you will need to specify the path to the file.\n:::\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Load packages\n\nlibrary(dplyr)\nlibrary(readr)\n\ndem_women <- read_csv(\"data/dem_women.csv\") # if the path is different, adjust this code\n\n# group_by(), summarize() and arrange()\ndem_summary <- dem_women |> # save result as new object\n  group_by(region)  |> # group dem_women data by region\n  summarize(           # summarize following vars (by region)\n    polyarchy = mean(polyarchy, na.rm = TRUE), # calculate mean, remove NAs\n    gdp_pc = mean(gdp_pc, na.rm = TRUE), \n    flfp = mean(flfp, na.rm = TRUE), \n    women_rep = mean(women_rep, na.rm = TRUE)\n  ) |> \n  arrange(desc(polyarchy)) # arrange in descending order by polyarchy score\n\n# Save as .csv for future use\nwrite_csv(dem_summary, \"data/dem_summary.csv\")\n\n# View the data\nglimpse(dem_summary)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nRows: 6\nColumns: 5\n$ region    <chr> \"The West\", \"Latin America\", \"Eastern Europe\", \"Asia\", \"Afri…\n$ polyarchy <dbl> 0.8709230, 0.6371358, 0.5387451, 0.4076602, 0.3934166, 0.245…\n$ gdp_pc    <dbl> 37.913054, 9.610284, 12.176554, 9.746391, 4.410484, 21.134319\n$ flfp      <dbl> 52.99082, 48.12645, 50.45894, 50.32171, 56.69530, 26.57872\n$ women_rep <dbl> 28.12921, 21.32548, 17.99728, 14.45225, 17.44296, 10.21568\n```\n\n\n:::\n:::\n\n\n\n\n",
+    "supporting": [
+      "module-3.2_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
