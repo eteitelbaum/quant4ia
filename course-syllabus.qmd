@@ -10,7 +10,7 @@ format:
 
 | **Location**: [1957 E Street, Rm. 314](https://maps.google.com/?q=1957+E+St+NW,+Washington,+DC+20052)
 |
-| **Meeting Times**: Tuesdays & Thursdays, 12:45–3:15 p.m.
+| **Meeting Times**: Tuesdays, 12:45–3:15 p.m.
 |
 | **Instructor**: Prof. Emmanuel Teitelbaum
 | Email: [ejt\@gwu.edu](mailto:ejt@gwu.edu)
