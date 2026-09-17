@@ -35,8 +35,8 @@ quarto render path/to/file.qmd
 quarto render file.qmd --to html
 quarto render file.qmd --to pdf
 
-# Publish to configured destination
-quarto publish
+# Deploy: render locally, then commit and push _site/ (Netlify serves it directly)
+quarto render
 ```
 
 ### Development Workflow
@@ -67,7 +67,7 @@ The repository follows a modular structure with three parallel content hierarchi
 - **`modules/data/`** - CSV data files used in modules (dem_data.csv, wb_data_clean.csv, etc.)
 - **`modules/functions/`** - Reusable R functions (helper.R, wb-maps.R)
 - **`slides/data/`** - Data files used in slides
-- **`_site/`** - Generated website output (gitignored)
+- **`_site/`** - Generated website output (tracked in git; Netlify serves this folder directly, so render locally and commit it — see `netlify.toml`)
 - **`_freeze/`** - Quarto freeze cache for faster rebuilds
 - **`.quarto/`** - Quarto project cache
 

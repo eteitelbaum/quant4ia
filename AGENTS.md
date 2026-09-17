@@ -9,14 +9,14 @@
   - `weeks/` for weekly overview pages.
 - Assignments and final project materials are in `assignments/` and `project/`.
 - Data lives in `modules/data/` and `slides/data/`. Shared R helpers are in `modules/functions/` and `helper.R`.
-- Generated output is in `_site/` and cached renders in `_freeze/` (do not hand-edit).
+- Generated output is in `_site/` and cached renders in `_freeze/` (do not hand-edit). Both are tracked in git; `_site/` is what Netlify publishes.
 
 ## Build, Test, and Development Commands
 
 - `quarto preview` launches the live-reload dev server.
 - `quarto render` builds the full site; `quarto render path/to/file.qmd` renders a single file.
 - `quarto render file.qmd --to html|pdf` targets specific formats.
-- `quarto publish` deploys to the configured destination.
+- Deployment is via git: `quarto render`, then commit the updated `_site/` and push. Netlify serves that folder directly (`netlify.toml`); there is no `_publish.yml`.
 
 ## Coding Style & Naming Conventions
 
