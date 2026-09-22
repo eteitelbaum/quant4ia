@@ -11,10 +11,6 @@ format: html
 source("../helper.R")
 ```
 
-::: {.callout-important}
-Lab due by 11:59pm on `r advdate2(sun, 12)`.
-:::
-
 ## Readings
 
 | 📖 [IMS, chap. 9.3 and 9.4](https://openintro-ims.netlify.app/model-logistic#logistic-model-with-many-variables)
@@ -29,7 +25,3 @@ Lab due by 11:59pm on `r advdate2(sun, 12)`.
 
 | 📒 [Module 12.1](/modules/module-12.1.html)
 | 📒 [Module 12.2](/modules/module-12.2.html)
-
-## Assignments
-
-| 📘 Lab, available on [Posit Cloud](https://posit.cloud/spaces/809228/content/).

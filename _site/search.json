@@ -142,7 +142,7 @@
     "href": "weeks/week-5.html",
     "title": "Week 5",
     "section": "",
-    "text": "Important\n\n\n\nLab due by 11:59pm on Sunday, September 27.",
+    "text": "📖 IMS, chap. 4\n📖 IMS, chap. 5.1 - 5.3",
     "crumbs": [
       "Weekly Materials",
       "Week 5"
@@ -152,8 +152,8 @@
     "objectID": "weeks/week-5.html#readings",
     "href": "weeks/week-5.html#readings",
     "title": "Week 5",
-    "section": "Readings",
-    "text": "Readings\n📖 IMS, chap. 4\n📖 IMS, chap. 5.1 - 5.3",
+    "section": "",
+    "text": "📖 IMS, chap. 4\n📖 IMS, chap. 5.1 - 5.3",
     "crumbs": [
       "Weekly Materials",
       "Week 5"
@@ -176,17 +176,6 @@
     "title": "Week 5",
     "section": "Modules",
     "text": "Modules\n📒 Module 5.1\n📒 Module 5.2",
-    "crumbs": [
-      "Weekly Materials",
-      "Week 5"
-    ]
-  },
-  {
-    "objectID": "weeks/week-5.html#assignments",
-    "href": "weeks/week-5.html#assignments",
-    "title": "Week 5",
-    "section": "Assignments",
-    "text": "Assignments\n📘 Lab, available on Posit Cloud.",
     "crumbs": [
       "Weekly Materials",
       "Week 5"
@@ -274,7 +263,7 @@
     "href": "weeks/week-12.html",
     "title": "Week 12",
     "section": "",
-    "text": "Important\n\n\n\nLab due by 11:59pm on Sunday, November 22.",
+    "text": "📖 IMS, chap. 9.3 and 9.4",
     "crumbs": [
       "Weekly Materials",
       "Week 12"
@@ -284,8 +273,8 @@
     "objectID": "weeks/week-12.html#readings",
     "href": "weeks/week-12.html#readings",
     "title": "Week 12",
-    "section": "Readings",
-    "text": "Readings\n📖 IMS, chap. 9.3 and 9.4",
+    "section": "",
+    "text": "📖 IMS, chap. 9.3 and 9.4",
     "crumbs": [
       "Weekly Materials",
       "Week 12"
@@ -308,17 +297,6 @@
     "title": "Week 12",
     "section": "Modules",
     "text": "Modules\n📒 Module 12.1\n📒 Module 12.2",
-    "crumbs": [
-      "Weekly Materials",
-      "Week 12"
-    ]
-  },
-  {
-    "objectID": "weeks/week-12.html#assignments",
-    "href": "weeks/week-12.html#assignments",
-    "title": "Week 12",
-    "section": "Assignments",
-    "text": "Assignments\n📘 Lab, available on Posit Cloud.",
     "crumbs": [
       "Weekly Materials",
       "Week 12"
@@ -3293,7 +3271,7 @@
     "href": "index.html",
     "title": "Course Schedule",
     "section": "",
-    "text": "Week\nDate\nTopic\nReadings\nVideos\nModule\nSlides\nAssignments\n\n\n\n\n1\nAug 25\nCourse Intro\n\n📺\n📒\n🖥️\n\n\n\n\n\nGetting Started with Quarto\n📖\n📺\n📒\n🖥️\n\n\n\n2\nSep 1\nBar charts, histograms\n📖 📖\n📺 📺\n📒\n🖥️\n\n\n\n\n\nLine charts, scatter plots\n📖 📖\n📺 📺\n📒\n🖥️\n📘\n\n\n3\nSep 8\nDownloading and manipulating data\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nSummarizing by groups\n📖\n📺\n📒\n🖥️\n📘\n\n\n4\nSep 15\nHW 1: Modernization theory\n📖\n\n\n\n🧮\n\n\n5\nSep 22\nCategorical data\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nContinuous data\n📖\n📺\n📒\n🖥️\n📘\n\n\n6\nSep 29\nDescribing distributions\n📖\n\n📒\n🖥️\n\n\n\n\n\nSampling and uncertainty\n📖\n📺 📺\n📒\n🖥️\n📘\n\n\n7\nOct 6\nSingle proportion tests\n📖\n\n📒\n🖥️\n\n\n\n\n\nDifferences between two groups\n📖\n📺\n📒\n🖥️\n📘\n\n\n\nOct 13\nNo Class\nFall Break\n\n🍂 🌰 🐿️\n\n\n\n\n8\nOct 20\nHW 2: Evaluate a claim\n📖\n\n\n\n🧮\n\n\n9\nOct 27\nFitting a line to data\n📖\n📺 📺\n📒\n🖥️\n\n\n\n\n\nLeast squares regression\n📖\n📺 📺\n📒\n🖥️\n📘\n\n\n10\nNov 3\nMultiple linear regression\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nDealing with outliers\n📖 📖 📖\n📺 📺\n📒 📗\n🖥️\n📘\n\n\n11\nNov 10\nLogistic regression\n📖\n📺 📺\n📒\n🖥️\n\n\n\n\n\nInterpreting results\n\n📺\n📒\n🖥️\n📘\n\n\n12\nNov 17\nMultiple predictors and interactions\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nVisualizing and communicating results\n\n📺 📺\n📒\n🖥️\n📘\n\n\n\nNov 24\nNo Class\nThanksgiving Break\n\n🦃🍁🥧\n\n\n\n\n13\nDec 1\nHW 3: Analyzing conflict\n\n\n\n\n🧮\n\n\n14\nDec 8\nFinal project workshop\n\n\n\n🖥️\n✍️\n\n\n\n\nFinal project workshop\n\n\n\n🖥️",
+    "text": "Week\nDate\nTopic\nReadings\nVideos\nModule\nSlides\nAssignments\n\n\n\n\n1\nAug 25\nCourse Intro\n\n📺\n📒\n🖥️\n\n\n\n\n\nGetting Started with Quarto\n📖\n📺\n📒\n🖥️\n\n\n\n2\nSep 1\nBar charts, histograms\n📖 📖\n📺 📺\n📒\n🖥️\n\n\n\n\n\nLine charts, scatter plots\n📖 📖\n📺 📺\n📒\n🖥️\n📘\n\n\n3\nSep 8\nDownloading and manipulating data\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nSummarizing by groups\n📖\n📺\n📒\n🖥️\n📘\n\n\n4\nSep 15\nHW 1: Modernization theory\n📖\n\n\n\n🧮\n\n\n5\nSep 22\nCategorical data\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nContinuous data\n📖\n📺\n📒\n🖥️\n\n\n\n6\nSep 29\nDescribing distributions\n📖\n\n📒\n🖥️\n\n\n\n\n\nSampling and uncertainty\n📖\n📺 📺\n📒\n🖥️\n📘\n\n\n7\nOct 6\nSingle proportion tests\n📖\n\n📒\n🖥️\n\n\n\n\n\nDifferences between two groups\n📖\n📺\n📒\n🖥️\n📘\n\n\n\nOct 13\nNo Class\nFall Break\n\n🍂 🌰 🐿️\n\n\n\n\n8\nOct 20\nHW 2: Evaluate a claim\n📖\n\n\n\n🧮\n\n\n9\nOct 27\nFitting a line to data\n📖\n📺 📺\n📒\n🖥️\n\n\n\n\n\nLeast squares regression\n📖\n📺 📺\n📒\n🖥️\n📘\n\n\n10\nNov 3\nMultiple linear regression\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nDealing with outliers\n📖 📖 📖\n📺 📺\n📒 📗\n🖥️\n📘\n\n\n11\nNov 10\nLogistic regression\n📖\n📺 📺\n📒\n🖥️\n\n\n\n\n\nInterpreting results\n\n📺\n📒\n🖥️\n📘\n\n\n12\nNov 17\nMultiple predictors and interactions\n📖\n📺\n📒\n🖥️\n\n\n\n\n\nVisualizing and communicating results\n\n📺 📺\n📒\n🖥️\n\n\n\n\nNov 24\nNo Class\nThanksgiving Break\n\n🦃🍁🥧\n\n\n\n\n13\nDec 1\nHW 3: Analyzing conflict\n\n\n\n\n🧮\n\n\n14\nDec 8\nFinal project workshop\n\n\n\n🖥️\n✍️\n\n\n\n\nFinal project workshop\n\n\n\n🖥️",
     "crumbs": [
       "Course Information",
       "Schedule"
@@ -3415,6 +3393,17 @@
     "title": "IAFF 6501: Quantitative Analysis for IA Practitioners",
     "section": "Demonstrating Academic Integrity",
     "text": "Demonstrating Academic Integrity\nAll of us in the course will comply with the GW Code of Academic Integrity. It states that “we, the Students, Faculty, Librarians, Staff, and Administration of The George Washington University, believing academic integrity to be central to the mission of the University, commit ourselves to promoting high standards for the integrity of academic work. Commitment to academic integrity upholds educational equity, development, and dissemination of meaningful knowledge, and mutual respect that our community values and nurtures. The George Washington University Code of Academic Integrity is established to further this commitment.”\nAcademic dishonesty is defined as cheating of any kind, including misrepresenting one’s own work, taking credit for the work of others without crediting them and without appropriate authorization, and the fabrication of information. For details and complete code, see the Code of Academic Integrity.Common examples of academic dishonesty include cheating, fabrication, plagiarism, falsification, forgery of University academic documents, and facilitating academic dishonesty by others. Learn more about avoiding these:\n\nGW guidance for students on academic integrity.\nPlagiarism: What is it and how to avoid it from GW Libraries.\nMaintaining academic honesty can be a challenging skill to learn. If you have questions about maintaining our course standards, please talk with me early on.",
+    "crumbs": [
+      "Course Information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#policy-on-ai-tools",
+    "href": "course-syllabus.html#policy-on-ai-tools",
+    "title": "IAFF 6501: Quantitative Analysis for IA Practitioners",
+    "section": "Policy on AI Tools",
+    "text": "Policy on AI Tools\n\nWhy this policy\nThis course exists so that you develop genuine skill in R and in the quantitative analysis of international affairs data. AI coding assistants — such as ChatGPT, Claude, Gemini, Copilot, and IDE-integrated tools like Cursor — are now a real part of data science practice, and you are welcome to use them. But how and when you use them determines whether you actually learn. There is an important distinction between using AI as a learning support and using it to replace learning entirely. If you simply paste an assignment into an AI and copy the output, you will pass the assignment but miss the course, and you will struggle in later courses, in job interviews, and on the job itself, where these skills will be expected of you.\nBecause different assessments serve different purposes, this course sets different rules for each one. The progression is deliberate: labs get your own hands on the code, the homework assignments stretch you toward independent problem-solving, and the final project is your chance to work the way a practitioner increasingly does.\n\n\nThe four principles\nFollow these principles whenever you use AI tools in this course:\n\nTry first: Before turning to an AI tool, consult the course materials — the modules, slides, and readings. Labs are AI-free, so work through the guided hints instead. For homework, it is appropriate to consult AI once you are genuinely stuck.\nUse AI as a consultant, not a ghostwriter: Asking an AI tool to explain how a function works, debug code that isn’t running, or decipher an error message is a legitimate use. Asking it to complete your assignments for you is not.\nThink critically: AI tools make mistakes. They hallucinate functions, write syntactically incorrect code, and sometimes give confidently wrong answers. You are responsible for understanding and verifying any code you submit.\nAcknowledge your use: If you use an AI tool in completing an assignment, note this in your submission and confirm that the tool was used in an advisory capacity rather than to generate your final product.\n\n\n\nWhat this means by assessment type\n\nLabs — no AI. Labs are short, mostly fill-in-the-blank exercises, and their whole purpose is to get your fingers on the code and familiarize you with the syntax. An AI tool can fill in those blanks in seconds, which is exactly why you should not let it: there is nothing left to learn once you do. Work through them on your own, using the course materials and the hints at the bottom of each lab, and come see me or ask a classmate if you are stuck.\nHomework — consultation and debugging. The homework assignments are more open-ended and challenging. In addition to conceptual questions, you may use AI to help debug code that isn’t running the way you expect. You should still write your own code and be able to explain everything you submit; do not simply paste the assignment in and copy the output. Note whether and how you used AI in your submission.\nFinal project — any AI-assisted workflow. For the final project, a full, modern AI-assisted workflow is encouraged — AI is a real tool that data scientists use every day. The design, data choices, analysis, and interpretation must still be your own, and you should be able to explain and defend everything in your project.",
     "crumbs": [
       "Course Information",
       "Syllabus"
@@ -6952,16 +6941,5 @@
     "title": "Week 1",
     "section": "Assignments",
     "text": "Assignments\n📘 Quiz 1\n📘 Quiz 2\n🧮 Coding Assignment 1"
-  },
-  {
-    "objectID": "course-syllabus.html#policy-on-ai-tools",
-    "href": "course-syllabus.html#policy-on-ai-tools",
-    "title": "IAFF 6501: Quantitative Analysis for IA Practitioners",
-    "section": "Policy on AI Tools",
-    "text": "Policy on AI Tools\n\nWhy this policy\nThis course exists so that you develop genuine skill in R and in the quantitative analysis of international affairs data. AI coding assistants — such as ChatGPT, Claude, Gemini, Copilot, and IDE-integrated tools like Cursor — are now a real part of data science practice, and you are welcome to use them. But how and when you use them determines whether you actually learn. There is an important distinction between using AI as a learning support and using it to replace learning entirely. If you simply paste an assignment into an AI and copy the output, you will pass the assignment but miss the course, and you will struggle in later courses, in job interviews, and on the job itself, where these skills will be expected of you.\nBecause different assessments serve different purposes, this course sets different rules for each one. The progression is deliberate: labs get your own hands on the code, the homework assignments stretch you toward independent problem-solving, and the final project is your chance to work the way a practitioner increasingly does.\n\n\nThe four principles\nFollow these principles whenever you use AI tools in this course:\n\nTry first: Before turning to an AI tool, consult the course materials — the modules, slides, and readings. Labs are AI-free, so work through the guided hints instead. For homework, it is appropriate to consult AI once you are genuinely stuck.\nUse AI as a consultant, not a ghostwriter: Asking an AI tool to explain how a function works, debug code that isn’t running, or decipher an error message is a legitimate use. Asking it to complete your assignments for you is not.\nThink critically: AI tools make mistakes. They hallucinate functions, write syntactically incorrect code, and sometimes give confidently wrong answers. You are responsible for understanding and verifying any code you submit.\nAcknowledge your use: If you use an AI tool in completing an assignment, note this in your submission and confirm that the tool was used in an advisory capacity rather than to generate your final product.\n\n\n\nWhat this means by assessment type\n\nLabs — no AI. Labs are short, mostly fill-in-the-blank exercises, and their whole purpose is to get your fingers on the code and familiarize you with the syntax. An AI tool can fill in those blanks in seconds, which is exactly why you should not let it: there is nothing left to learn once you do. Work through them on your own, using the course materials and the hints at the bottom of each lab, and come see me or ask a classmate if you are stuck.\nHomework — consultation and debugging. The homework assignments are more open-ended and challenging. In addition to conceptual questions, you may use AI to help debug code that isn’t running the way you expect. You should still write your own code and be able to explain everything you submit; do not simply paste the assignment in and copy the output. Note whether and how you used AI in your submission.\nFinal project — any AI-assisted workflow. For the final project, a full, modern AI-assisted workflow is encouraged — AI is a real tool that data scientists use every day. The design, data choices, analysis, and interpretation must still be your own, and you should be able to explain and defend everything in your project.",
-    "crumbs": [
-      "Course Information",
-      "Syllabus"
-    ]
   }
 ]
