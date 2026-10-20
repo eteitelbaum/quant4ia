@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-10-06">
+  <meta name="dcterms.date" content="2026-10-20">
   <title>IAFF 6501 -- Fall 2026 – Hypothesis Testing 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -192,7 +198,7 @@
   </style>
 <meta property="og:title" content="Hypothesis Testing 1 – IAFF 6501 – Fall 2026">
 <meta property="og:description" content="A single proportion/mean">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Hypothesis Testing 1 – IAFF 6501 – Fall 2026">
 <meta name="twitter:description" content="A single proportion/mean">
 <meta name="twitter:card" content="summary">
@@ -208,7 +214,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">October 6, 2026</p>
+  <p class="date">October 20, 2026</p>
 </section>
 <section>
 <section id="hypothesis-test-for-a-single-proportion" class="title-slide slide level1 center">
@@ -230,11 +236,11 @@
 <p>Now let’s create some data to match our hypothetical example.</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>jobs_program <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb1-4"><a></a>  <span class="at">outcome =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"unemployed"</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="st">"employed"</span>, <span class="dv">45</span>))</span>
-<span id="cb1-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a aria-label="2"></a></span>
+<span id="cb1-3"><a aria-label="3"></a>jobs_program <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="at">outcome =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"unemployed"</span>, <span class="dv">15</span>), <span class="fu">rep</span>(<span class="st">"employed"</span>, <span class="dv">45</span>))</span>
+<span id="cb1-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-1" class="slide level2">
@@ -242,7 +248,7 @@
 <p><br></p>
 <p>Use the base R <code>head()</code> function to see the first five rows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">head</span>(jobs_program)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">head</span>(jobs_program)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 1
   outcome   
@@ -261,7 +267,7 @@
 <p><br></p>
 <p>Use the <code>tail()</code> function to see the last five rows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">tail</span>(jobs_program)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">tail</span>(jobs_program)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 1
   outcome 
@@ -441,15 +447,15 @@
 <p><br></p>
 <p>We can use the <code>tidymodels</code> package to help with this process…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#load tidymodels</span></span>
-<span id="cb12-2"><a></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="co"># simulate the distribution</span></span>
-<span id="cb12-5"><a></a>null_dist <span class="ot">&lt;-</span> jobs_program <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a></a>  <span class="fu">specify</span>(<span class="at">response =</span> outcome, <span class="at">success =</span> <span class="st">"unemployed"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fu">c</span>(<span class="st">"unemployed"</span> <span class="ot">=</span> <span class="fl">0.30</span>, <span class="st">"employed"</span> <span class="ot">=</span> <span class="fl">0.70</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">2000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-9"><a></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a><span class="co">#load tidymodels</span></span>
+<span id="cb12-2"><a aria-label="2"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb12-3"><a aria-label="3"></a></span>
+<span id="cb12-4"><a aria-label="4"></a><span class="co"># simulate the distribution</span></span>
+<span id="cb12-5"><a aria-label="5"></a>null_dist <span class="ot">&lt;-</span> jobs_program <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a aria-label="6"></a>  <span class="fu">specify</span>(<span class="at">response =</span> outcome, <span class="at">success =</span> <span class="st">"unemployed"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a aria-label="7"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"point"</span>, <span class="at">p =</span> <span class="fu">c</span>(<span class="st">"unemployed"</span> <span class="ot">=</span> <span class="fl">0.30</span>, <span class="st">"employed"</span> <span class="ot">=</span> <span class="fl">0.70</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a aria-label="8"></a>  <span class="fu">generate</span>(<span class="at">reps =</span> <span class="dv">2000</span>, <span class="at">type =</span> <span class="st">"draw"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-9"><a aria-label="9"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"prop"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="what-is-being-stored-in-null_dist" class="slide level2">
@@ -483,8 +489,8 @@ Null Hypothesis: point
 <p><br></p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(stat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a aria-label="2"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(stat))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
    mean
@@ -502,8 +508,8 @@ Null Hypothesis: point
 <h2>Calculate the p-value</h2>
 <p><br> <em>p-value</em>–in what % of the simulations was the simulated sample proportion at least as extreme as the observed sample proportion?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> <span class="dv">15</span><span class="sc">/</span><span class="dv">60</span>, <span class="at">direction =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a aria-label="2"></a>  <span class="fu">get_p_value</span>(<span class="at">obs_stat =</span> <span class="dv">15</span><span class="sc">/</span><span class="dv">60</span>, <span class="at">direction =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   p_value
@@ -517,9 +523,9 @@ Null Hypothesis: point
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>null_dist <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="dv">15</span><span class="sc">/</span><span class="dv">60</span>, <span class="at">direction =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a>null_dist <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a aria-label="2"></a>  <span class="fu">visualize</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a aria-label="3"></a>  <span class="fu">shade_p_value</span>(<span class="at">obs_stat =</span> <span class="dv">15</span><span class="sc">/</span><span class="dv">60</span>, <span class="at">direction =</span> <span class="st">"less"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -763,7 +769,7 @@ Null Hypothesis: point
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -875,13 +881,14 @@ Null Hypothesis: point
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
