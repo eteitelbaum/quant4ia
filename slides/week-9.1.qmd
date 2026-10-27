@@ -235,7 +235,7 @@ Linear model with one explanatory variable...
 <br>
 
 ::: {.incremental}
-- **Predicted value:** Output of the **model function**
+- **Predicted value:** Output of the *model function*
    - The model function gives the typical (expected) value of the response variable *conditioning* on the explanatory variables
    - We often call this $\hat{y}$ to differentiate the predicted value from an observed value of $y$ in the data
 - **Residuals:** A measure of how far each case is from its predicted value (based on a particular model)
