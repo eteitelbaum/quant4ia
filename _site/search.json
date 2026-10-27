@@ -6476,7 +6476,7 @@
     "href": "slides/week-9.1.html#modeling",
     "title": "Modeling",
     "section": "Modeling",
-    "text": "Modeling\n\nUse models to explain the relationship between variables and to make predictions\nExplaining relationships [usually interested in causal relationships, but not always]\n\nDoes oil wealth impact regime type?\n\nPredictive modeling\n\nWhere is violence most likely to happen in [country X] during their next election?\nIs this email spam?"
+    "text": "Modeling\n\nUse models to explain the relationship between variables and to make predictions\nExplaining relationships (usually interested in causal relationships, but not always)\n\nDoes oil wealth impact regime type?\n\nPredictive modeling\n\nWhere is violence most likely to happen in [country X] during their next election?\nIs this email spam?"
   },
   {
     "objectID": "slides/week-9.1.html#modeling-1",
@@ -6553,7 +6553,7 @@
     "href": "slides/week-9.1.html#section",
     "title": "Modeling",
     "section": "",
-    "text": "Linear model with one explanatory variable…\n\n\\(y = b_0 + b_1 x\\)\n\\(y\\) is the outcome variable\n\\(x\\) is the explanatory variable\n\\(b_0\\) is the intercept: the predicted value of \\(y\\) when \\(x\\) is equal to 0\n\\(b_1\\) is the slope of the line [remember rise over run!]"
+    "text": "Linear model with one explanatory variable…\n\n\\(y = b_0 + b_1 x\\)\n\\(y\\) is the outcome variable\n\\(x\\) is the explanatory variable\n\\(b_0\\) is the intercept: the predicted value of \\(y\\) when \\(x\\) is equal to 0\n\\(b_1\\) is the slope of the line (remember rise over run!)"
   },
   {
     "objectID": "slides/week-9.1.html#quant-lingo-1",
