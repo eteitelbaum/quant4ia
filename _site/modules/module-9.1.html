@@ -846,12 +846,12 @@ Important
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using tidyverse approach with summarize</span></span>
 <span><span class="va">model_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
-<span>    correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">polarization</span>, <span class="va">lib_dem</span><span class="op">)</span>,</span>
+<span>    correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span>, <span class="va">lib_dem</span><span class="op">)</span>,</span>
 <span>    correlation_rounded <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">correlation</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  correlation correlation_rounded
-1  -0.4399478               -0.44</code></pre>
+1   0.5635943               0.564</code></pre>
 </div>
 </div>
 <p>The correlation of approximately 0.56 indicates a moderate positive linear relationship between log GDP per capita and democracy levels. The relationship would likely be stronger if it were not for the outliers we saw in the plot.</p>

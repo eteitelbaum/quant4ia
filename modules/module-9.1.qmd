@@ -115,7 +115,7 @@ We can also use tidyverse approaches for more complex analyses:
 # Using tidyverse approach with summarize
 model_data |>
   summarize(
-    correlation = cor(polarization, lib_dem),
+    correlation = cor(log(wealth), lib_dem),
     correlation_rounded = round(correlation, 3)
   )
 ```
