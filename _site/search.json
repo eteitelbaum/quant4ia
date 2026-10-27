@@ -4992,7 +4992,7 @@
     "href": "slides/week-10.1.html#your-turn",
     "title": "Multiple Regression",
     "section": "Your Turn!",
-    "text": "Your Turn!\n\n\nIn the last session, you examined levels of democracy and corruption\nNow, let’s fit a multiple regression model predicting corruption with two predictors: democracy (libdem) and polarization (polarization)\nThen, interpret the coefficients\nEstimate a second multiple regression model that adds in GDP per capita (lg_gdppc)\nInterpret the coefficients\nWhat happens to the coefficients of the other variables when we add GDP per capita to the model?\n\nWhy do you think this happens?\n\nTry adding in additional predictors if there is time"
+    "text": "Your Turn!\n\n\nIn the last session, you examined levels of democracy and corruption\nNow, let’s fit a multiple regression model predicting corruption with two predictors: democracy (libdem) and polarization (polarization)\nThen, interpret the coefficients\nEstimate a second multiple regression model that adds in log GDP per capita (log_wealth)\nInterpret the coefficients\nWhat happens to the coefficients of the other variables when we add GDP per capita to the model?\n\nWhy do you think this happens?\n\nTry adding in additional predictors if there is time"
   },
   {
     "objectID": "slides/week-10.1.html#model-1",

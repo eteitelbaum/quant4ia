@@ -219,9 +219,9 @@ $$\hat{y}_i = `r m3[1]` + `r m3[2]`*Polarization + `r m3[3]`*LogGDPpc + `r m3[4]
 <br>
 
 - In the last session, you examined levels of democracy and corruption
-- Now, let's fit a multiple regression model predicting corruption with two predictors: democracy (libdem) and polarization (polarization)
+- Now, let's fit a multiple regression model predicting corruption with two predictors: democracy (`libdem`) and polarization (`polarization`)
 - Then, interpret the coefficients
-- Estimate a second multiple regression model that adds in GDP per capita (lg_gdppc)
+- Estimate a second multiple regression model that adds in log GDP per capita (`log_wealth`)
 - Interpret the coefficients
 - What happens to the coefficients of the other variables when we add GDP per capita to the model?
     - Why do you think this happens?
