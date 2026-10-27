@@ -14,7 +14,7 @@ execute:
 ::: {.callout-tip}
 ## Prework
 
-- Install the `vdemdata` package (`install.packages("vdemdata")`). Note that this is different from the `vdemlite` package that we have been using this semester. `vdemdata` is comprised of one function, `vdem`, which loads the entire V-Dem dataset into R. We are using `vdemdata` instead of `vdemlite` because it has some indicators that are not yet available in `vdemlite`.
+- Make sure the `vdemdata` package is installed (we installed it in Module 2.2). If it is not, type `pak::pak("vdeminstitute/vdemdata")` in your console.
 - Restart your R session by going to Session > Restart R in RStudio. The reason is that packages we used in the last model may result in conflicts in this one. 
 - Run the following code chunk to set up the data and packages required for this module. Then take a look to explore what is in the data frame.
 
@@ -107,9 +107,9 @@ ggplot(model_data, aes(x = wealth, y = lib_dem,
                        color=judicial_review)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(x = "GPD per capita", y = "Liberal Democracy Index") +
+  labs(x = "GDP per capita (V-Dem index, log scale)", y = "Liberal Democracy Index") +
   theme_bw() +
-  scale_x_log10(labels = scales::dollar_format(suffix = "k")) +
+  scale_x_log10() +
   scale_color_manual(name = "Judicial Review", 
                      values = c("steelblue3", "coral"), 
                      labels = c("No", "Yes")) 
@@ -126,6 +126,13 @@ judicial_model <- lm(lib_dem ~ judicial_review, data = model_data)
 
 summary(judicial_model)
 ```
+
+```{r}
+#| label: judicial-coefs
+#| include: false
+
+jr_txt <- sprintf("%.2f", coef(judicial_model))
+```
 The output shows us the coefficients for the model. The intercept represents the average democracy level for countries without judicial review (the **reference category**), and the coefficient for `judicial_reviewYes` represents the difference in average democracy level between countries with judicial review and those without.
 
 ::: {.callout-important}
@@ -138,9 +145,9 @@ When we interpret a coefficient for a categorical variable, we are comparing tha
 
 To better understand the model, let's have a look at the model equation:
 
-$$ \widehat{Democracy_{i}} = 0.18 + 0.27*JudicialReview(yes) $$
+$$ \widehat{Democracy_{i}} = `r jr_txt[1]` + `r jr_txt[2]`*JudicialReview(yes) $$
 
-Here the **slope** of the coefficient for $JudicialReview(yes)$ indicates that. countries with judicial review are expected, on average, to be 0.27 units more democratic on the liberal democracy index. The **intercept** of 0.18 represents the average democracy score for countries without judicial review.
+Here the **slope** of the coefficient for $JudicialReview(yes)$ indicates that countries with judicial review are expected, on average, to be `r jr_txt[2]` units more democratic on the liberal democracy index. The **intercept** of `r jr_txt[1]` represents the average democracy score for countries without judicial review.
 
 ## Multiple Categories and Reference Groups
 
@@ -186,9 +193,9 @@ summary(region_model)
 
 The equation for this model looks like this:
 
-$$\hat{Democracy} = \beta_0 + \beta_1 \cdot LatinAmerica + \beta_2 \cdot MENA + \beta_3 \cdot SSAfrica + \beta_4 \cdot TheWest + \beta_5 \cdot Asia$$
+$$\widehat{Democracy} = b_0 + b_1 \cdot LatinAmerica + b_2 \cdot MENA + b_3 \cdot SSAfrica + b_4 \cdot TheWest + b_5 \cdot Asia$$
 
-In this equation, $\beta_0$ (the intercept) represents the average democracy level in Eastern Europe (the reference category). Each of the other coefficients represents the difference in average democracy between that region and Eastern Europe. So $\beta_1$ is the difference in average democracy between Latin America and Eastern Europe, $\beta_2$ is the difference between MENA and Eastern Europe, and so on.
+In this equation, $b_0$ (the intercept) represents the average democracy level in Eastern Europe (the reference category). Each of the other coefficients represents the difference in average democracy between that region and Eastern Europe. So $b_1$ is the difference in average democracy between Latin America and Eastern Europe, $b_2$ is the difference between MENA and Eastern Europe, and so on.
 
 Sometimes you may want a different reference category. The `relevel()` function allows you to change which category serves as the baseline. Let's change the reference category for our analysis to Sub-Saharan Africa (SSA):
 
@@ -242,9 +249,9 @@ summary(m1_polarization_democracy)
 
 The model equation with multiple predictors becomes:
 
-$$\hat{Democracy} = \beta_0 + \beta_1 \cdot Polarization + \beta_2 \cdot \log(Wealth)$$
+$$\widehat{Democracy} = b_0 + b_1 \cdot Polarization + b_2 \cdot \log(Wealth)$$
 
-In this equation, $\beta_0$ represents the predicted democracy level when both polarization and log(wealth) equal zero. $\beta_1$ represents the change in democracy for a 1-unit increase in polarization, **holding wealth constant**. $\beta_2$ represents the change in democracy for a 1-unit increase in log(wealth), **holding polarization constant**. The key phrase is "holding other variables constant." 
+In this equation, $b_0$ represents the predicted democracy level when both polarization and log(wealth) equal zero. $b_1$ represents the change in democracy for a 1-unit increase in polarization, **holding wealth constant**. $b_2$ represents the change in democracy for a 1-unit increase in log(wealth), **holding polarization constant**. The key phrase is "holding other variables constant." 
 
 In this case, we see that polarization is associated with a .058 unit *deacrease* in the democracy score, while log(wealth) is associated with a .098 unit *increase* in the democracy score. We can tell the direction of the relationship (positive or negative) based on the sign of the coefficient. For polarization the sign is negative and for wealth it is positive.
 
@@ -260,9 +267,9 @@ summary(m2_three_predictors)
 
 The model equation now becomes:
 
-$$ \hat{Y_i} = a + b_1*Polarization + b_2*GDPpc + b_3*OilRents $$ 
+$$ \hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc + b_3*OilRents $$ 
 
-Where $Y_i$ is the predicted democracy level for country $i$, $a$ is the intercept, and $b_1$, $b_2$, and $b_3$ are the coefficients for polarization, log(wealth), and oil rents, respectively. Now, the coefficient for $OilRents$ tells us the predicted change in democracy for a 1-unit increase in oil rents, **holding polarization and log(wealth) constant**. Similarly, the coefficients for polarization and log(wealth) tell us the predicted change in democracy for a 1-unit increase in those variables, while controlling for the other two predictors. 
+Where $\hat{y}_i$ is the predicted democracy level for country $i$, $b_0$ is the intercept, and $b_1$, $b_2$, and $b_3$ are the coefficients for polarization, log(wealth), and oil rents, respectively. Now, the coefficient for $OilRents$ tells us the predicted change in democracy for a 1-unit increase in oil rents, **holding polarization and log(wealth) constant**. Similarly, the coefficients for polarization and log(wealth) tell us the predicted change in democracy for a 1-unit increase in those variables, while controlling for the other two predictors. 
 
 ::: {.callout-note}
 Notice how the coefficients might change when we add predictors. This happens for two main reasons. First, **confounding** occurs when our predictors are correlated with each other. If polarization and wealth are correlated, the simple regression coefficient for polarization includes both the direct effect of polarization and the indirect effect through its correlation with wealth. Second, when we **control for** other variables, the multiple regression coefficient for polarization shows only the direct effect, after removing the part that's explained by wealth.
@@ -287,15 +294,15 @@ This model allows us to explore how democracy varies by region while controlling
 
 ### Making Predictions
 
-Once we have estimated a multiple regression model, we can use it to make predictions for new cases.  To see how this works, let’s return to our model that includes polarization, log-transformed wealth, oil rents, and region as predictors. Suppose we want to predict the level of democracy for a hypothetical country that has a polarization score of 0.5, a GDP per capita of $8.1k (which corresponds to a log wealth of 2.09), oil rents of 2, and is located in Latin America.
+Once we have estimated a multiple regression model, we can use it to make predictions for new cases.  To see how this works, let’s return to our model that includes polarization, log-transformed wealth, oil rents, and region as predictors. Suppose we want to predict the level of democracy for a hypothetical country that has a polarization score of 0.5, a GDP index value of 8.1 (which corresponds to a log wealth of 2.09), oil rents of 2, and is located in Latin America.
 
 The regression model gives us an equation that looks like this:
 
 $$
-\hat{Democracy} = a + b_1 \cdot Polarization + b_2 \cdot \log(Wealth) + b_3 \cdot OilRents + b_4 \cdot Region
+\widehat{Democracy} = b_0 + b_1 \cdot Polarization + b_2 \cdot \log(Wealth) + b_3 \cdot OilRents + b_4 \cdot Region
 $$
 
-Each coefficient—$b_1$, $b_2$, $b_3$, and so on—represents the effect of a one-unit change in that variable, holding the others constant. To make a prediction, we simply plug in the values: 0.5 for polarization, 9 for log(wealth), 2 for oil rents, and the appropriate regional adjustment for Latin America. The result is the model’s best guess for the democracy score of a country with those characteristics.
+Each coefficient—$b_1$, $b_2$, $b_3$, and so on—represents the effect of a one-unit change in that variable, holding the others constant. To make a prediction, we simply plug in the values: 0.5 for polarization, 2.09 for log(wealth), 2 for oil rents, and the appropriate regional adjustment for Latin America. The result is the model’s best guess for the democracy score of a country with those characteristics.
 
 To do this, we can use R’s `predict()` function. This function takes a fitted model and a new set of predictor values and returns the predicted outcome:
 
@@ -310,7 +317,7 @@ new_data <- tibble(
 predict(m3_mixed_model, newdata = new_data)
 ```
 
-So in other words, with these inputs, the model predicts a democracy score of approximately 0.46 for this hypothetical country. This prediction reflects what the model expects, given the relationships it has learned from the original data. It doesn’t guarantee what will happen in the real world, but it gives us a principled estimate based on the variables we think matter.
+So in other words, with these inputs, the model predicts a democracy score of approximately `r round(predict(m3_mixed_model, newdata = new_data), 2)` for this hypothetical country. This prediction reflects what the model expects, given the relationships it has learned from the original data. It doesn’t guarantee what will happen in the real world, but it gives us a principled estimate based on the variables we think matter.
 
 ::: {callout-note}
 If you're curious about uncertainty, `predict()` can also provide a confidence interval for the prediction by adding the argument `interval = "confidence"`.
@@ -322,7 +329,7 @@ If you're curious about uncertainty, `predict()` can also provide a confidence i
 - Try running a multiple linear regression with corruption as the dependent variable. 
 - Think about what variables you would want to include as predictors. Use a mix of continuous and categorical variables, such as wealth, oil rents, region, and regime type.
 - Fit the model and interpret the coefficients. What do they tell you about the relationship between these predictors and corruption levels?
-- Now try making some predictions with your model. Create a new data frame with hypothetical values for each predictor (e.g., a country with a wealth of $10k, oil rents of 3, and located in Asia). Use the `predict()` function to estimate the corruption level for this hypothetical country.
+- Now try making some predictions with your model. Create a new data frame with hypothetical values for each predictor (e.g., a country with a GDP index value of 10, oil rents of 3, and located in Asia). Use the `predict()` function to estimate the corruption level for this hypothetical country.
 :::
  
 ## Conclusion

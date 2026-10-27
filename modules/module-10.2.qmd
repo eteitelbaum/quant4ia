@@ -23,17 +23,12 @@ execute:
 #| code-fold: true
 
 library(tidyverse)
-library(vdemlite)
+library(vdemdata)
 
 # Load V-Dem data for 2019
-model_data <- fetchdem(
-  indicators = c(
-  "v2x_libdem", 
-  "e_gdppc", 
-  "v2cacamps"),
-  start_year = 2019, 
-  end_year = 2019
-  ) |>
+model_data <- vdem |>
+  filter(year == 2019) |>
+  select(country_name, v2x_libdem, e_gdppc, v2cacamps) |>
   rename(
     country = country_name, 
     lib_dem = v2x_libdem, 
@@ -54,7 +49,7 @@ We will explore a number of key strategies for dealing with outliers once identi
 
 ## What Are Outliers and Why Do They Matter?
 
-Let's start by revisiting our democracy and GDP analysis from Module 4.1. Remember this plot?
+Let's start by revisiting our democracy and GDP analysis from Module 9.1. Remember this plot?
 
 ```{r}
 #| label: scatter-plot
@@ -67,7 +62,7 @@ model_data <- model_data |>
   mutate(
     tooltip = paste0(
       "Country: ", country,
-      "<br>Wealth: ", scales::label_dollar(suffix = "k")(wealth),
+      "<br>Wealth: ", round(wealth, 1),
       "<br>Democracy: ", lib_dem
       )
     )
@@ -75,8 +70,8 @@ model_data <- model_data |>
 # Create the scatter plot with log transformation on GDP
 plot <- ggplot(model_data, aes(x = wealth, y = lib_dem, text = tooltip)) +
   geom_point() +
-  scale_x_log10(labels = scales::label_dollar(suffix = "k")) +
-  labs(x = "GDP per Capita", 
+  scale_x_log10() +
+  labs(x = "GDP per capita (V-Dem index, log scale)", 
        y = "Liberal Democracy Score",
        title = "Wealth and Democracy Around the World") +
   theme_minimal()
@@ -120,8 +115,7 @@ p1 <- ggplot(model_data, aes(y = lib_dem)) +
 # Boxplot for raw GDP (before transformation)
 p2 <- ggplot(model_data, aes(y = wealth)) +
   geom_boxplot() +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  labs(y = "GDP per Capita", 
+  labs(y = "GDP per capita (V-Dem index)", 
        title = "GDP Outliers (Raw Data)") +
   theme_minimal()
 
@@ -274,9 +268,8 @@ model_with_log <- lm(lib_dem ~ log(wealth), data = model_data)
 p1 <- ggplot(model_data, aes(x = wealth, y = lib_dem)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE) +
-  scale_x_continuous(labels = scales::dollar_format()) +
   labs(title = "Raw GDP",
-       x = "GDP per Capita",
+       x = "GDP per capita (V-Dem index)",
        y = "Liberal Democracy Score",
        caption = "Outliers distort the line.") +
   theme_minimal() +
@@ -289,7 +282,7 @@ p2 <- ggplot(model_data, aes(x = log(wealth), y = lib_dem)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE) +
   labs(title = "Log GDP",
-       x = "Log GDP per Capita", 
+       x = "Log GDP per capita (V-Dem index)", 
        y = "Liberal Democracy Score",
        caption = "Much better fit.") +
   theme_minimal() +
@@ -337,14 +330,12 @@ Now let's visualizing the winsorizing effects.
 # Show the effect of winsorizing on raw GDP data
 original_plot <- ggplot(model_data, aes(x = wealth)) +
   geom_histogram(bins = 30, alpha = 0.7, fill = "darkblue") +
-  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
-  labs(title = "Original Distribution", x = "GDP per Capita") +
+  labs(title = "Original Distribution", x = "GDP per capita (V-Dem index)") +
   theme_minimal()
 
 winsorized_plot <- ggplot(model_data_winsorized, aes(x = wealth_win95)) +
   geom_histogram(bins = 30, alpha = 0.7, fill = "darkred") +
-  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
-  labs(title = "Winsorized Distribution", x = "GDP per Capita") +
+  labs(title = "Winsorized Distribution", x = "GDP per capita (V-Dem index)") +
   theme_minimal()
 
 original_plot | winsorized_plot

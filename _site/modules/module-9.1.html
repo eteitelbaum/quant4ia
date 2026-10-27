@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Module 9.1 – IAFF 6501 – Fall 2026</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,14 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a80805fb9204df0454a85aec670eb5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7c4110837d4a72e4e7962681f07c1561.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b232ce752f883ea70c603695f82d85b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -113,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -131,7 +137,7 @@ window.Quarto = {
 <meta property="og:title" content="Module 9.1 – IAFF 6501 – Fall 2026">
 <meta property="og:description" content="Fitting a Line to Data">
 <meta property="og:image" content="https://quant4ia.rocks/modules/module-9.1_files/figure-html/plot-wealth-democracy-1.png">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta property="og:image:height" content="960">
 <meta property="og:image:width" content="1344">
 <meta name="twitter:title" content="Module 9.1 – IAFF 6501 – Fall 2026">
@@ -321,7 +327,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://blackboard.gwu.edu" title="Blackboard" class="quarto-navigation-tool px-1" aria-label="Blackboard"><i class="bi bi-mortarboard-fill"></i></a>
     <a href="https://classroom.github.com" title="Github Classroom" class="quarto-navigation-tool px-1" aria-label="Github Classroom"><i class="bi bi-github"></i></a>
@@ -736,12 +742,13 @@ window.Quarto = {
 <section id="example-gdp-per-capita-and-democracy" class="level3"><h3 class="anchored" data-anchor-id="example-gdp-per-capita-and-democracy">Example: GDP per Capita and Democracy</h3>
 <p>We’ll use data from the Varieties of Democracy (V-Dem) project, which provides comprehensive measures of democratic institutions around the world.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://creativecommons.org/licenses/by-sa/4.0/">vdemlite</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">vdemdata</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load V-Dem data for 2019</span></span>
-<span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://eteitelbaum.github.io/vdemlite/reference/fetchdem.html">fetchdem</a></span><span class="op">(</span>indicators <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"v2x_libdem"</span>, <span class="st">"e_gdppc"</span>, <span class="st">"v2cacamps"</span><span class="op">)</span>,</span>
-<span>                       start_year <span class="op">=</span> <span class="fl">2019</span>, end_year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">vdem</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2019</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">country_name</span>, <span class="va">v2x_libdem</span>, <span class="va">e_gdppc</span>, <span class="va">v2cacamps</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span></span>
 <span>    country <span class="op">=</span> <span class="va">country_name</span>, </span>
 <span>    lib_dem <span class="op">=</span> <span class="va">v2x_libdem</span>, </span>
@@ -750,32 +757,42 @@ window.Quarto = {
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">lib_dem</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 174
-Columns: 7
-$ country         &lt;chr&gt; "Mexico", "Suriname", "Sweden", "Switzerland", "Ghana"…
-$ country_text_id &lt;chr&gt; "MEX", "SUR", "SWE", "CHE", "GHA", "ZAF", "JPN", "MMR"…
-$ country_id      &lt;dbl&gt; 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 2…
-$ year            &lt;dbl&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, …
-$ lib_dem         &lt;dbl&gt; 0.434, 0.580, 0.871, 0.866, 0.615, 0.607, 0.755, 0.260…
-$ wealth          &lt;dbl&gt; 16.814, 11.752, 48.804, 56.110, 5.608, 11.345, 39.061,…
-$ polarization    &lt;dbl&gt; 1.643, -0.631, -1.784, -1.543, -0.615, 0.204, -1.340, …</code></pre>
+Columns: 4
+$ country      &lt;chr&gt; "Mexico", "Suriname", "Sweden", "Switzerland", "Ghana", "…
+$ lib_dem      &lt;dbl&gt; 0.428, 0.583, 0.866, 0.860, 0.606, 0.623, 0.753, 0.246, 0…
+$ wealth       &lt;dbl&gt; 34.308, 24.668, 106.746, 109.451, 10.820, 24.104, 88.837,…
+$ polarization &lt;dbl&gt; 1.664, -0.642, -1.774, -1.592, -0.500, 0.145, -1.365, 0.6…</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What units is GDP measured in?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>V-Dem’s GDP per capita variable (<code>e_gdppc</code>) is <strong>not</strong> measured in dollars. It is a model-based index developed by Fariss et al.&nbsp;(2022) that combines many historical and contemporary GDP sources (World Bank, Maddison, Penn World Tables, and others) to produce estimates going back to 1789. In 2019, for example, the United States has a value of about 144 and India about 16. These numbers do not correspond to dollar amounts, but comparisons between countries are meaningful: the US is roughly 9 times as wealthy per person as India. Because we will be working with the <em>log</em> of GDP, we will interpret our results in terms of percentage changes, which do not depend on the units. The broader lesson: always check the codebook before assuming a variable is measured in dollars!</p>
 </div>
 </div>
 <p>Let’s visualize the relationship between these two variables:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wealth</span>, y <span class="op">=</span> <span class="va">lib_dem</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wealth</span>, y <span class="op">=</span> <span class="va">lib_dem</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, color <span class="op">=</span> <span class="st">"#E48957"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/dollar_format.html">label_dollar</a></span><span class="op">(</span>suffix <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Wealth and Democracy, 2019"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"GDP per capita (log scale)"</span>, </span>
+<span>    x <span class="op">=</span> <span class="st">"GDP per capita (V-Dem index, log scale)"</span>, </span>
 <span>    y <span class="op">=</span> <span class="st">"Liberal Democracy Index"</span>,</span>
 <span>    caption <span class="op">=</span> <span class="st">"Source: V-Dem Institute"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="module-9.1_files/figure-html/plot-wealth-democracy-1.png" class="img-fluid figure-img" width="672"></p>
@@ -818,33 +835,33 @@ Important
 </ul>
 <p>There are several ways to calculate correlations in R. The base R function <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> provides a quick way:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using base R - note we need to use log(wealth) to match our plot</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">$</span><span class="va">wealth</span><span class="op">)</span>, <span class="va">model_data</span><span class="op">$</span><span class="va">lib_dem</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using base R - note we need to use log(wealth) to match our plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">$</span><span class="va">wealth</span><span class="op">)</span>, <span class="va">model_data</span><span class="op">$</span><span class="va">lib_dem</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5295884</code></pre>
+<pre><code>[1] 0.5635943</code></pre>
 </div>
 </div>
 <p>We can also use tidyverse approaches for more complex analyses:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using tidyverse approach with summarize</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Using tidyverse approach with summarize</span></span>
 <span><span class="va">model_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
 <span>    correlation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">polarization</span>, <span class="va">lib_dem</span><span class="op">)</span>,</span>
 <span>    correlation_rounded <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">correlation</span>, <span class="fl">3</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  correlation correlation_rounded
-1  -0.4267386              -0.427</code></pre>
+1  -0.4399478               -0.44</code></pre>
 </div>
 </div>
-<p>The correlation of approximately 0.53 indicates a moderate positive linear relationship between log GDP per capita and democracy levels. The relationship would likely be stronger if it were not for the outliers we saw in the plot.</p>
+<p>The correlation of approximately 0.56 indicates a moderate positive linear relationship between log GDP per capita and democracy levels. The relationship would likely be stronger if it were not for the outliers we saw in the plot.</p>
 <div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -856,27 +873,27 @@ Your Turn!!
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/KWULpBYzIYk" title="Linear Regression with One Variable, Part 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>’&gt;}}
 <p>We can represent the relationship between variables using mathematical functions. A function describes the relationship between an output and one or more inputs - plug in the inputs and receive back the output.</p>
 <p>For a simple linear model with one explanatory variable, we write:</p>
-<p><span class="math display">\[Y = a + bX\]</span></p>
+<p><span class="math display">\[y = b_0 + b_1 x\]</span></p>
 <p>Where:</p>
 <ul>
 <li>
-<span class="math inline">\(Y\)</span> is the response variable (outcome, target)</li>
+<span class="math inline">\(y\)</span> is the response variable (outcome, target)</li>
 <li>
-<span class="math inline">\(X\)</span> is the explanatory variable (predictor)<br>
+<span class="math inline">\(x\)</span> is the explanatory variable (predictor)<br>
 </li>
 <li>
-<span class="math inline">\(a\)</span> is the intercept (predicted value of Y when X = 0)</li>
+<span class="math inline">\(b_0\)</span> is the intercept (predicted value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x = 0\)</span>)</li>
 <li>
-<span class="math inline">\(b\)</span> is the slope (change in Y for a one-unit change in X)</li>
+<span class="math inline">\(b_1\)</span> is the slope (change in <span class="math inline">\(y\)</span> for a one-unit change in <span class="math inline">\(x\)</span>)</li>
 </ul>
 <section id="running-a-linear-model-in-r" class="level3"><h3 class="anchored" data-anchor-id="running-a-linear-model-in-r">Running a Linear Model in R</h3>
 <p>Let’s fit a linear model to our democracy and wealth data using the base R <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function. Since we saw that the relationship looks more linear when we log-transform wealth, we’ll use that approach. We will then use the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function to display the model results.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Run the model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Run the model</span></span>
 <span><span class="va">democracy_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display model results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -884,32 +901,32 @@ lm(formula = lib_dem ~ log(wealth), data = model_data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.57441 -0.14334  0.03911  0.18730  0.37017 
+-0.58981 -0.14940  0.04111  0.18360  0.41129 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.13051    0.03806   3.429 0.000758 ***
-log(wealth)  0.12040    0.01471   8.188 5.75e-14 ***
+(Intercept) 0.008248   0.047553   0.173    0.862    
+log(wealth) 0.129576   0.014481   8.948 5.66e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.2233 on 172 degrees of freedom
-Multiple R-squared:  0.2805,    Adjusted R-squared:  0.2763 
-F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
+Residual standard error: 0.2171 on 172 degrees of freedom
+Multiple R-squared:  0.3176,    Adjusted R-squared:  0.3137 
+F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </div>
 </div>
 <p>Our fitted model is:</p>
-<p><span class="math display">\[Democracy = 0.13 + 0.12 × log(wealth)\]</span></p>
+<p><span class="math display">\[\widehat{Democracy} = 0.01 + 0.13 \times \log(wealth)\]</span></p>
 </section><section id="model-interpretation" class="level3"><h3 class="anchored" data-anchor-id="model-interpretation">Model Interpretation</h3>
 <p>Let’s break down what these coefficients mean:</p>
-<p><strong>Intercept (a = 0.13):</strong> This is the predicted democracy level when log(wealth) = 0. Since log(wealth) = 0 when wealth = $1, this represents the predicted democracy score for a country with $1 GDP per capita - essentially a theoretical baseline.</p>
-<p><strong>Slope (b = 0.12):</strong> This is the key coefficient for interpretation. For every one-unit increase in log(wealth), we predict democracy to increase by 0.12 points.</p>
+<p><strong>Intercept (<span class="math inline">\(b_0\)</span> = 0.01):</strong> This is the predicted democracy level when log(wealth) = 0, which happens when wealth = 1. No country in our data is that poor (the lowest value is about 1.7), so the intercept is essentially a theoretical baseline rather than a meaningful prediction.</p>
+<p><strong>Slope (<span class="math inline">\(b_1\)</span> = 0.13):</strong> This is the key coefficient for interpretation. For every one-unit increase in log(wealth), we predict democracy to increase by 0.13 points.</p>
 <p>When we use logarithmic transformations, interpretation requires special care. When we change from one wealth level to another, we need to calculate the difference in their logarithms and multiply by our slope coefficient.</p>
-<p>For any percentage increase in GDP per capita, we multiply our slope (0.12) by the natural log of the multiplier. For example, a 10% increase means multiplying by 1.1, doubling means multiplying by 2, tripling means multiplying by 3, and so on:</p>
+<p>For any percentage increase in GDP per capita, we multiply our slope (0.13) by the natural log of the multiplier. For example, a 10% increase means multiplying by 1.1, doubling means multiplying by 2, tripling means multiplying by 3, and so on:</p>
 <ul>
-<li><p>A <strong>10% increase</strong> (e.g., from $10,000 to $11,000) increases the democracy score by <strong>0.0114 points</strong> since <span class="math inline">\(0.12 \times \ln(1.1) \approx 0.12 \times 0.0953 = 0.0114\)</span></p></li>
-<li><p><strong>Doubling</strong> GDP per capita (e.g., $10,000 → $20,000) increases the democracy score by <span class="math inline">\(0.12 \times \ln(2) \approx 0.12 \times 0.693 = 0.083\)</span></p></li>
-<li><p><strong>Tripling</strong> GDP per capita (e.g., $10,000 → $30,000) increases the democracy score by: <span class="math inline">\(0.12 \times \ln(3) \approx 0.12 \times 1.099 = 0.132\)</span></p></li>
+<li><p>A <strong>10% increase</strong> (e.g., from 10 to 11 on the GDP index) increases the democracy score by <strong>0.0124 points</strong> since <span class="math inline">\(0.13 \times \ln(1.1) \approx 0.13 \times 0.0953 = 0.0124\)</span></p></li>
+<li><p><strong>Doubling</strong> GDP per capita (e.g., from 10 to 20 on the GDP index) increases the democracy score by <span class="math inline">\(0.13 \times \ln(2) \approx 0.13 \times 0.693 = 0.09\)</span></p></li>
+<li><p><strong>Tripling</strong> GDP per capita (e.g., from 10 to 30 on the GDP index) increases the democracy score by: <span class="math inline">\(0.13 \times \ln(3) \approx 0.13 \times 1.099 = 0.143\)</span></p></li>
 </ul>
 <div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -917,20 +934,20 @@ F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Use the model we just ran to make predictions for specific countries or wealth levels, e.g.&nbsp;$50,000 per capita, $100,000 per capita, etc.</li>
+<li>Use the model we just ran to make predictions for specific countries or wealth levels, e.g.&nbsp;GDP index values of 50, 100, etc.</li>
 <li>Try regressing democracy on polarization. Interpret the model coefficients for different levels of polarization. (Note that this variable is not logged.)</li>
 </ol>
 </div>
 </div>
 </section></section><section id="understanding-predicted-values-and-residuals" class="level2"><h2 class="anchored" data-anchor-id="understanding-predicted-values-and-residuals">Understanding Predicted Values and Residuals</h2>
-<p>Every model produces <strong>predicted values</strong> - these are the outputs from our model function given specific input values (like the ones we calculate earlier for our wealth and democracy model). We often write these as Ŷ (Y-hat) to distinguish them from observed values.</p>
+<p>Every model produces <strong>predicted values</strong> - these are the outputs from our model function given specific input values (like the ones we calculate earlier for our wealth and democracy model). We often write these as <span class="math inline">\(\hat{y}\)</span> (y-hat) to distinguish them from observed values.</p>
 <p><strong>Residuals</strong> measure how far each observation is from its predicted value:</p>
-<p><span class="math display">\[Residual = Observed Value (Y) - Predicted Value (\hat{Y})\]</span></p>
+<p><span class="math display">\[Residual = Observed Value (y) - Predicted Value (\hat{y})\]</span></p>
 <p>Let’s visualize this:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -944,7 +961,7 @@ Your Turn!!
 </section><section id="model-performance-and-limitations" class="level2"><h2 class="anchored" data-anchor-id="model-performance-and-limitations">Model Performance and Limitations</h2>
 <p>How well does our model perform? We can assess this using R-squared, which tells us what proportion of variation in democracy is explained by wealth. If we call summary again on our model, we can see this value:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -952,28 +969,28 @@ lm(formula = lib_dem ~ log(wealth), data = model_data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.57441 -0.14334  0.03911  0.18730  0.37017 
+-0.58981 -0.14940  0.04111  0.18360  0.41129 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.13051    0.03806   3.429 0.000758 ***
-log(wealth)  0.12040    0.01471   8.188 5.75e-14 ***
+(Intercept) 0.008248   0.047553   0.173    0.862    
+log(wealth) 0.129576   0.014481   8.948 5.66e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.2233 on 172 degrees of freedom
-Multiple R-squared:  0.2805,    Adjusted R-squared:  0.2763 
-F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
+Residual standard error: 0.2171 on 172 degrees of freedom
+Multiple R-squared:  0.3176,    Adjusted R-squared:  0.3137 
+F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </div>
 </div>
-<p>The R-squared value is approximately 0.28, meaning that about 28% of the variation in democracy scores can be explained by log GDP per capita. This is a reasonable result for a social science model, but it also indicates that there are many other factors influencing democracy that we have not accounted for. Approximately 72% of the variation remains unexplained by our model!</p>
+<p>The R-squared value is approximately 0.32, meaning that about 32% of the variation in democracy scores can be explained by log GDP per capita. This is a reasonable result for a social science model, but it also indicates that there are many other factors influencing democracy that we have not accounted for. Approximately 68% of the variation remains unexplained by our model!</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Correlation vs.&nbsp;Causation
+<span class="screen-reader-only">Important</span>Correlation vs.&nbsp;Causation
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1060,13 +1077,14 @@ Correlation vs.&nbsp;Causation
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

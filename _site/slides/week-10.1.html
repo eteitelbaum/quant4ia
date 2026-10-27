@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-09-21">
+  <meta name="dcterms.date" content="2026-10-27">
   <title>IAFF 6501 -- Fall 2026 – Multiple Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -193,7 +199,7 @@
   <link href="../site_libs/countdown-0.6.0/countdown.css" rel="stylesheet">
   <script src="../site_libs/countdown-0.6.0/countdown.js"></script>
 <meta property="og:title" content="Multiple Regression – IAFF 6501 – Fall 2026">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Multiple Regression – IAFF 6501 – Fall 2026">
 <meta name="twitter:card" content="summary">
 </head>
@@ -207,43 +213,43 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">September 21, 2026</p>
+  <p class="date">October 27, 2026</p>
 </section>
 <section id="load-packages" class="slide level2">
 <h2>Load packages</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(vdemdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="fu">library</span>(vdemdata)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-vdem-data" class="slide level2 smaller">
 <h2>Load VDEM Data</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>modelData <span class="ot">&lt;-</span> vdem <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-3"><a></a>  <span class="fu">select</span>(country_name, </span>
-<span id="cb2-4"><a></a>         <span class="at">libdem =</span> v2x_libdem, </span>
-<span id="cb2-5"><a></a>         <span class="at">wealth =</span> e_gdppc, </span>
-<span id="cb2-6"><a></a>         <span class="at">oil_rents =</span> e_total_oil_income_pc,</span>
-<span id="cb2-7"><a></a>         <span class="at">polarization =</span> v2cacamps, </span>
-<span id="cb2-8"><a></a>         <span class="at">corruption =</span> v2x_corr, </span>
-<span id="cb2-9"><a></a>         <span class="at">judicial_review =</span> v2jureview_ord, </span>
-<span id="cb2-10"><a></a>         <span class="at">region =</span> e_regionpol_6C, </span>
-<span id="cb2-11"><a></a>         <span class="at">regime =</span> v2x_regime) <span class="sc">|&gt;</span> </span>
-<span id="cb2-12"><a></a>  <span class="fu">mutate</span>(<span class="at">log_wealth =</span> <span class="fu">log</span>(wealth), </span>
-<span id="cb2-13"><a></a>         <span class="at">region =</span> <span class="fu">factor</span>(</span>
-<span id="cb2-14"><a></a>           region,</span>
-<span id="cb2-15"><a></a>           <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Eastern Europe"</span>, </span>
-<span id="cb2-16"><a></a>             <span class="st">"Latin America"</span>, </span>
-<span id="cb2-17"><a></a>             <span class="st">"MENA"</span>, </span>
-<span id="cb2-18"><a></a>             <span class="st">"SSAfrica"</span>, </span>
-<span id="cb2-19"><a></a>             <span class="st">"Western Europe and North America"</span>, </span>
-<span id="cb2-20"><a></a>             <span class="st">"Asia and Pacific"</span>))</span>
-<span id="cb2-21"><a></a>          )</span>
-<span id="cb2-22"><a></a></span>
-<span id="cb2-23"><a></a><span class="fu">glimpse</span>(modelData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>modelData <span class="ot">&lt;-</span> vdem <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a aria-label="3"></a>  <span class="fu">select</span>(country_name, </span>
+<span id="cb2-4"><a aria-label="4"></a>         <span class="at">libdem =</span> v2x_libdem, </span>
+<span id="cb2-5"><a aria-label="5"></a>         <span class="at">wealth =</span> e_gdppc, </span>
+<span id="cb2-6"><a aria-label="6"></a>         <span class="at">oil_rents =</span> e_total_oil_income_pc,</span>
+<span id="cb2-7"><a aria-label="7"></a>         <span class="at">polarization =</span> v2cacamps, </span>
+<span id="cb2-8"><a aria-label="8"></a>         <span class="at">corruption =</span> v2x_corr, </span>
+<span id="cb2-9"><a aria-label="9"></a>         <span class="at">judicial_review =</span> v2jureview_ord, </span>
+<span id="cb2-10"><a aria-label="10"></a>         <span class="at">region =</span> e_regionpol_6C, </span>
+<span id="cb2-11"><a aria-label="11"></a>         <span class="at">regime =</span> v2x_regime) <span class="sc">|&gt;</span> </span>
+<span id="cb2-12"><a aria-label="12"></a>  <span class="fu">mutate</span>(<span class="at">log_wealth =</span> <span class="fu">log</span>(wealth), </span>
+<span id="cb2-13"><a aria-label="13"></a>         <span class="at">region =</span> <span class="fu">factor</span>(</span>
+<span id="cb2-14"><a aria-label="14"></a>           region,</span>
+<span id="cb2-15"><a aria-label="15"></a>           <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Eastern Europe"</span>, </span>
+<span id="cb2-16"><a aria-label="16"></a>             <span class="st">"Latin America"</span>, </span>
+<span id="cb2-17"><a aria-label="17"></a>             <span class="st">"MENA"</span>, </span>
+<span id="cb2-18"><a aria-label="18"></a>             <span class="st">"SSAfrica"</span>, </span>
+<span id="cb2-19"><a aria-label="19"></a>             <span class="st">"Western Europe and North America"</span>, </span>
+<span id="cb2-20"><a aria-label="20"></a>             <span class="st">"Asia and Pacific"</span>))</span>
+<span id="cb2-21"><a aria-label="21"></a>          )</span>
+<span id="cb2-22"><a aria-label="22"></a></span>
+<span id="cb2-23"><a aria-label="23"></a><span class="fu">glimpse</span>(modelData)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 177
 Columns: 10
@@ -280,7 +286,7 @@ $ log_wealth      &lt;dbl&gt; 3.461759, 3.105304, 4.588980, 4.658569, 1.867331, 
 <h2>Model with One Predictor</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">lm</span>(libdem <span class="sc">~</span> polarization, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">lm</span>(libdem <span class="sc">~</span> polarization, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -310,7 +316,8 @@ Significance?</div>
 <h2>Model with Two Predictors</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">lm</span>(libdem <span class="sc">~</span> polarization <span class="sc">+</span> log_wealth, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(libdem <span class="sc">~</span> polarization <span class="sc">+</span> log_wealth, <span class="at">data =</span> modelData)</span>
+<span id="cb6-2"><a aria-label="2"></a><span class="fu">summary</span>(model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -338,54 +345,55 @@ F-statistic: 48.99 on 2 and 170 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="model-with-two-predictors-1" class="slide level2">
 <h2>Model with Two Predictors</h2>
 <p><br></p>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc\]</span></p>
-<p><span class="math display">\[\hat{Y_i} = 0.10 + -0.06*Polarization + 0.10*GDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = 0.10 + -0.06*Polarization + 0.10*LogGDPpc\]</span></p>
 </section>
 <section id="model-with-two-predictors-2" class="slide level2">
 <h2>Model with Two Predictors</h2>
 <p><br></p>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc\]</span></p>
-<p><span class="math display">\[\hat{Y_i} = 0.10 + -0.06*Polarization + 0.10*GDPpc\]</span></p>
-<p><span class="math inline">\(a\)</span> is the predicted level of Y when BOTH GDP per capita and polarization are equal to 0</p>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = 0.10 + -0.06*Polarization + 0.10*LogGDPpc\]</span></p>
+<p><span class="math inline">\(b_0\)</span> is the predicted level of <span class="math inline">\(y\)</span> when BOTH log GDP per capita and polarization are equal to 0</p>
 </section>
 <section id="model-with-two-predictors-3" class="slide level2">
 <h2>Model with Two Predictors</h2>
 <p><br></p>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc\]</span></p>
-<p><span class="math display">\[\hat{Y_i} = 0.10 + -0.06*Polarization + 0.10*GDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = 0.10 + -0.06*Polarization + 0.10*LogGDPpc\]</span></p>
 <ul>
-<li><span class="math inline">\(b_1\)</span> is the impact of a 1-unit change in polarization on the predicted level of Y, <strong>holding GDP per capita fixed</strong> (all else equal)</li>
+<li><span class="math inline">\(b_1\)</span> is the impact of a 1-unit change in polarization on the predicted level of <span class="math inline">\(y\)</span>, <strong>holding GDP per capita fixed</strong> (all else equal)</li>
 <li>The relationship between polarization and democracy, controlling for wealth</li>
 </ul>
 </section>
 <section id="model-with-two-predictors-4" class="slide level2">
 <h2>Model with Two Predictors</h2>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc\]</span></p>
-<p><span class="math display">\[\hat{Y_i} = 0.10 + -0.06*Polarization + 0.10*GDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = 0.10 + -0.06*Polarization + 0.10*LogGDPpc\]</span></p>
 <ul>
-<li><span class="math inline">\(b_2\)</span> is the impact of a 1-unit change in GDP per capita on the predicted level of Y, <strong>holding polarization fixed</strong> (all else equal)</li>
+<li><span class="math inline">\(b_2\)</span> is the impact of a 1-unit change in log GDP per capita on the predicted level of <span class="math inline">\(y\)</span>, <strong>holding polarization fixed</strong> (all else equal)</li>
 <li>The relationship between wealth and democracy, controlling for polarization</li>
 </ul>
 </section>
 <section id="model-with-two-predictors-5" class="slide level2">
 <h2>Model with Two Predictors</h2>
 <p><br></p>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc\]</span></p>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc\]</span></p>
 <ul>
-<li>OLS is searching for combination of <span class="math inline">\(a\)</span>, <span class="math inline">\(b_1\)</span>, and <span class="math inline">\(b_2\)</span> that minimize sum of squared residuals</li>
+<li>OLS is searching for combination of <span class="math inline">\(b_0\)</span>, <span class="math inline">\(b_1\)</span>, and <span class="math inline">\(b_2\)</span> that minimize sum of squared residuals</li>
 <li>Same logic as model with one predictor, just more complicated</li>
 </ul>
 </section>
 <section id="model-with-three-predictors" class="slide level2">
 <h2>Model with Three Predictors</h2>
 <p><br></p>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc + b_3*OilRents\]</span></p>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc + b_3*OilRents\]</span></p>
 </section>
 <section id="model-with-three-predictors-1" class="slide level2">
 <h2>Model with Three Predictors</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">lm</span>(libdem <span class="sc">~</span> polarization <span class="sc">+</span> log_wealth <span class="sc">+</span> oil_rents, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(libdem <span class="sc">~</span> polarization <span class="sc">+</span> log_wealth <span class="sc">+</span> oil_rents, <span class="at">data =</span> modelData)</span>
+<span id="cb8-2"><a aria-label="2"></a><span class="fu">summary</span>(model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -415,9 +423,9 @@ F-statistic: 54.79 on 3 and 158 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="model-with-three-predictors-2" class="slide level2 smaller">
 <h2>Model with Three Predictors</h2>
 <p><br></p>
-<p><span class="math display">\[\hat{Y_i} = a + b_1*Polarization + b_2*GDPpc + b_3*OilRents\]</span></p>
-<p><span class="math display">\[\hat{Y_i} = a + -.06*Polarization + .14*GDPpc + -.00004*OilRents\]</span> <br></p>
-<div class="line-block"><span class="math inline">\(b_3\)</span> is the impact of a 1-unit change in oil revenues per capita on the predicted level of Y, <strong>holding polarization and GDP fixed</strong> (all else equal) — note the negative sign: higher oil rents are associated with <em>lower</em> democracy, controlling for wealth</div>
+<p><span class="math display">\[\hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc + b_3*OilRents\]</span></p>
+<p><span class="math display">\[\hat{y}_i = 0.02 + -0.06*Polarization + 0.14*LogGDPpc + -0.00004*OilRents\]</span> <br></p>
+<div class="line-block"><span class="math inline">\(b_3\)</span> is the impact of a 1-unit change in oil revenues per capita on the predicted level of <span class="math inline">\(y\)</span>, <strong>holding polarization and GDP fixed</strong> (all else equal) — note the negative sign: higher oil rents are associated with <em>lower</em> democracy, controlling for wealth</div>
 </section>
 <section id="your-turn" class="slide level2 smaller">
 <h2>Your Turn!</h2>
@@ -519,7 +527,8 @@ F-statistic: 137.9 on 3 and 169 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2>Judicial Review and Democracy</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">lm</span>(libdem <span class="sc">~</span> <span class="fu">factor</span>(judicial_review), <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a>model_jr <span class="ot">&lt;-</span> <span class="fu">lm</span>(libdem <span class="sc">~</span> <span class="fu">factor</span>(judicial_review), <span class="at">data =</span> modelData)</span>
+<span id="cb12-2"><a aria-label="2"></a><span class="fu">summary</span>(model_jr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -545,14 +554,14 @@ F-statistic: 31.92 on 1 and 175 DF,  p-value: 6.403e-08</code></pre>
 <section id="judicial-review-and-democracy-3" class="slide level2 smaller">
 <h2>Judicial Review and Democracy</h2>
 <p><br></p>
-<p><span class="math display">\[\widehat{Democracy_{i}} = 0.13 + 0.32*JudicialReview(yes)\]</span></p>
+<p><span class="math display">\[\widehat{Democracy_{i}} = 0.12 + 0.32*JudicialReview(yes)\]</span></p>
 <ul>
 <li><strong>Slope:</strong> countries with judicial review are expected, on average, to be 0.32 units more democratic on the liberal democracy index
 <ul>
 <li>Compares baseline level (Judicial Review = 0) to the other level (Judicial Review = 1)</li>
 </ul></li>
 <li><strong>Intercept:</strong> average democracy score of countries without judicial review</li>
-<li>Average democracy score of countries with judicial review is 0.13 + 0.32 = 0.45</li>
+<li>Average democracy score of countries with judicial review is 0.12 + 0.32 = 0.44</li>
 </ul>
 </section>
 <section id="dummy-variables" class="slide level2">
@@ -573,7 +582,7 @@ F-statistic: 31.92 on 1 and 175 DF,  p-value: 6.403e-08</code></pre>
 <li>Since Eastern Europe is the first category, default in R is to use that as the omitted category in models.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">levels</span>(modelData<span class="sc">$</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-label="1"></a><span class="fu">levels</span>(modelData<span class="sc">$</span>region)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Eastern Europe"                   "Latin America"                   
 [3] "MENA"                             "SSAfrica"                        
@@ -587,7 +596,7 @@ F-statistic: 31.92 on 1 and 175 DF,  p-value: 6.403e-08</code></pre>
 <p>How should we interpret intercept? How about the coefficient on Latin America?</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">lm</span>(libdem <span class="sc">~</span> region, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-label="1"></a><span class="fu">lm</span>(libdem <span class="sc">~</span> region, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -603,7 +612,7 @@ Coefficients:
 regionLatin America                     0.06661    0.05337   1.248  0.21367    
 regionMENA                             -0.23717    0.05689  -4.169 4.86e-05 ***
 regionSSAfrica                         -0.14065    0.04551  -3.090  0.00233 ** 
-regionWestern Europe and North America  0.37343    0.05397   6.919 8.73e-11 ***
+regionWestern Europe and North America  0.37342    0.05397   6.919 8.73e-11 ***
 regionAsia and Pacific                 -0.13372    0.05179  -2.582  0.01065 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -620,11 +629,11 @@ F-statistic: 30.57 on 5 and 171 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>What if you want a different baseline category? How do we interpret now?</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># make SS Africa the reference category</span></span>
-<span id="cb18-2"><a></a>modelData <span class="ot">&lt;-</span> modelData <span class="sc">|&gt;</span> </span>
-<span id="cb18-3"><a></a><span class="fu">mutate</span>(<span class="at">newReg =</span> <span class="fu">relevel</span>(region, <span class="at">ref=</span><span class="dv">4</span>)) </span>
-<span id="cb18-4"><a></a></span>
-<span id="cb18-5"><a></a><span class="fu">lm</span>(libdem <span class="sc">~</span> newReg, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-label="1"></a><span class="co"># make SS Africa the reference category</span></span>
+<span id="cb18-2"><a aria-label="2"></a>modelData <span class="ot">&lt;-</span> modelData <span class="sc">|&gt;</span> </span>
+<span id="cb18-3"><a aria-label="3"></a><span class="fu">mutate</span>(<span class="at">newReg =</span> <span class="fu">relevel</span>(region, <span class="at">ref=</span><span class="dv">4</span>)) </span>
+<span id="cb18-4"><a aria-label="4"></a></span>
+<span id="cb18-5"><a aria-label="5"></a><span class="fu">lm</span>(libdem <span class="sc">~</span> newReg, <span class="at">data =</span> modelData) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -672,14 +681,14 @@ F-statistic: 30.57 on 5 and 171 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><br></p>
 <p>First, let’s make this an easier factor variable to work with.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="co"># Make nicer regime factor variable</span></span>
-<span id="cb20-2"><a></a>modelData <span class="ot">&lt;-</span> modelData <span class="sc">|&gt;</span> </span>
-<span id="cb20-3"><a></a>  <span class="fu">mutate</span>(<span class="at">regime =</span> <span class="fu">factor</span>(regime,</span>
-<span id="cb20-4"><a></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Closed Autocracy"</span>,</span>
-<span id="cb20-5"><a></a>                                   <span class="st">"Electoral Autocracy"</span>,</span>
-<span id="cb20-6"><a></a>                                  <span class="st">"Electoral Democracy"</span>,</span>
-<span id="cb20-7"><a></a>                                  <span class="st">"Liberal Democracy"</span>)))</span>
-<span id="cb20-8"><a></a><span class="fu">levels</span>(modelData<span class="sc">$</span>regime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-label="1"></a><span class="co"># Make nicer regime factor variable</span></span>
+<span id="cb20-2"><a aria-label="2"></a>modelData <span class="ot">&lt;-</span> modelData <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">regime =</span> <span class="fu">factor</span>(regime,</span>
+<span id="cb20-4"><a aria-label="4"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Closed Autocracy"</span>,</span>
+<span id="cb20-5"><a aria-label="5"></a>                                   <span class="st">"Electoral Autocracy"</span>,</span>
+<span id="cb20-6"><a aria-label="6"></a>                                  <span class="st">"Electoral Democracy"</span>,</span>
+<span id="cb20-7"><a aria-label="7"></a>                                  <span class="st">"Liberal Democracy"</span>)))</span>
+<span id="cb20-8"><a aria-label="8"></a><span class="fu">levels</span>(modelData<span class="sc">$</span>regime)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Closed Autocracy"    "Electoral Autocracy" "Electoral Democracy"
 [4] "Liberal Democracy"  </code></pre>
@@ -944,7 +953,7 @@ F-statistic: 77.52 on 3 and 173 DF,  p-value: &lt; 2.2e-16</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1056,13 +1065,14 @@ F-statistic: 77.52 on 3 and 173 DF,  p-value: &lt; 2.2e-16</code></pre>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -30,7 +30,7 @@ library(vdemdata)
 
 <br>
 
-Goal: Estimate Democracy score ($\hat{Y_{i}}$) of a country given level of GDP per capita ($X_{i}$).
+Goal: Estimate Democracy score ($\hat{y}_i$) of a country given level of GDP per capita ($x_i$).
 
 <br>
 
@@ -55,7 +55,7 @@ modelData <- vdem |>
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GDP per capita", y = "Liberal Democracy Index") +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme_bw()
 ```
 
@@ -84,7 +84,7 @@ View results with `summary()`
 
 <br>
 
-$$\widehat{Democracy}_{i} = 0.13 + 0.12 * {loggdppc}_{i}$$
+$$\widehat{Democracy}_{i} = `r round(coef(mod_fit)[1], 2)` + `r round(coef(mod_fit)[2], 2)` \times loggdppc_{i}$$
 
 ```{r}
 #| label: model-summary
@@ -98,7 +98,7 @@ summary(mod_fit)
 
 <br>
 
-$$\widehat{Democracy}_{i} = 0.13 + 0.12 * {loggdppc}_{i}$$
+$$\widehat{Democracy}_{i} = `r round(coef(mod_fit)[1], 2)` + `r round(coef(mod_fit)[2], 2)` \times loggdppc_{i}$$
 
 ## Question
 
@@ -115,7 +115,7 @@ How do we get the "best" values for the slope and intercept?
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
  # geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GDP per capita", y = "Liberal Democracy Index") +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme_bw()
 ```
 
@@ -128,7 +128,7 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GDP per capita", y = "Liberal Democracy Index") +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme_bw()
 ```
 
@@ -169,8 +169,8 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 
 mod_fit <- lm(lib_dem ~ log_wealth, data = modelData)
 
-a <- round(coef(mod_fit)[1], 2)
-b <- round(coef(mod_fit)[2], 2)
+b0 <- round(coef(mod_fit)[1], 2)
+b1 <- round(coef(mod_fit)[2], 2)
 
 fit_aug <- data.frame(
   log_wealth = mod_fit$model$log_wealth,
@@ -185,7 +185,7 @@ ggplot(data = fit_aug) +
   geom_line(aes(x = log_wealth, y = .fitted), size = 0.75, color = "#8E2C90") + 
   labs(
     title = "GDP per Capita and Democracy",
-    x = "GDP per Capita",
+    x = "Log GDP per capita (V-Dem index)",
     y = "Libearl Democracy Index"
   ) +
   guides(color = "none") +
@@ -219,7 +219,7 @@ ggplot(dat, aes(y=y, x=x)) +
 
 ## Example
 
-$\hat{Y} = 0 + 1*X$
+$\hat{y} = 0 + 1x$
 
 ```{r}
 #| label: best-line5
@@ -249,7 +249,7 @@ ggplot(dat, aes(y=y, x=x)) +
 
 ## Example
 
-What is sum of squared residuals for $y = 0 + 0*X$?
+What is sum of squared residuals for $\hat{y} = 0 + 0x$?
 
 ```{r}
 #| label: best-line7
@@ -265,7 +265,7 @@ What is sum of squared residuals for $y = 0 + 0*X$?
 
 ## Example
 
-What is sum of squared residuals for $y = 0 + 0*X$?
+What is sum of squared residuals for $\hat{y} = 0 + 0x$?
 
 ```{r}
 #| label: best-line8
@@ -290,7 +290,7 @@ What is sum of squared residuals for $y = 0 + 0*X$?
 
 ## Example
 
-What is sum of squared residuals for $y = 0 + 2*X$?
+What is sum of squared residuals for $\hat{y} = 0 + 2x$?
 
 ```{r}
 #| label: best-line10
@@ -305,7 +305,7 @@ What is sum of squared residuals for $y = 0 + 2*X$?
 
 ## Example
 
-What is sum of squared residuals for $y = 0 + 2*X$?
+What is sum of squared residuals for $\hat{y} = 0 + 2x$?
 
 ```{r}
 #| label: best-line11
@@ -328,7 +328,7 @@ What is sum of squared residuals for $y = 0 + 2*X$?
 
 ## One more...
 
-What is sum of squared residuals for $y = 0 + -1*X$?
+What is sum of squared residuals for $\hat{y} = 0 - 1x$?
 
 ```{r}
 #| label: best-line13
@@ -342,7 +342,7 @@ What is sum of squared residuals for $y = 0 + -1*X$?
 
 ## One more...
 
-What is sum of squared residuals for $y = 0 + -1*X$?
+What is sum of squared residuals for $\hat{y} = 0 - 1x$?
 
 ```{r}
 #| label: best-line14
@@ -364,7 +364,7 @@ What is sum of squared residuals for $y = 0 + -1*X$?
 
 ## Cost Function
 
-Sum of Squared Residuals as function of possible values of $b$
+Sum of Squared Residuals as function of possible values of $b_1$
 
 
 ```{r}
@@ -378,7 +378,7 @@ sse <- tibble(
 ggplot(sse, aes(y=c, x=b)) +
     geom_point(size=3, color="darkred") +
     labs(
-    x = "Slope (b)",
+    x = expression("Slope (" * b[1] * ")"),
     y = "Sum of Squared Residuals"
   ) +
   theme_bw()
@@ -391,7 +391,7 @@ ggplot(sse, aes(y=c, x=b)) +
 
 - When we estimate a least squares regression, it is looking for the line that minimizes sum of squared residuals
 
-- In the simple example, I set $a=0$ to make it easier.  More complicated when searching for combination of $a$ and $b$ that minimize, but same basic idea
+- In the simple example, I set $b_0 = 0$ to make it easier.  More complicated when searching for combination of $b_0$ and $b_1$ that minimize, but same basic idea
 
 ## Least Squares Regression
 
@@ -403,7 +403,7 @@ ggplot(sse, aes(y=c, x=b)) +
 
 . . .
 
-- In machine learning, people also use gradient descent algorithm in which the computer searches over possible combinations of $a$ and $b$ until it settles on the lowest point.    
+- In machine learning, people also use gradient descent algorithm in which the computer searches over possible combinations of $b_0$ and $b_1$ until it settles on the lowest point.    
 
 ## Least Squares Regression
 
@@ -419,7 +419,7 @@ ggplot(sse, aes(y=c, x=b)) +
     geom_point(size=3, color="darkred") +
   #  geom_line(color = "darkred") +
     labs(
-    x = "Slope (b)",
+    x = expression("Slope (" * b[1] * ")"),
     y = "Sum of Squared Residuals"
   ) +
   theme_bw()
@@ -433,7 +433,7 @@ ggplot(sse, aes(y=c, x=b)) +
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GDP per capita", y = "Liberal Democracy Index") +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme(
     axis.text  = element_blank(),
     axis.ticks = element_blank()

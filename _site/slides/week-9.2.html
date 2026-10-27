@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-09-21">
+  <meta name="dcterms.date" content="2026-10-27">
   <title>IAFF 6501 -- Fall 2026 – Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -193,7 +199,7 @@
   <link href="../site_libs/countdown-0.6.0/countdown.css" rel="stylesheet">
   <script src="../site_libs/countdown-0.6.0/countdown.js"></script>
 <meta property="og:title" content="Linear Regression – IAFF 6501 – Fall 2026">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Linear Regression – IAFF 6501 – Fall 2026">
 <meta name="twitter:card" content="summary">
 </head>
@@ -207,12 +213,12 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">September 21, 2026</p>
+  <p class="date">October 27, 2026</p>
 </section>
 <section id="linear-model-with-single-predictor" class="slide level2">
 <h2>Linear Model with Single Predictor</h2>
 <p><br></p>
-<p>Goal: Estimate Democracy score (<span class="math inline">\(\hat{Y_{i}}\)</span>) of a country given level of GDP per capita (<span class="math inline">\(X_{i}\)</span>).</p>
+<p>Goal: Estimate Democracy score (<span class="math inline">\(\hat{y}_i\)</span>) of a country given level of GDP per capita (<span class="math inline">\(x_i\)</span>).</p>
 <p><br></p>
 <p>Or: Estimate relationship between GDP per capita and democracy.</p>
 </section>
@@ -231,7 +237,7 @@
 <p>Fit model using base R <code>lm()</code> with <strong>formula syntax</strong></p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>mod_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> log_wealth, <span class="at">data =</span> modelData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>mod_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> log_wealth, <span class="at">data =</span> modelData)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-1" class="slide level2">
@@ -239,9 +245,9 @@
 <p><br></p>
 <p>View results with <code>summary()</code></p>
 <p><br></p>
-<p><span class="math display">\[\widehat{Democracy}_{i} = 0.13 + 0.12 * {loggdppc}_{i}\]</span></p>
+<p><span class="math display">\[\widehat{Democracy}_{i} = 0.01 + 0.13 \times loggdppc_{i}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">summary</span>(mod_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a><span class="fu">summary</span>(mod_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -268,7 +274,7 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 <section id="interpretation" class="slide level2">
 <h2>Interpretation?</h2>
 <p><br></p>
-<p><span class="math display">\[\widehat{Democracy}_{i} = 0.13 + 0.12 * {loggdppc}_{i}\]</span></p>
+<p><span class="math display">\[\widehat{Democracy}_{i} = 0.01 + 0.13 \times loggdppc_{i}\]</span></p>
 </section>
 <section id="question" class="slide level2">
 <h2>Question</h2>
@@ -328,7 +334,7 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 <img data-src="week-9.2_files/figure-revealjs/best-line4-1.png" width="960" class="r-stretch"></section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p><span class="math inline">\(\hat{Y} = 0 + 1*X\)</span></p>
+<p><span class="math inline">\(\hat{y} = 0 + 1x\)</span></p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line5-1.png" width="960" class="r-stretch"></section>
 <section id="example-1" class="slide level2">
@@ -338,15 +344,15 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 <img data-src="week-9.2_files/figure-revealjs/best-line6-1.png" width="960" class="r-stretch"></section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<p>What is sum of squared residuals for <span class="math inline">\(y = 0 + 0*X\)</span>?</p>
+<p>What is sum of squared residuals for <span class="math inline">\(\hat{y} = 0 + 0x\)</span>?</p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line7-1.png" width="960" class="r-stretch"></section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
-<p>What is sum of squared residuals for <span class="math inline">\(y = 0 + 0*X\)</span>?</p>
+<p>What is sum of squared residuals for <span class="math inline">\(\hat{y} = 0 + 0x\)</span>?</p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line8-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>(<span class="dv">1-0</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">2-0</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3-0</span>)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>(<span class="dv">1-0</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">2-0</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3-0</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
@@ -354,15 +360,15 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </section>
 <section id="example-4" class="slide level2">
 <h2>Example</h2>
-<p>What is sum of squared residuals for <span class="math inline">\(y = 0 + 2*X\)</span>?</p>
+<p>What is sum of squared residuals for <span class="math inline">\(\hat{y} = 0 + 2x\)</span>?</p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line10-1.png" width="960" class="r-stretch"></section>
 <section id="example-5" class="slide level2">
 <h2>Example</h2>
-<p>What is sum of squared residuals for <span class="math inline">\(y = 0 + 2*X\)</span>?</p>
+<p>What is sum of squared residuals for <span class="math inline">\(\hat{y} = 0 + 2x\)</span>?</p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line11-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>(<span class="dv">1-2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">2-4</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3-6</span>)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>(<span class="dv">1-2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">2-4</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3-6</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
@@ -370,15 +376,15 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </section>
 <section id="one-more" class="slide level2">
 <h2>One more…</h2>
-<p>What is sum of squared residuals for <span class="math inline">\(y = 0 + -1*X\)</span>?</p>
+<p>What is sum of squared residuals for <span class="math inline">\(\hat{y} = 0 - 1x\)</span>?</p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line13-1.png" width="960" class="r-stretch"></section>
 <section id="one-more-1" class="slide level2">
 <h2>One more…</h2>
-<p>What is sum of squared residuals for <span class="math inline">\(y = 0 + -1*X\)</span>?</p>
+<p>What is sum of squared residuals for <span class="math inline">\(\hat{y} = 0 - 1x\)</span>?</p>
 
 <img data-src="week-9.2_files/figure-revealjs/best-line14-1.png" width="960" class="r-stretch"><div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span><span class="sc">+</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>(<span class="dv">1</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span><span class="sc">+</span><span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 56</code></pre>
 </div>
@@ -386,7 +392,7 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </section>
 <section id="cost-function" class="slide level2">
 <h2>Cost Function</h2>
-<p>Sum of Squared Residuals as function of possible values of <span class="math inline">\(b\)</span></p>
+<p>Sum of Squared Residuals as function of possible values of <span class="math inline">\(b_1\)</span></p>
 
 <img data-src="week-9.2_files/figure-revealjs/cost-function-1.png" width="960" class="r-stretch"></section>
 <section id="least-squares-regression-3" class="slide level2">
@@ -394,7 +400,7 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 <p><br></p>
 <ul>
 <li><p>When we estimate a least squares regression, it is looking for the line that minimizes sum of squared residuals</p></li>
-<li><p>In the simple example, I set <span class="math inline">\(a=0\)</span> to make it easier. More complicated when searching for combination of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> that minimize, but same basic idea</p></li>
+<li><p>In the simple example, I set <span class="math inline">\(b_0 = 0\)</span> to make it easier. More complicated when searching for combination of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> that minimize, but same basic idea</p></li>
 </ul>
 </section>
 <section id="least-squares-regression-4" class="slide level2">
@@ -406,7 +412,7 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </ul>
 <div class="fragment">
 <ul>
-<li>In machine learning, people also use gradient descent algorithm in which the computer searches over possible combinations of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> until it settles on the lowest point.</li>
+<li>In machine learning, people also use gradient descent algorithm in which the computer searches over possible combinations of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> until it settles on the lowest point.</li>
 </ul>
 </div>
 </section>
@@ -658,7 +664,7 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -770,13 +776,14 @@ F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

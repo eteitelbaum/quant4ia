@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Module 9.2 – IAFF 6501 – Fall 2026</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,14 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a80805fb9204df0454a85aec670eb5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7c4110837d4a72e4e7962681f07c1561.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b232ce752f883ea70c603695f82d85b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
@@ -1653,7 +1659,7 @@ globalThis.qwebrExecuteCode = async function (
     }
 }
 
-</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -1664,7 +1670,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -1682,7 +1688,7 @@ window.Quarto = {
 <meta property="og:title" content="Module 9.2 – IAFF 6501 – Fall 2026">
 <meta property="og:description" content="Least Squares Regression">
 <meta property="og:image" content="https://quant4ia.rocks/modules/module-9.2_files/figure-html/multiple-lines-1.png">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta property="og:image:height" content="960">
 <meta property="og:image:width" content="1344">
 <meta name="twitter:title" content="Module 9.2 – IAFF 6501 – Fall 2026">
@@ -1872,7 +1878,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://blackboard.gwu.edu" title="Blackboard" class="quarto-navigation-tool px-1" aria-label="Blackboard"><i class="bi bi-mortarboard-fill"></i></a>
     <a href="https://classroom.github.com" title="Github Classroom" class="quarto-navigation-tool px-1" aria-label="Github Classroom"><i class="bi bi-github"></i></a>
@@ -2549,42 +2555,37 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Prework
+<span class="screen-reader-only">Tip</span>Prework
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Run this code chunk to load the necessary packages and data for this module:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://creativecommons.org/licenses/by-sa/4.0/">vdemlite</a></span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">vdemdata</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load V-Dem data for 2019</span></span>
-<span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://eteitelbaum.github.io/vdemlite/reference/fetchdem.html">fetchdem</a></span><span class="op">(</span></span>
-<span>  indicators <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"v2x_libdem"</span>, </span>
-<span>  <span class="st">"e_gdppc"</span>, </span>
-<span>  <span class="st">"v2cacamps"</span><span class="op">)</span>,</span>
-<span>  start_year <span class="op">=</span> <span class="fl">2019</span>, </span>
-<span>  end_year <span class="op">=</span> <span class="fl">2019</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">vdem</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2019</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">country_name</span>, <span class="va">v2x_libdem</span>, <span class="va">e_gdppc</span>, <span class="va">v2cacamps</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span></span>
 <span>    country <span class="op">=</span> <span class="va">country_name</span>, </span>
 <span>    lib_dem <span class="op">=</span> <span class="va">v2x_libdem</span>, </span>
 <span>    wealth <span class="op">=</span> <span class="va">e_gdppc</span>,</span>
 <span>    polarization <span class="op">=</span> <span class="va">v2cacamps</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">lib_dem</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">lib_dem</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div>
 </div>
 <section id="overview" class="level2"><h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>In Module 4.1, you learned how to fit regression lines and interpret them. But how does R actually find the “best” line among all possible lines? This module dives into the mathematical optimization behind least squares regression. You’ll understand why it’s called “least squares” and develop intuition for the cost function that R minimizes when fitting your models.</p>
+<p>In Module 9.1, you learned how to fit regression lines and interpret them. But how does R actually find the “best” line among all possible lines? This module dives into the mathematical optimization behind least squares regression. You’ll understand why it’s called “least squares” and develop intuition for the cost function that R minimizes when fitting your models.</p>
 <p>By the end of this module, you’ll be able to: - Explain why we minimize the sum of squared residuals - Calculate and interpret a cost function - Understand the optimization process behind <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> - Connect mathematical theory to practical regression output</p>
 </section><section id="the-optimization-problem" class="level2"><h2 class="anchored" data-anchor-id="the-optimization-problem">The Optimization Problem</h2>
-<p>When we fit a regression line in Module 4.1, we used R’s <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function and got specific values for our intercept and slope. But think about it - there are infinitely many possible lines we could draw through any set of points. How does the computer choose which one is “best”?</p>
-<p>Let’s return to our democracy and GDP example from Module 4.1. We found that the relationship between log GDP per capita and democracy scores could be modeled as:</p>
-<p><span class="math display">\[\widehat{Democracy}_i = 0.13 + 0.12 \times \log(GDP)_i\]</span></p>
+<p>When we fit a regression line in Module 9.1, we used R’s <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function and got specific values for our intercept and slope. But think about it - there are infinitely many possible lines we could draw through any set of points. How does the computer choose which one is “best”?</p>
+<p>Let’s return to our democracy and GDP example from Module 9.1. We found that the relationship between log GDP per capita and democracy scores could be modeled as:</p>
+<p><span class="math display">\[\widehat{Democracy}_i = 0.01 + 0.13 \times \log(GDP)_i\]</span></p>
 <p>But why these specific numbers? Why not <span class="math inline">\(\widehat{Democracy}_i = 0.10 + 0.15 \times \log(GDP)_i\)</span> or any other combination?</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2598,7 +2599,7 @@ Prework
 </section><section id="understanding-the-cost-function" class="level2"><h2 class="anchored" data-anchor-id="understanding-the-cost-function">Understanding the Cost Function</h2>
 <p>To understand how we measure “best,” let’s watch Andrew Ng explain the intuition behind the cost function:</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/CFN5zHzEuGY" title="Cost Function Intuition" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>As Andrew explains, we need a way to measure how well our line fits the data. Remember from Module 4.1 that a <strong>residual</strong> is the difference between an actual value and our predicted value:</p>
+<p>As Andrew explains, we need a way to measure how well our line fits the data. Remember from Module 9.1 that a <strong>residual</strong> is the difference between an actual value and our predicted value:</p>
 <p><span class="math display">\[\text{residual}_i = y_i - \hat{y}_i\]</span></p>
 <p>The <strong>cost function</strong> (also called the <strong>loss function</strong>) measures the total error across all our predictions. For least squares regression, we use the <strong>sum of squared residuals</strong> (SSR):</p>
 <p><span class="math display">\[\text{Cost} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2\]</span></p>
@@ -2620,13 +2621,13 @@ Note
 <p>Let’s build intuition with a very simple example. Consider these three data points: - (1, 1) - (2, 2) - (3, 3)</p>
 <p>What line would you draw through these points? Let’s test different lines and see which has the lowest cost.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create our simple dataset</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create our simple dataset</span></span>
 <span><span class="va">simple_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,</span>
 <span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">simple_data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">simple_data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
       x     y
@@ -2660,14 +2661,14 @@ Note
 <p><strong>Test Line 2</strong>: <span class="math inline">\(\hat{y} = 0 + 2 \times x\)</span> (intercept = 0, slope = 2)</p>
 <p>This is a steeper line with a slope of 2. Let’s calculate the residuals:</p>
 <ul>
-<li>Point (1,1): <span class="math inline">\(\hat{y} = 0 + 0(1) = 0\)</span>, residual = <span class="math inline">\(1 - 2 = -1\)</span>
+<li>Point (1,1): <span class="math inline">\(\hat{y} = 0 + 2(1) = 2\)</span>, residual = <span class="math inline">\(1 - 2 = -1\)</span>
 </li>
-<li>Point (2,2): <span class="math inline">\(\hat{y} = 0 + 0(2) = 0\)</span>, residual = <span class="math inline">\(2 - 4 = -2\)</span>
+<li>Point (2,2): <span class="math inline">\(\hat{y} = 0 + 2(2) = 4\)</span>, residual = <span class="math inline">\(2 - 4 = -2\)</span>
 </li>
-<li>Point (3,3): <span class="math inline">\(\hat{y} = 0 + 0(3) = 0\)</span>, residual = <span class="math inline">\(3 - 6 = -3\)</span>
+<li>Point (3,3): <span class="math inline">\(\hat{y} = 0 + 2(3) = 6\)</span>, residual = <span class="math inline">\(3 - 6 = -3\)</span>
 </li>
 </ul>
-<p>Sum of squared residuals = <span class="math inline">\(-1^2 + -2^2 + -3^2 = 1 + 4 + 9 = 14\)</span></p>
+<p>Sum of squared residuals = <span class="math inline">\((-1)^2 + (-2)^2 + (-3)^2 = 1 + 4 + 9 = 14\)</span></p>
 <p>Much worse!</p>
 <div class="callout callout-style-default callout-warning no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2675,7 +2676,7 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2693,7 +2694,7 @@ Your Turn!!
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Check your answers below when you are finished:</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the sum of squared residuals for the line ŷ = 0 + 3x</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculate the sum of squared residuals for the line ŷ = 0 + 3x</span></span>
 <span><span class="co">#ssr1 &lt;- (1-3)^2 + (2-6)^2 + (3-9)^2</span></span>
 <span><span class="co">#ssr1</span></span>
 <span><span class="co"># Answer: 56</span></span>
@@ -2706,7 +2707,7 @@ Your Turn!!
 <span><span class="co"># Calculate the sum of squared residuals for the line ŷ = 0 -1x</span></span>
 <span><span class="co">#ssr3 &lt;- (1+1)^2 + (2+2)^2 + (3+3)^2</span></span>
 <span><span class="co">#ssr3</span></span>
-<span><span class="co"># Answer: 56</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co"># Answer: 56</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div>
@@ -2777,7 +2778,7 @@ server &lt;- function(input, output) {
   })
   
   output$current_equation &lt;- renderText({
-    paste0("Equation: Ŷ = 0 + ", round(input$slope, 2), " * X")
+    paste0("Equation: ŷ = 0 + ", round(input$slope, 2), "x")
   })
   
   # Fixed: Use the corrected reactive calculations
@@ -2817,11 +2818,11 @@ shinyApp(ui = ui, server = server)</a></code></pre>
 <p>Let’s apply this same thinking to our democracy and GDP data. We’ll manually test a few different potential regression lines and calculate their costs.</p>
 <p>First, let’s fit the actual least squares line to remind ourselves what R found:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fit the model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fit the model</span></span>
 <span><span class="va">democracy_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Show the summary</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2829,21 +2830,21 @@ lm(formula = lib_dem ~ log(wealth), data = model_data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.57441 -0.14334  0.03911  0.18730  0.37017 
+-0.58981 -0.14940  0.04111  0.18360  0.41129 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.13051    0.03806   3.429 0.000758 ***
-log(wealth)  0.12040    0.01471   8.188 5.75e-14 ***
+(Intercept) 0.008248   0.047553   0.173    0.862    
+log(wealth) 0.129576   0.014481   8.948 5.66e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.2233 on 172 degrees of freedom
-Multiple R-squared:  0.2805,    Adjusted R-squared:  0.2763 
-F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
+Residual standard error: 0.2171 on 172 degrees of freedom
+Multiple R-squared:  0.3176,    Adjusted R-squared:  0.3137 
+F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </div>
 </div>
-<p>The least squares solution is approximately: <span class="math inline">\(\widehat{Democracy} = 0.13 + 0.12 \times \log(GDP)\)</span></p>
+<p>The least squares solution is approximately: <span class="math inline">\(\widehat{Democracy} = 0.01 + 0.13 \times \log(GDP)\)</span></p>
 <p>Let’s test some alternative lines and see how they compare:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2856,23 +2857,22 @@ F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
 <p>Now let’s calculate the sum of squared residuals (SSR) for each of these lines to see which one has the lowest cost:</p>
 <ul>
 <li>
-<strong>Least squares line</strong> (intercept = 0.13, slope = 0.12): SSR = 8.57</li>
+<strong>Least squares line</strong> (intercept = 0.01, slope = 0.13): SSR = 8.11</li>
 <li>
-<strong>Steeper slope line</strong> (intercept = 0.13, slope = 0.15): SSR = 9.58</li>
+<strong>Steeper slope line</strong> (intercept = 0.01, slope = 0.16): SSR = 9.9</li>
 <li>
-<strong>Gentler slope line</strong> (intercept = 0.13, slope = 0.08): SSR = 10.49</li>
+<strong>Gentler slope line</strong> (intercept = 0.01, slope = 0.09): SSR = 10.97</li>
 <li>
-<strong>Different intercept line</strong> (intercept = 0.00, slope = 0.12): SSR = 11.58</li>
+<strong>Different intercept line</strong> (intercept = 0.11, slope = 0.13): SSR = 9.96</li>
 </ul>
 <p>Notice how the least squares line has the lowest SSR! Any other combination of intercept and slope results in a higher cost, confirming that our optimization algorithm found the truly optimal solution.</p>
-<p>Notice how the least squares line has the lowest SSR! Any other combination of intercept and slope will result in a higher cost.</p>
 </section><section id="from-math-to-r-output" class="level2"><h2 class="anchored" data-anchor-id="from-math-to-r-output">From Math to R Output</h2>
 <p>When you run <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> in R, the computer is solving this optimization problem automatically. It searches through all possible combinations of intercept and slope values to find the ones that minimize the sum of squared residuals.</p>
 <p>For simple linear regression, there’s actually a mathematical formula to find the optimal parameters directly (no searching required). But the key insight is that R is giving you the parameter values that make your predictions as accurate as possible, on average, across all your data points.</p>
 <p>This is why we can trust the output from <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> - it’s not arbitrary, it’s the result of a principled mathematical optimization.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Our model from before</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Our model from before</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2880,24 +2880,24 @@ lm(formula = lib_dem ~ log(wealth), data = model_data)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.57441 -0.14334  0.03911  0.18730  0.37017 
+-0.58981 -0.14940  0.04111  0.18360  0.41129 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.13051    0.03806   3.429 0.000758 ***
-log(wealth)  0.12040    0.01471   8.188 5.75e-14 ***
+(Intercept) 0.008248   0.047553   0.173    0.862    
+log(wealth) 0.129576   0.014481   8.948 5.66e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.2233 on 172 degrees of freedom
-Multiple R-squared:  0.2805,    Adjusted R-squared:  0.2763 
-F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
+Residual standard error: 0.2171 on 172 degrees of freedom
+Multiple R-squared:  0.3176,    Adjusted R-squared:  0.3137 
+F-statistic: 80.07 on 1 and 172 DF,  p-value: 5.657e-16</code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The SSR for this model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># The SSR for this model</span></span>
 <span><span class="va">actual_ssr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">democracy_model</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Sum of squared residuals for least squares line:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">actual_ssr</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Sum of squared residuals for least squares line:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">actual_ssr</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sum of squared residuals for least squares line: 8.574</code></pre>
+<pre><code>Sum of squared residuals for least squares line: 8.107</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -2906,7 +2906,7 @@ F-statistic: 67.04 on 1 and 172 DF,  p-value: 5.754e-14</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Understanding the Code
+<span class="screen-reader-only">Important</span>Understanding the Code
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2919,7 +2919,7 @@ Understanding the Code
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!
+<span class="screen-reader-only">Warning</span>Your Turn!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2998,13 +2998,14 @@ Your Turn!
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

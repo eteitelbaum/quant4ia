@@ -53,7 +53,7 @@ You will continue working with V-Dem cross-national data for the year 2019. The 
 The key variables are:
 
 - `lib_dem` — Liberal Democracy Index (0–1, higher = more democratic)
-- `wealth` — GDP per capita (in thousands of USD)
+- `wealth` — GDP per capita (V-Dem index; a model-based estimate, **not** dollars)
 - `log_wealth` — log-transformed GDP per capita
 - `polarization` — Political polarization index (higher = more polarized)
 - `region` — World region (6 categories)
@@ -110,7 +110,7 @@ summary(model1)
 
 **Question:** Write out the estimated regression equation using the coefficients from the output (round to two decimal places).
 
-$$\widehat{LibDem}_i = a + b_1 \times LogWealth + b_2 \times Polarization$$
+$$\widehat{LibDem}_i = b_0 + b_1 \times LogWealth + b_2 \times Polarization$$
 
 YOUR EQUATION HERE
 

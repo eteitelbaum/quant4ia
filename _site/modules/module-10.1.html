@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Module 10.1 – IAFF 6501 – Fall 2026</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,14 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a80805fb9204df0454a85aec670eb5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7c4110837d4a72e4e7962681f07c1561.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b232ce752f883ea70c603695f82d85b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -102,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -113,7 +119,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -131,7 +137,7 @@ window.Quarto = {
 <meta property="og:title" content="Module 10.1 – IAFF 6501 – Fall 2026">
 <meta property="og:description" content="Multiple Linear Regression">
 <meta property="og:image" content="https://quant4ia.rocks/modules/module-10.1_files/figure-html/judicial-review-plot-1.png">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta property="og:image:height" content="960">
 <meta property="og:image:width" content="1344">
 <meta name="twitter:title" content="Module 10.1 – IAFF 6501 – Fall 2026">
@@ -321,7 +327,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://blackboard.gwu.edu" title="Blackboard" class="quarto-navigation-tool px-1" aria-label="Blackboard"><i class="bi bi-mortarboard-fill"></i></a>
     <a href="https://classroom.github.com" title="Github Classroom" class="quarto-navigation-tool px-1" aria-label="Github Classroom"><i class="bi bi-github"></i></a>
@@ -729,17 +735,17 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Prework
+<span class="screen-reader-only">Tip</span>Prework
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Install the <code>vdemdata</code> package (<code>install.packages("vdemdata")</code>). Note that this is different from the <code>vdemlite</code> package that we have been using this semester. <code>vdemdata</code> is comprised of one function, <code>vdem</code>, which loads the entire V-Dem dataset into R. We are using <code>vdemdata</code> instead of <code>vdemlite</code> because it has some indicators that are not yet available in <code>vdemlite</code>.</li>
+<li>Make sure the <code>vdemdata</code> package is installed (we installed it in Module 2.2). If it is not, type <code>pak::pak("vdeminstitute/vdemdata")</code> in your console.</li>
 <li>Restart your R session by going to Session &gt; Restart R in RStudio. The reason is that packages we used in the last model may result in conflicts in this one.</li>
 <li>Run the following code chunk to set up the data and packages required for this module. Then take a look to explore what is in the data frame.</li>
 </ul>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">vdemdata</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">vdem</span> <span class="op">|&gt;</span></span>
@@ -755,7 +761,7 @@ Prework
 <span>    region <span class="op">=</span> <span class="va">e_regionpol_6C</span>, </span>
 <span>    regime <span class="op">=</span> <span class="va">v2x_regime</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="co">#glimpse(model_data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#glimpse(model_data)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </div>
@@ -771,7 +777,7 @@ Prework
 <p>As we learned in a previous module, categorical variables can take different forms. <strong>Nominal</strong> variables have categories with no natural order, like world region. <strong>Ordinal</strong> variables have categories with a meaningful order, like education levels from primary through tertiary. <strong>Binary</strong> variables have just two categories, like the presence or absence of an institution.</p>
 <p>Let’s have a quick look at our data for this module to see whether we can spot our categorical variables:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 177
 Columns: 9
@@ -792,11 +798,11 @@ $ regime          &lt;dbl&gt; 2, 2, 3, 3, 3, 3, 3, 0, 1, 2, 1, 1, 2, 3, 2, 3, 3,
 <p>Right now, if we look at our data types, we can see that <code>judicial_review</code>, <code>region</code>, and <code>regime</code> are in the <code>dbl</code> (double) format, which means they are treated as continuous numeric variables. To use them as categorical predictors, we need to convert them to factors.</p>
 <p>Let’s start with converting our binary <code>judicial_review</code> variable into a factor:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">model_data</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">model_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>judicial_review <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">judicial_review</span>, </span>
 <span>                                   labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 177
 Columns: 9
@@ -819,16 +825,16 @@ $ regime          &lt;dbl&gt; 2, 2, 3, 3, 3, 3, 3, 0, 1, 2, 1, 1, 2, 3, 2, 3, 3,
 </blockquote>
 <p>We can use this variable to explore whether countries with judicial review tend to have higher levels of democracy. Let’s start by visualizing the relationship between judicial review and democracy levels.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wealth</span>, y <span class="op">=</span> <span class="va">lib_dem</span>, </span>
+<details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wealth</span>, y <span class="op">=</span> <span class="va">lib_dem</span>, </span>
 <span>                       color<span class="op">=</span><span class="va">judicial_review</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GPD per capita"</span>, y <span class="op">=</span> <span class="st">"Liberal Democracy Index"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GDP per capita (V-Dem index, log scale)"</span>, y <span class="op">=</span> <span class="st">"Liberal Democracy Index"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar_format</a></span><span class="op">(</span>suffix <span class="op">=</span> <span class="st">"k"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Judicial Review"</span>, </span>
 <span>                     values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"steelblue3"</span>, <span class="st">"coral"</span><span class="op">)</span>, </span>
-<span>                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="module-10.1_files/figure-html/judicial-review-plot-1.png" class="img-fluid figure-img" width="672"></p>
@@ -839,9 +845,9 @@ $ regime          &lt;dbl&gt; 2, 2, 3, 3, 3, 3, 3, 0, 1, 2, 1, 1, 2, 3, 2, 3, 3,
 <p>Here we can see that at every level of wealth, countries with judicial review (in coral) tend to have higher democracy levels than those without (in blue).</p>
 <p>We can more precisely quantify this relationship between judical review and democracy using a linear regression model. Let’s fit a model predicting democracy (<code>lib_dem</code>) with judicial review (<code>judicial_review</code>):</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">judicial_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">judicial_review</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">judicial_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">judicial_review</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">judicial_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">judicial_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -870,7 +876,7 @@ F-statistic: 31.92 on 1 and 175 DF,  p-value: 6.403e-08</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Understanding Reference Categories
+<span class="screen-reader-only">Important</span>Understanding Reference Categories
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -879,15 +885,15 @@ Understanding Reference Categories
 </div>
 </div>
 <p>To better understand the model, let’s have a look at the model equation:</p>
-<p><span class="math display">\[ \widehat{Democracy_{i}} = 0.18 + 0.27*JudicialReview(yes) \]</span></p>
-<p>Here the <strong>slope</strong> of the coefficient for <span class="math inline">\(JudicialReview(yes)\)</span> indicates that. countries with judicial review are expected, on average, to be 0.27 units more democratic on the liberal democracy index. The <strong>intercept</strong> of 0.18 represents the average democracy score for countries without judicial review.</p>
+<p><span class="math display">\[ \widehat{Democracy_{i}} = 0.12 + 0.32*JudicialReview(yes) \]</span></p>
+<p>Here the <strong>slope</strong> of the coefficient for <span class="math inline">\(JudicialReview(yes)\)</span> indicates that countries with judicial review are expected, on average, to be 0.32 units more democratic on the liberal democracy index. The <strong>intercept</strong> of 0.12 represents the average democracy score for countries without judicial review.</p>
 </section></section><section id="multiple-categories-and-reference-groups" class="level2"><h2 class="anchored" data-anchor-id="multiple-categories-and-reference-groups">Multiple Categories and Reference Groups</h2>
 <p>Binary categorical variables are straightforward because they create a single dummy variable. But what happens when we have categorical variables with more than two categories, like world regions or regime types?</p>
 <p>When a categorical variable has multiple levels, R creates multiple dummy variables, specifically one for each category except for the reference category. For example, if we have a region variable with 6 categories, R will create 5 dummy variables: one for Latin America (1 if Latin America, 0 otherwise), one for MENA (1 if MENA, 0 otherwise), one for Sub-Saharan Africa (1 if SSA, 0 otherwise), one for Western Europe &amp; North America (1 if WENA, 0 otherwise), and one for Asia &amp; Pacific (1 if Asia, 0 otherwise). There is no dummy variable for Eastern Europe, which becomes our reference category.</p>
 <p>The reference category is crucial because all other categories are interpreted relative to this baseline. Without it, we’d have perfect <strong>multicollinearity</strong> where the dummy variables would be perfectly correlated with each other and the intercept, making the model impossible to estimate.</p>
 <p>Let’s see this in action with world regions and democracy. Let’s start by converting the region variable into a factor with labels for each region:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">model_data</span> <span class="op">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">model_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">region</span>, </span>
 <span>                         labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Eastern Europe"</span>, </span>
 <span>                                    <span class="st">"Latin America"</span>, </span>
@@ -896,7 +902,7 @@ Understanding Reference Categories
 <span>                                    <span class="st">"Western Europe &amp; North America"</span>, </span>
 <span>                                    <span class="st">"Asia &amp; Pacific"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 177
 Columns: 9
@@ -913,8 +919,8 @@ $ regime          &lt;dbl&gt; 2, 2, 3, 3, 3, 3, 3, 0, 1, 2, 1, 1, 2, 3, 2, 3, 3,
 </div>
 <p>Now our <code>region</code> variable is a factor with six levels, and Eastern Europe will be our reference category. We can check this by using the base R <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code> function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Check the levels of our region variable</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Check the levels of our region variable</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">$</span><span class="va">region</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Eastern Europe"                 "Latin America"                 
 [3] "MENA"                           "Sub-Saharan Africa"            
@@ -923,9 +929,9 @@ $ regime          &lt;dbl&gt; 2, 2, 3, 3, 3, 3, 3, 0, 1, 2, 1, 1, 2, 3, 2, 3, 3,
 </div>
 <p>When we fit a regression model with this region variable, R will create dummy variables for each region except Eastern Europe:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">region_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">region</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">region_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">region</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">region_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">region_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -941,7 +947,7 @@ Coefficients:
 regionLatin America                   0.06661    0.05337   1.248  0.21367    
 regionMENA                           -0.23717    0.05689  -4.169 4.86e-05 ***
 regionSub-Saharan Africa             -0.14065    0.04551  -3.090  0.00233 ** 
-regionWestern Europe &amp; North America  0.37343    0.05397   6.919 8.73e-11 ***
+regionWestern Europe &amp; North America  0.37342    0.05397   6.919 8.73e-11 ***
 regionAsia &amp; Pacific                 -0.13372    0.05179  -2.582  0.01065 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -952,15 +958,15 @@ F-statistic: 30.57 on 5 and 171 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>The equation for this model looks like this:</p>
-<p><span class="math display">\[\hat{Democracy} = \beta_0 + \beta_1 \cdot LatinAmerica + \beta_2 \cdot MENA + \beta_3 \cdot SSAfrica + \beta_4 \cdot TheWest + \beta_5 \cdot Asia\]</span></p>
-<p>In this equation, <span class="math inline">\(\beta_0\)</span> (the intercept) represents the average democracy level in Eastern Europe (the reference category). Each of the other coefficients represents the difference in average democracy between that region and Eastern Europe. So <span class="math inline">\(\beta_1\)</span> is the difference in average democracy between Latin America and Eastern Europe, <span class="math inline">\(\beta_2\)</span> is the difference between MENA and Eastern Europe, and so on.</p>
+<p><span class="math display">\[\widehat{Democracy} = b_0 + b_1 \cdot LatinAmerica + b_2 \cdot MENA + b_3 \cdot SSAfrica + b_4 \cdot TheWest + b_5 \cdot Asia\]</span></p>
+<p>In this equation, <span class="math inline">\(b_0\)</span> (the intercept) represents the average democracy level in Eastern Europe (the reference category). Each of the other coefficients represents the difference in average democracy between that region and Eastern Europe. So <span class="math inline">\(b_1\)</span> is the difference in average democracy between Latin America and Eastern Europe, <span class="math inline">\(b_2\)</span> is the difference between MENA and Eastern Europe, and so on.</p>
 <p>Sometimes you may want a different reference category. The <code><a href="https://rdrr.io/r/stats/relevel.html">relevel()</a></code> function allows you to change which category serves as the baseline. Let’s change the reference category for our analysis to Sub-Saharan Africa (SSA):</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Make Sub-Saharan Africa the reference category</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Make Sub-Saharan Africa the reference category</span></span>
 <span><span class="va">model_data</span> <span class="op">&lt;-</span> <span class="va">model_data</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>region2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">region</span>, ref <span class="op">=</span> <span class="st">"Sub-Saharan Africa"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">$</span><span class="va">region2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">$</span><span class="va">region2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Sub-Saharan Africa"             "Eastern Europe"                
 [3] "Latin America"                  "MENA"                          
@@ -969,9 +975,9 @@ F-statistic: 30.57 on 5 and 171 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Now when we fit the model again, Sub-Saharan Africa will be the reference category:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">region_model_ssa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">region2</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">region_model_ssa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">region2</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">region_model_ssa</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">region_model_ssa</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1003,7 +1009,7 @@ F-statistic: 30.57 on 5 and 171 DF,  p-value: &lt; 2.2e-16</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1023,9 +1029,9 @@ Your Turn!!
 <section id="adding-continuous-predictors" class="level3"><h3 class="anchored" data-anchor-id="adding-continuous-predictors">Adding Continuous Predictors</h3>
 <p>Let’s start by adding a second predictor (<code>polarization</code>) to the wealth and democracy model that we worked with in the last module. We’ve seen that polarization is negatively related to democracy. But what happens when we also include wealth? We can compare a model with just polarization to a model with both polarization and wealth:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m1_polarization_democracy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">polarization</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m1_polarization_democracy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">polarization</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1_polarization_democracy</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1_polarization_democracy</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1050,14 +1056,14 @@ F-statistic: 48.99 on 2 and 170 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>The model equation with multiple predictors becomes:</p>
-<p><span class="math display">\[\hat{Democracy} = \beta_0 + \beta_1 \cdot Polarization + \beta_2 \cdot \log(Wealth)\]</span></p>
-<p>In this equation, <span class="math inline">\(\beta_0\)</span> represents the predicted democracy level when both polarization and log(wealth) equal zero. <span class="math inline">\(\beta_1\)</span> represents the change in democracy for a 1-unit increase in polarization, <strong>holding wealth constant</strong>. <span class="math inline">\(\beta_2\)</span> represents the change in democracy for a 1-unit increase in log(wealth), <strong>holding polarization constant</strong>. The key phrase is “holding other variables constant.”</p>
+<p><span class="math display">\[\widehat{Democracy} = b_0 + b_1 \cdot Polarization + b_2 \cdot \log(Wealth)\]</span></p>
+<p>In this equation, <span class="math inline">\(b_0\)</span> represents the predicted democracy level when both polarization and log(wealth) equal zero. <span class="math inline">\(b_1\)</span> represents the change in democracy for a 1-unit increase in polarization, <strong>holding wealth constant</strong>. <span class="math inline">\(b_2\)</span> represents the change in democracy for a 1-unit increase in log(wealth), <strong>holding polarization constant</strong>. The key phrase is “holding other variables constant.”</p>
 <p>In this case, we see that polarization is associated with a .058 unit <em>deacrease</em> in the democracy score, while log(wealth) is associated with a .098 unit <em>increase</em> in the democracy score. We can tell the direction of the relationship (positive or negative) based on the sign of the coefficient. For polarization the sign is negative and for wealth it is positive.</p>
 <p>We can continue adding predictors to build even more complex models. Let’s try adding oil rents per capita (<code>oil_rents</code>) to our model. Oil rents are the income a country receives from oil extraction and, as we have already noticed in our scatter plots, they can have significant effects on democracy.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m2_three_predictors</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">polarization</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span> <span class="op">+</span> <span class="va">oil_rents</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m2_three_predictors</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">polarization</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span> <span class="op">+</span> <span class="va">oil_rents</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2_three_predictors</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2_three_predictors</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1084,8 +1090,8 @@ F-statistic: 54.79 on 3 and 158 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p>The model equation now becomes:</p>
-<p><span class="math display">\[ \hat{Y_i} = a + b_1*Polarization + b_2*GDPpc + b_3*OilRents \]</span></p>
-<p>Where <span class="math inline">\(Y_i\)</span> is the predicted democracy level for country <span class="math inline">\(i\)</span>, <span class="math inline">\(a\)</span> is the intercept, and <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>, and <span class="math inline">\(b_3\)</span> are the coefficients for polarization, log(wealth), and oil rents, respectively. Now, the coefficient for <span class="math inline">\(OilRents\)</span> tells us the predicted change in democracy for a 1-unit increase in oil rents, <strong>holding polarization and log(wealth) constant</strong>. Similarly, the coefficients for polarization and log(wealth) tell us the predicted change in democracy for a 1-unit increase in those variables, while controlling for the other two predictors.</p>
+<p><span class="math display">\[ \hat{y}_i = b_0 + b_1*Polarization + b_2*LogGDPpc + b_3*OilRents \]</span></p>
+<p>Where <span class="math inline">\(\hat{y}_i\)</span> is the predicted democracy level for country <span class="math inline">\(i\)</span>, <span class="math inline">\(b_0\)</span> is the intercept, and <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>, and <span class="math inline">\(b_3\)</span> are the coefficients for polarization, log(wealth), and oil rents, respectively. Now, the coefficient for <span class="math inline">\(OilRents\)</span> tells us the predicted change in democracy for a 1-unit increase in oil rents, <strong>holding polarization and log(wealth) constant</strong>. Similarly, the coefficients for polarization and log(wealth) tell us the predicted change in democracy for a 1-unit increase in those variables, while controlling for the other two predictors.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1103,9 +1109,9 @@ Note
 <p>It is also entirely possible to combine different types of predictors. We can include both categorical variables (like region or regime type) and continuous variables (like wealth or polarization) in the same model.</p>
 <p>When we build mixed models that include both types of predictors, the interpretation becomes even richer. Consider a model that includes all of the predictors we have discussed so far: polarization, wealth, oil rents and world regions:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3_mixed_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">polarization</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span> <span class="op">+</span> <span class="va">oil_rents</span> <span class="op">+</span> <span class="va">region</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">m3_mixed_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">lib_dem</span> <span class="op">~</span> <span class="va">polarization</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wealth</span><span class="op">)</span> <span class="op">+</span> <span class="va">oil_rents</span> <span class="op">+</span> <span class="va">region</span>, data <span class="op">=</span> <span class="va">model_data</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m3_mixed_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m3_mixed_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1138,28 +1144,28 @@ F-statistic: 33.22 on 8 and 153 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>This model allows us to explore how democracy varies by region while controlling for wealth, polarization, and oil rents.The regional coefficients now represent regional differences in democracy among countries with the same wealth level, polarization and oil rents. This is a much more precise comparison than simply comparing regional averages, because it accounts for the fact that regions differ systematically in their wealth levels.</p>
 </section><section id="making-predictions" class="level3"><h3 class="anchored" data-anchor-id="making-predictions">Making Predictions</h3>
-<p>Once we have estimated a multiple regression model, we can use it to make predictions for new cases. To see how this works, let’s return to our model that includes polarization, log-transformed wealth, oil rents, and region as predictors. Suppose we want to predict the level of democracy for a hypothetical country that has a polarization score of 0.5, a GDP per capita of $8.1k (which corresponds to a log wealth of 2.09), oil rents of 2, and is located in Latin America.</p>
+<p>Once we have estimated a multiple regression model, we can use it to make predictions for new cases. To see how this works, let’s return to our model that includes polarization, log-transformed wealth, oil rents, and region as predictors. Suppose we want to predict the level of democracy for a hypothetical country that has a polarization score of 0.5, a GDP index value of 8.1 (which corresponds to a log wealth of 2.09), oil rents of 2, and is located in Latin America.</p>
 <p>The regression model gives us an equation that looks like this:</p>
 <p><span class="math display">\[
-\hat{Democracy} = a + b_1 \cdot Polarization + b_2 \cdot \log(Wealth) + b_3 \cdot OilRents + b_4 \cdot Region
+\widehat{Democracy} = b_0 + b_1 \cdot Polarization + b_2 \cdot \log(Wealth) + b_3 \cdot OilRents + b_4 \cdot Region
 \]</span></p>
-<p>Each coefficient—<span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>, <span class="math inline">\(b_3\)</span>, and so on—represents the effect of a one-unit change in that variable, holding the others constant. To make a prediction, we simply plug in the values: 0.5 for polarization, 9 for log(wealth), 2 for oil rents, and the appropriate regional adjustment for Latin America. The result is the model’s best guess for the democracy score of a country with those characteristics.</p>
+<p>Each coefficient—<span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>, <span class="math inline">\(b_3\)</span>, and so on—represents the effect of a one-unit change in that variable, holding the others constant. To make a prediction, we simply plug in the values: 0.5 for polarization, 2.09 for log(wealth), 2 for oil rents, and the appropriate regional adjustment for Latin America. The result is the model’s best guess for the democracy score of a country with those characteristics.</p>
 <p>To do this, we can use R’s <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function. This function takes a fitted model and a new set of predictor values and returns the predicted outcome:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  polarization <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  wealth <span class="op">=</span> <span class="fl">8.1</span>,  </span>
 <span>  oil_rents <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  region <span class="op">=</span> <span class="st">"Latin America"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m3_mixed_model</span>, newdata <span class="op">=</span> <span class="va">new_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m3_mixed_model</span>, newdata <span class="op">=</span> <span class="va">new_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        1 
 0.3554821 </code></pre>
 </div>
 </div>
-<p>So in other words, with these inputs, the model predicts a democracy score of approximately 0.46 for this hypothetical country. This prediction reflects what the model expects, given the relationships it has learned from the original data. It doesn’t guarantee what will happen in the real world, but it gives us a principled estimate based on the variables we think matter.</p>
+<p>So in other words, with these inputs, the model predicts a democracy score of approximately 0.36 for this hypothetical country. This prediction reflects what the model expects, given the relationships it has learned from the original data. It doesn’t guarantee what will happen in the real world, but it gives us a principled estimate based on the variables we think matter.</p>
 <div class="{callout-note}">
 <p>If you’re curious about uncertainty, <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> can also provide a confidence interval for the prediction by adding the argument <code>interval = "confidence"</code>.</p>
 </div>
@@ -1169,7 +1175,7 @@ F-statistic: 33.22 on 8 and 153 DF,  p-value: &lt; 2.2e-16</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1177,7 +1183,7 @@ Your Turn!!
 <li>Try running a multiple linear regression with corruption as the dependent variable.</li>
 <li>Think about what variables you would want to include as predictors. Use a mix of continuous and categorical variables, such as wealth, oil rents, region, and regime type.</li>
 <li>Fit the model and interpret the coefficients. What do they tell you about the relationship between these predictors and corruption levels?</li>
-<li>Now try making some predictions with your model. Create a new data frame with hypothetical values for each predictor (e.g., a country with a wealth of $10k, oil rents of 3, and located in Asia). Use the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function to estimate the corruption level for this hypothetical country.</li>
+<li>Now try making some predictions with your model. Create a new data frame with hypothetical values for each predictor (e.g., a country with a GDP index value of 10, oil rents of 3, and located in Asia). Use the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function to estimate the corruption level for this hypothetical country.</li>
 </ul>
 </div>
 </div>
@@ -1250,13 +1256,14 @@ Your Turn!!
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

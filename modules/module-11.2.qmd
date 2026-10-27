@@ -20,7 +20,7 @@ execute:
 
 ## Overview
 
-Building on the mathematical foundations we established in Module 5.2, this module focuses on the practical interpretation of logistic regression results. While we now understand how the logit function and sigmoid transformation work mathematically, the real challenge lies in translating model output into meaningful insights about our research questions.
+Building on the mathematical foundations we established in Module 11.1, this module focuses on the practical interpretation of logistic regression results. While we now understand how the logit function and sigmoid transformation work mathematically, the real challenge lies in translating model output into meaningful insights about our research questions.
 
 In this module, we will explore three complementary approaches to interpreting bivariate logistic regression results. We will learn to move beyond the raw log-odds coefficients to understand odds ratios, which provide more intuitive measures of effect size. We will discover how to calculate predicted probabilities both manually and using specialized R packages, enabling us to make concrete predictions about specific scenarios. Finally, we will synthesize these approaches to conduct complete analyses that effectively communicate our findings.
 
@@ -32,7 +32,7 @@ When we run a logistic regression model, the coefficients we obtain are expresse
 
 This interpretive challenge arises because most of us do not think naturally in terms of log-odds. When we want to understand the relationship between economic development and conflict risk, we are more interested in questions like "How much does doubling GDP per capita change the odds of conflict?" or "What is the predicted probability of conflict for a country with $8,000 GDP per capita?" These are the types of questions that policymakers, researchers, and citizens actually care about, yet they require us to transform our model results into more intuitive metrics.
 
-Let's begin with the bivariate logistic regression model from Module 5.2 that examines the relationship between GDP per capita and conflict onset. This model provides our foundation for exploring different interpretation approaches:
+Let's begin with the bivariate logistic regression model from Module 11.1 that examines the relationship between GDP per capita and conflict onset. This model provides our foundation for exploring different interpretation approaches:
 
 ```{r}
 #| label: setup_model
@@ -41,7 +41,7 @@ library(peacesciencer)
 library(dplyr)
 library(broom)
 
-# Recreate the conflict dataset from Module 5.2
+# Recreate the conflict dataset from Module 11.1
 conflict_df <- create_stateyears(system = 'gw') |>
   filter(year %in% c(1946:1999)) |>
   add_ucdp_acd(type=c("intrastate"), only_wars = FALSE) |>

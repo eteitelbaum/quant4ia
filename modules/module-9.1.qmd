@@ -38,11 +38,12 @@ We'll use data from the Varieties of Democracy (V-Dem) project, which provides c
 #| message: false
 
 library(tidyverse)
-library(vdemlite)
+library(vdemdata)
 
 # Load V-Dem data for 2019
-model_data <- fetchdem(indicators = c("v2x_libdem", "e_gdppc", "v2cacamps"),
-                       start_year = 2019, end_year = 2019) |>
+model_data <- vdem |>
+  filter(year == 2019) |>
+  select(country_name, v2x_libdem, e_gdppc, v2cacamps) |>
   rename(
     country = country_name, 
     lib_dem = v2x_libdem, 
@@ -54,6 +55,12 @@ model_data <- fetchdem(indicators = c("v2x_libdem", "e_gdppc", "v2cacamps"),
 glimpse(model_data)
 ```
 
+::: {.callout-note}
+## What units is GDP measured in?
+
+V-Dem's GDP per capita variable (`e_gdppc`) is **not** measured in dollars. It is a model-based index developed by Fariss et al. (2022) that combines many historical and contemporary GDP sources (World Bank, Maddison, Penn World Tables, and others) to produce estimates going back to 1789. In 2019, for example, the United States has a value of about `r round(model_data$wealth[model_data$country == "United States of America"])` and India about `r round(model_data$wealth[model_data$country == "India"])`. These numbers do not correspond to dollar amounts, but comparisons between countries are meaningful: the US is roughly `r round(model_data$wealth[model_data$country == "United States of America"] / model_data$wealth[model_data$country == "India"])` times as wealthy per person as India. Because we will be working with the *log* of GDP, we will interpret our results in terms of percentage changes, which do not depend on the units. The broader lesson: always check the codebook before assuming a variable is measured in dollars!
+:::
+
 Let's visualize the relationship between these two variables:
 
 ```{r}
@@ -62,10 +69,10 @@ Let's visualize the relationship between these two variables:
 ggplot(model_data, aes(x = wealth, y = lib_dem)) +
   geom_point(color = "steelblue") +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  scale_x_log10(labels = scales::label_dollar(suffix = "k")) +
+  scale_x_log10() +
   labs(
     title = "Wealth and Democracy, 2019",
-    x = "GDP per capita (log scale)", 
+    x = "GDP per capita (V-Dem index, log scale)", 
     y = "Liberal Democracy Index",
     caption = "Source: V-Dem Institute"
   ) +
@@ -113,7 +120,7 @@ model_data |>
   )
 ```
 
-The correlation of approximately 0.53 indicates a moderate positive linear relationship between log GDP per capita and democracy levels. The relationship would likely be stronger if it were not for the outliers we saw in the plot.
+The correlation of approximately `r round(cor(log(model_data$wealth), model_data$lib_dem), 2)` indicates a moderate positive linear relationship between log GDP per capita and democracy levels. The relationship would likely be stronger if it were not for the outliers we saw in the plot.
 
 ::: {.callout-warning icon=false}
 ## Your Turn!!
@@ -129,14 +136,14 @@ We can represent the relationship between variables using mathematical functions
 
 For a simple linear model with one explanatory variable, we write:
 
-$$Y = a + bX$$
+$$y = b_0 + b_1 x$$
 
 Where:
 
-- $Y$ is the response variable (outcome, target)
-- $X$ is the explanatory variable (predictor)  
-- $a$ is the intercept (predicted value of Y when X = 0)
-- $b$ is the slope (change in Y for a one-unit change in X)
+- $y$ is the response variable (outcome, target)
+- $x$ is the explanatory variable (predictor)  
+- $b_0$ is the intercept (predicted value of $y$ when $x = 0$)
+- $b_1$ is the slope (change in $y$ for a one-unit change in $x$)
 
 ### Running a Linear Model in R
 
@@ -152,42 +159,50 @@ democracy_model <- lm(lib_dem ~ log(wealth), data = model_data)
 summary(democracy_model)
 ```
 
+```{r}
+#| label: model-coefs
+#| include: false
+
+b0 <- round(coef(democracy_model)[1], 2)
+b1 <- round(coef(democracy_model)[2], 2)
+```
+
 Our fitted model is:
 
-$$Democracy = 0.13 + 0.12 × log(wealth)$$
+$$\widehat{Democracy} = `r b0` + `r b1` \times \log(wealth)$$
 
 ### Model Interpretation
 
 Let's break down what these coefficients mean:
 
-**Intercept (a = 0.13):** This is the predicted democracy level when log(wealth) = 0. Since log(wealth) = 0 when wealth = \$1, this represents the predicted democracy score for a country with \$1 GDP per capita - essentially a theoretical baseline.
+**Intercept ($b_0$ = `r b0`):** This is the predicted democracy level when log(wealth) = 0, which happens when wealth = 1. No country in our data is that poor (the lowest value is about `r round(min(model_data$wealth), 1)`), so the intercept is essentially a theoretical baseline rather than a meaningful prediction.
 
-**Slope (b = 0.12):** This is the key coefficient for interpretation. For every one-unit increase in log(wealth), we predict democracy to increase by 0.12 points.
+**Slope ($b_1$ = `r b1`):** This is the key coefficient for interpretation. For every one-unit increase in log(wealth), we predict democracy to increase by `r b1` points.
 
 When we use logarithmic transformations, interpretation requires special care. When we change from one wealth level to another, we need to calculate the difference in their logarithms and multiply by our slope coefficient.
 
-For any percentage increase in GDP per capita, we multiply our slope (0.12) by the natural log of the multiplier. For example, a 10% increase means multiplying by 1.1, doubling means multiplying by 2, tripling means multiplying by 3, and so on:
+For any percentage increase in GDP per capita, we multiply our slope (`r b1`) by the natural log of the multiplier. For example, a 10% increase means multiplying by 1.1, doubling means multiplying by 2, tripling means multiplying by 3, and so on:
 
-- A **10% increase** (e.g., from \$10,000 to \$11,000) increases the democracy score by **0.0114 points** since $0.12 \times \ln(1.1) \approx 0.12 \times 0.0953 = 0.0114$  
+- A **10% increase** (e.g., from 10 to 11 on the GDP index) increases the democracy score by **`r round(b1 * 0.0953, 4)` points** since $`r b1` \times \ln(1.1) \approx `r b1` \times 0.0953 = `r round(b1 * 0.0953, 4)`$  
 
-- **Doubling** GDP per capita (e.g., \$10,000 → \$20,000) increases the democracy score by $0.12 \times \ln(2) \approx 0.12 \times 0.693 = 0.083$
+- **Doubling** GDP per capita (e.g., from 10 to 20 on the GDP index) increases the democracy score by $`r b1` \times \ln(2) \approx `r b1` \times 0.693 = `r round(b1 * 0.693, 3)`$
 
-- **Tripling** GDP per capita (e.g., \$10,000 → \$30,000) increases the democracy score by: $0.12 \times \ln(3) \approx 0.12 \times 1.099 = 0.132$  
+- **Tripling** GDP per capita (e.g., from 10 to 30 on the GDP index) increases the democracy score by: $`r b1` \times \ln(3) \approx `r b1` \times 1.099 = `r round(b1 * 1.099, 3)`$  
 
 ::: {.callout-warning icon=false}
 ## Your Turn!!
 
-1. Use the model we just ran to make predictions for specific countries or wealth levels, e.g. $50,000 per capita, $100,000 per capita, etc.
+1. Use the model we just ran to make predictions for specific countries or wealth levels, e.g. GDP index values of 50, 100, etc.
 2. Try regressing democracy on polarization. Interpret the model coefficients for different levels of polarization. (Note that this variable is not logged.)
 :::
 
 ## Understanding Predicted Values and Residuals
 
-Every model produces **predicted values** - these are the outputs from our model function given specific input values (like the ones we calculate earlier for our wealth and democracy model). We often write these as Ŷ (Y-hat) to distinguish them from observed values.
+Every model produces **predicted values** - these are the outputs from our model function given specific input values (like the ones we calculate earlier for our wealth and democracy model). We often write these as $\hat{y}$ (y-hat) to distinguish them from observed values.
 
 **Residuals** measure how far each observation is from its predicted value:
 
-$$Residual = Observed Value (Y) - Predicted Value (\hat{Y})$$
+$$Residual = Observed Value (y) - Predicted Value (\hat{y})$$
 
 Let's visualize this:
 
@@ -208,8 +223,8 @@ fit_aug  <- augment(mod_fit$fit) |>
     log_wealth = `log(wealth)`
   )
 
-a <- round(fit_tidy$estimate[1], 2)
-b <- round(fit_tidy$estimate[2], 2)
+b0 <- round(fit_tidy$estimate[1], 2)
+b1 <- round(fit_tidy$estimate[2], 2)
 
 ggplot(data = fit_aug) +
   geom_point(aes(x = log_wealth, y = lib_dem, color = res_cat)) +
@@ -217,7 +232,7 @@ ggplot(data = fit_aug) +
             linewidth = 0.75, color = "#8E2C90") +
   labs(
     title = "GDP per Capita and Democracy",
-    x = "Log GDP per Capita",
+    x = "Log GDP per capita (V-Dem index)",
     y = "Liberal Democracy Index",
     caption = "Source: V-Dem Institute"
   ) +
@@ -243,7 +258,7 @@ How well does our model perform? We can assess this using R-squared, which tells
 
 summary(democracy_model)
 ```
-The R-squared value is approximately 0.28, meaning that about 28% of the variation in democracy scores can be explained by log GDP per capita. This is a reasonable result for a social science model, but it also indicates that there are many other factors influencing democracy that we have not accounted for. Approximately 72% of the variation remains unexplained by our model!
+The R-squared value is approximately `r round(summary(democracy_model)$r.squared, 2)`, meaning that about `r round(100 * summary(democracy_model)$r.squared)`% of the variation in democracy scores can be explained by log GDP per capita. This is a reasonable result for a social science model, but it also indicates that there are many other factors influencing democracy that we have not accounted for. Approximately `r 100 - round(100 * summary(democracy_model)$r.squared)`% of the variation remains unexplained by our model!
 
 ::: {.callout-important}
 ## Correlation vs. Causation

@@ -22,14 +22,12 @@ execute:
 #| label: setup
 
 library(tidyverse)
-library(vdemlite)
+library(vdemdata)
 library(broom)
 
-model_data <- fetchdem(
-  indicators = c("v2x_libdem", "e_gdppc", "v2cacamps"),
-  start_year = 2019,
-  end_year = 2019
-) |>
+model_data <- vdem |>
+  filter(year == 2019) |>
+  select(country_name, v2x_libdem, e_gdppc, v2cacamps) |>
   rename(
     country = country_name,
     lib_dem = v2x_libdem,
@@ -70,7 +68,7 @@ library(ggrepel)
 model_data_labeled <- model_data |>
   mutate(
     label = case_when(
-      wealth > 50 | (wealth > 20 & lib_dem < 0.25) ~ country,
+      wealth > 110 | (wealth > 40 & lib_dem < 0.25) ~ country,
       TRUE ~ NA_character_
     )
   )
@@ -83,8 +81,8 @@ ggplot(model_data_labeled, aes(x = wealth, y = lib_dem)) +
     max.overlaps = 20,
     seed = 42
   ) +
-  scale_x_log10(labels = scales::label_dollar(suffix = "k")) +
-  labs(x = "GDP per Capita (log scale)",
+  scale_x_log10() +
+  labs(x = "GDP per capita (V-Dem index, log scale)",
        y = "Liberal Democracy Score",
        title = "Wealth and Democracy, 2019") +
   theme_minimal()
@@ -106,8 +104,7 @@ p1 <- ggplot(model_data, aes(y = lib_dem)) +
 
 p2 <- ggplot(model_data, aes(y = wealth)) +
   geom_boxplot() +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  labs(y = "GDP per Capita", title = "GDP (Raw)") +
+  labs(y = "GDP per capita (V-Dem index)", title = "GDP (Raw)") +
   theme_minimal()
 
 p1 | p2
@@ -233,16 +230,15 @@ model_with_log <- lm(lib_dem ~ log(wealth), data = model_data)
 p1 <- ggplot(model_data, aes(x = wealth, y = lib_dem)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE) +
-  scale_x_continuous(labels = scales::dollar_format()) +
   labs(title = "Raw GDP — outliers distort the line",
-       x = "GDP per Capita", y = "Liberal Democracy") +
+       x = "GDP per capita (V-Dem index)", y = "Liberal Democracy") +
   theme_minimal()
 
 p2 <- ggplot(model_data, aes(x = log(wealth), y = lib_dem)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = FALSE) +
   labs(title = "Log GDP — much better fit",
-       x = "Log GDP per Capita", y = "Liberal Democracy") +
+       x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy") +
   theme_minimal()
 
 p1 | p2
@@ -264,14 +260,12 @@ model_data_win <- model_data |>
 
 p1 <- ggplot(model_data, aes(x = wealth)) +
   geom_histogram(bins = 30, fill = "darkblue", alpha = 0.7) +
-  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
-  labs(title = "Original", x = "GDP per Capita") +
+  labs(title = "Original", x = "GDP per capita (V-Dem index)") +
   theme_minimal()
 
 p2 <- ggplot(model_data_win, aes(x = wealth_win95)) +
   geom_histogram(bins = 30, fill = "darkred", alpha = 0.7) +
-  scale_x_continuous(labels = scales::label_dollar(suffix = "k")) +
-  labs(title = "Winsorized at 95th pct", x = "GDP per Capita") +
+  labs(title = "Winsorized at 95th pct", x = "GDP per capita (V-Dem index)") +
   theme_minimal()
 
 p1 | p2
@@ -358,13 +352,10 @@ countdown(minutes = 10, id = "timer2", right = "10%", bottom = "5%")
 #| label: setup-diagnostics
 #| echo: true
 
-library(vdemlite)
-
-model_data2 <- fetchdem(
-  indicators = c("v2x_libdem", "e_gdppc", "v2cacamps",
-                 "v2x_gender", "v2x_corr", "e_regionpol_6C"),
-  start_year = 2006, end_year = 2006
-) |>
+model_data2 <- vdem |>
+  filter(year == 2006) |>
+  dplyr::select(country_name, v2x_libdem, e_gdppc, v2cacamps,
+                v2x_gender, v2x_corr, e_regionpol_6C) |>
   rename(country = country_name, lib_dem = v2x_libdem,
          wealth = e_gdppc, polarization = v2cacamps,
          women_emp = v2x_gender, corruption = v2x_corr,

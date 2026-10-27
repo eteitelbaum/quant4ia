@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-09-21">
+  <meta name="dcterms.date" content="2026-10-27">
   <title>IAFF 6501 -- Fall 2026 – Outliers and Model Assumptions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -193,7 +199,7 @@
   <link href="../site_libs/countdown-0.6.0/countdown.css" rel="stylesheet">
   <script src="../site_libs/countdown-0.6.0/countdown.js"></script>
 <meta property="og:title" content="Outliers and Model Assumptions – IAFF 6501 – Fall 2026">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Outliers and Model Assumptions – IAFF 6501 – Fall 2026">
 <meta name="twitter:card" content="summary">
 </head>
@@ -207,7 +213,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">September 21, 2026</p>
+  <p class="date">October 27, 2026</p>
 </section>
 <section>
 <section id="dealing-with-outliers" class="title-slide slide level1 center">
@@ -250,20 +256,19 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data, <span class="fu">aes</span>(<span class="at">y =</span> lib_dem)) <span class="sc">+</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb1-5"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Liberal Democracy Score"</span>, <span class="at">title =</span> <span class="st">"Democracy"</span>) <span class="sc">+</span></span>
-<span id="cb1-6"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-7"><a></a></span>
-<span id="cb1-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data, <span class="fu">aes</span>(<span class="at">y =</span> wealth)) <span class="sc">+</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb1-10"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
-<span id="cb1-11"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"GDP per Capita"</span>, <span class="at">title =</span> <span class="st">"GDP (Raw)"</span>) <span class="sc">+</span></span>
-<span id="cb1-12"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-13"><a></a></span>
-<span id="cb1-14"><a></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-2"><a aria-label="2"></a></span>
+<span id="cb1-3"><a aria-label="3"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data, <span class="fu">aes</span>(<span class="at">y =</span> lib_dem)) <span class="sc">+</span></span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1-5"><a aria-label="5"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Liberal Democracy Score"</span>, <span class="at">title =</span> <span class="st">"Democracy"</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a aria-label="6"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-7"><a aria-label="7"></a></span>
+<span id="cb1-8"><a aria-label="8"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data, <span class="fu">aes</span>(<span class="at">y =</span> wealth)) <span class="sc">+</span></span>
+<span id="cb1-9"><a aria-label="9"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1-10"><a aria-label="10"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"GDP per capita (V-Dem index)"</span>, <span class="at">title =</span> <span class="st">"GDP (Raw)"</span>) <span class="sc">+</span></span>
+<span id="cb1-11"><a aria-label="11"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-12"><a aria-label="12"></a></span>
+<span id="cb1-13"><a aria-label="13"></a>p1 <span class="sc">|</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -272,21 +277,20 @@
 <h2>Flagging GDP Outliers</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>model_data <span class="ot">&lt;-</span> model_data <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">mutate</span>(<span class="at">gdp_outlier =</span> wealth <span class="sc">%in%</span> <span class="fu">boxplot.stats</span>(wealth)<span class="sc">$</span>out)</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a>model_data <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a></a>  <span class="fu">filter</span>(gdp_outlier) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wealth)) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a></a>  <span class="fu">select</span>(country, wealth, lib_dem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>model_data <span class="ot">&lt;-</span> model_data <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">gdp_outlier =</span> wealth <span class="sc">%in%</span> <span class="fu">boxplot.stats</span>(wealth)<span class="sc">$</span>out)</span>
+<span id="cb2-3"><a aria-label="3"></a></span>
+<span id="cb2-4"><a aria-label="4"></a>model_data <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a aria-label="5"></a>  <span class="fu">filter</span>(gdp_outlier) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a aria-label="6"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(wealth)) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a aria-label="7"></a>  <span class="fu">select</span>(country, wealth, lib_dem)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                   country wealth lib_dem
-1               Luxembourg 92.389   0.798
-2                    Qatar 80.190   0.084
-3                  Ireland 75.467   0.825
-4                Singapore 72.025   0.333
-5     United Arab Emirates 64.628   0.092
-6 United States of America 60.641   0.737</code></pre>
+<pre><code>                   country  wealth lib_dem
+1               Luxembourg 181.069   0.788
+2                    Qatar 167.513   0.082
+3                  Ireland 149.770   0.822
+4 United States of America 144.274   0.740
+5                Singapore 142.915   0.330</code></pre>
 </div>
 </div>
 </section>
@@ -321,38 +325,37 @@
 <h2>Flagging Influential Points</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>democracy_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data)</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>model_diagnostics <span class="ot">&lt;-</span> <span class="fu">augment</span>(democracy_model, <span class="at">data =</span> model_data) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-5"><a></a>    <span class="at">high_leverage  =</span> .hat <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(.hat),</span>
-<span id="cb4-6"><a></a>    <span class="at">high_residual  =</span> <span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">2</span>,</span>
-<span id="cb4-7"><a></a>    <span class="at">high_influence =</span> .cooksd <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">/</span> <span class="fu">nrow</span>(model_data)</span>
-<span id="cb4-8"><a></a>  )</span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a>model_diagnostics <span class="sc">|&gt;</span></span>
-<span id="cb4-11"><a></a>  <span class="fu">filter</span>(high_leverage <span class="sc">|</span> high_residual <span class="sc">|</span> high_influence) <span class="sc">|&gt;</span></span>
-<span id="cb4-12"><a></a>  <span class="fu">select</span>(country, wealth, lib_dem, high_leverage, high_residual, high_influence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>democracy_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data)</span>
+<span id="cb4-2"><a aria-label="2"></a></span>
+<span id="cb4-3"><a aria-label="3"></a>model_diagnostics <span class="ot">&lt;-</span> <span class="fu">augment</span>(democracy_model, <span class="at">data =</span> model_data) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a aria-label="4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-5"><a aria-label="5"></a>    <span class="at">high_leverage  =</span> .hat <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">mean</span>(.hat),</span>
+<span id="cb4-6"><a aria-label="6"></a>    <span class="at">high_residual  =</span> <span class="fu">abs</span>(.std.resid) <span class="sc">&gt;</span> <span class="dv">2</span>,</span>
+<span id="cb4-7"><a aria-label="7"></a>    <span class="at">high_influence =</span> .cooksd <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">/</span> <span class="fu">nrow</span>(model_data)</span>
+<span id="cb4-8"><a aria-label="8"></a>  )</span>
+<span id="cb4-9"><a aria-label="9"></a></span>
+<span id="cb4-10"><a aria-label="10"></a>model_diagnostics <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a aria-label="11"></a>  <span class="fu">filter</span>(high_leverage <span class="sc">|</span> high_residual <span class="sc">|</span> high_influence) <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a aria-label="12"></a>  <span class="fu">select</span>(country, wealth, lib_dem, high_leverage, high_residual, high_influence)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 6
+<pre><code># A tibble: 15 × 6
    country             wealth lib_dem high_leverage high_residual high_influence
    &lt;chr&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;         &lt;lgl&gt;         &lt;lgl&gt;         
- 1 Venezuela            1.19    0.059 TRUE          FALSE         FALSE         
- 2 Niger                1.19    0.399 TRUE          FALSE         FALSE         
- 3 Burundi              0.735   0.054 TRUE          FALSE         FALSE         
- 4 Central African Re…  0.827   0.22  TRUE          FALSE         FALSE         
- 5 Ireland             75.5     0.825 TRUE          FALSE         FALSE         
- 6 Liberia              1.19    0.412 TRUE          FALSE         FALSE         
- 7 Malawi               1.31    0.412 TRUE          FALSE         FALSE         
- 8 Qatar               80.2     0.084 TRUE          TRUE          TRUE          
- 9 Democratic Republi…  0.913   0.145 TRUE          FALSE         FALSE         
-10 Eritrea             21.1     0.009 FALSE         TRUE          FALSE         
-11 Madagascar           1.31    0.258 TRUE          FALSE         FALSE         
-12 Turkmenistan        25.0     0.037 FALSE         TRUE          FALSE         
-13 Bahrain             30.0     0.052 FALSE         TRUE          TRUE          
-14 Luxembourg          92.4     0.798 TRUE          FALSE         FALSE         
-15 Saudi Arabia        33.3     0.047 FALSE         TRUE          TRUE          
-16 United Arab Emirat… 64.6     0.092 FALSE         TRUE          TRUE          </code></pre>
+ 1 Niger                 2.46   0.401 TRUE          FALSE         FALSE         
+ 2 Burundi               1.74   0.055 TRUE          FALSE         FALSE         
+ 3 Central African Re…   1.81   0.214 TRUE          FALSE         FALSE         
+ 4 Liberia               2.80   0.412 TRUE          FALSE         FALSE         
+ 5 Malawi                2.92   0.413 TRUE          FALSE         FALSE         
+ 6 Qatar               168.     0.082 TRUE          TRUE          TRUE          
+ 7 Democratic Republi…   1.85   0.141 TRUE          FALSE         FALSE         
+ 8 Madagascar            2.75   0.248 TRUE          FALSE         FALSE         
+ 9 Turkmenistan         47.7    0.035 FALSE         TRUE          FALSE         
+10 Bahrain              56.0    0.059 FALSE         TRUE          TRUE          
+11 Equatorial Guinea    54.6    0.051 FALSE         TRUE          TRUE          
+12 Luxembourg          181.     0.788 TRUE          FALSE         FALSE         
+13 Saudi Arabia         63.5    0.045 FALSE         TRUE          TRUE          
+14 Singapore           143.     0.33  FALSE         FALSE         TRUE          
+15 United Arab Emirat… 114.     0.09  FALSE         TRUE          TRUE          </code></pre>
 </div>
 </div>
 </section>
@@ -390,28 +393,28 @@
 <p><br></p>
 <p>Compare models with and without influential points:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Original model</span></span>
-<span id="cb6-2"><a></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data)</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="co"># Model without influential points</span></span>
-<span id="cb6-5"><a></a>model_data_clean <span class="ot">&lt;-</span> model_diagnostics <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span>high_leverage <span class="sc">&amp;</span> <span class="sc">!</span>high_residual <span class="sc">&amp;</span> <span class="sc">!</span>high_influence)</span>
-<span id="cb6-7"><a></a></span>
-<span id="cb6-8"><a></a>model_clean <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data_clean)</span>
-<span id="cb6-9"><a></a></span>
-<span id="cb6-10"><a></a><span class="co"># Compare coefficients</span></span>
-<span id="cb6-11"><a></a><span class="fu">tibble</span>(</span>
-<span id="cb6-12"><a></a>  <span class="at">model =</span> <span class="fu">c</span>(<span class="st">"Full"</span>, <span class="st">"No outliers"</span>),</span>
-<span id="cb6-13"><a></a>  <span class="at">intercept =</span> <span class="fu">c</span>(<span class="fu">coef</span>(model_full)[<span class="dv">1</span>], <span class="fu">coef</span>(model_clean)[<span class="dv">1</span>]),</span>
-<span id="cb6-14"><a></a>  <span class="at">slope =</span> <span class="fu">c</span>(<span class="fu">coef</span>(model_full)[<span class="dv">2</span>], <span class="fu">coef</span>(model_clean)[<span class="dv">2</span>]),</span>
-<span id="cb6-15"><a></a>  <span class="at">r_squared =</span> <span class="fu">c</span>(<span class="fu">glance</span>(model_full)<span class="sc">$</span>r.squared, <span class="fu">glance</span>(model_clean)<span class="sc">$</span>r.squared)</span>
-<span id="cb6-16"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a><span class="co"># Original model</span></span>
+<span id="cb6-2"><a aria-label="2"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data)</span>
+<span id="cb6-3"><a aria-label="3"></a></span>
+<span id="cb6-4"><a aria-label="4"></a><span class="co"># Model without influential points</span></span>
+<span id="cb6-5"><a aria-label="5"></a>model_data_clean <span class="ot">&lt;-</span> model_diagnostics <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a aria-label="6"></a>  <span class="fu">filter</span>(<span class="sc">!</span>high_leverage <span class="sc">&amp;</span> <span class="sc">!</span>high_residual <span class="sc">&amp;</span> <span class="sc">!</span>high_influence)</span>
+<span id="cb6-7"><a aria-label="7"></a></span>
+<span id="cb6-8"><a aria-label="8"></a>model_clean <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data_clean)</span>
+<span id="cb6-9"><a aria-label="9"></a></span>
+<span id="cb6-10"><a aria-label="10"></a><span class="co"># Compare coefficients</span></span>
+<span id="cb6-11"><a aria-label="11"></a><span class="fu">tibble</span>(</span>
+<span id="cb6-12"><a aria-label="12"></a>  <span class="at">model =</span> <span class="fu">c</span>(<span class="st">"Full"</span>, <span class="st">"No outliers"</span>),</span>
+<span id="cb6-13"><a aria-label="13"></a>  <span class="at">intercept =</span> <span class="fu">c</span>(<span class="fu">coef</span>(model_full)[<span class="dv">1</span>], <span class="fu">coef</span>(model_clean)[<span class="dv">1</span>]),</span>
+<span id="cb6-14"><a aria-label="14"></a>  <span class="at">slope =</span> <span class="fu">c</span>(<span class="fu">coef</span>(model_full)[<span class="dv">2</span>], <span class="fu">coef</span>(model_clean)[<span class="dv">2</span>]),</span>
+<span id="cb6-15"><a aria-label="15"></a>  <span class="at">r_squared =</span> <span class="fu">c</span>(<span class="fu">glance</span>(model_full)<span class="sc">$</span>r.squared, <span class="fu">glance</span>(model_clean)<span class="sc">$</span>r.squared)</span>
+<span id="cb6-16"><a aria-label="16"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   model       intercept slope r_squared
   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
-1 Full           0.131  0.120     0.280
-2 No outliers    0.0693 0.152     0.372</code></pre>
+1 Full          0.00825 0.130     0.318
+2 No outliers  -0.0966  0.168     0.448</code></pre>
 </div>
 </div>
 </section>
@@ -426,24 +429,22 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(datawizard)</span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>model_data_win <span class="ot">&lt;-</span> model_data <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">mutate</span>(<span class="at">wealth_win95 =</span> <span class="fu">winsorize</span>(wealth, <span class="at">threshold =</span> <span class="fl">0.05</span>))</span>
-<span id="cb8-5"><a></a></span>
-<span id="cb8-6"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data, <span class="fu">aes</span>(<span class="at">x =</span> wealth)) <span class="sc">+</span></span>
-<span id="cb8-7"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb8-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">"k"</span>)) <span class="sc">+</span></span>
-<span id="cb8-9"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Original"</span>, <span class="at">x =</span> <span class="st">"GDP per Capita"</span>) <span class="sc">+</span></span>
-<span id="cb8-10"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb8-11"><a></a></span>
-<span id="cb8-12"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data_win, <span class="fu">aes</span>(<span class="at">x =</span> wealth_win95)) <span class="sc">+</span></span>
-<span id="cb8-13"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"darkred"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb8-14"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">"k"</span>)) <span class="sc">+</span></span>
-<span id="cb8-15"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Winsorized at 95th pct"</span>, <span class="at">x =</span> <span class="st">"GDP per Capita"</span>) <span class="sc">+</span></span>
-<span id="cb8-16"><a></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb8-17"><a></a></span>
-<span id="cb8-18"><a></a>p1 <span class="sc">|</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="fu">library</span>(datawizard)</span>
+<span id="cb8-2"><a aria-label="2"></a></span>
+<span id="cb8-3"><a aria-label="3"></a>model_data_win <span class="ot">&lt;-</span> model_data <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a aria-label="4"></a>  <span class="fu">mutate</span>(<span class="at">wealth_win95 =</span> <span class="fu">winsorize</span>(wealth, <span class="at">threshold =</span> <span class="fl">0.05</span>))</span>
+<span id="cb8-5"><a aria-label="5"></a></span>
+<span id="cb8-6"><a aria-label="6"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data, <span class="fu">aes</span>(<span class="at">x =</span> wealth)) <span class="sc">+</span></span>
+<span id="cb8-7"><a aria-label="7"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a aria-label="8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Original"</span>, <span class="at">x =</span> <span class="st">"GDP per capita (V-Dem index)"</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a aria-label="9"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb8-10"><a aria-label="10"></a></span>
+<span id="cb8-11"><a aria-label="11"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(model_data_win, <span class="fu">aes</span>(<span class="at">x =</span> wealth_win95)) <span class="sc">+</span></span>
+<span id="cb8-12"><a aria-label="12"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"darkred"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a aria-label="13"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Winsorized at 95th pct"</span>, <span class="at">x =</span> <span class="st">"GDP per capita (V-Dem index)"</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a aria-label="14"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb8-15"><a aria-label="15"></a></span>
+<span id="cb8-16"><a aria-label="16"></a>p1 <span class="sc">|</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -453,24 +454,24 @@
 <p><br></p>
 <p><code>MASS::rlm()</code> is less sensitive to outliers than OLS:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(MASS)</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a>robust_model <span class="ot">&lt;-</span> <span class="fu">rlm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data)</span>
-<span id="cb9-4"><a></a></span>
-<span id="cb9-5"><a></a><span class="fu">summary</span>(robust_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a>robust_model <span class="ot">&lt;-</span> <span class="fu">rlm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth), <span class="at">data =</span> model_data)</span>
+<span id="cb9-4"><a aria-label="4"></a></span>
+<span id="cb9-5"><a aria-label="5"></a><span class="fu">summary</span>(robust_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call: rlm(formula = lib_dem ~ log(wealth), data = model_data)
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.60880 -0.15368  0.03422  0.17024  0.37024 
+-0.62325 -0.15887  0.02977  0.15962  0.41321 
 
 Coefficients:
-            Value  Std. Error t value
-(Intercept) 0.1178 0.0385     3.0619 
-log(wealth) 0.1311 0.0149     8.8195 
+            Value   Std. Error t value
+(Intercept) -0.0140  0.0479    -0.2930
+log(wealth)  0.1405  0.0146     9.6349
 
-Residual standard error: 0.2429 on 172 degrees of freedom</code></pre>
+Residual standard error: 0.2364 on 172 degrees of freedom</code></pre>
 </div>
 </div>
 </section>
@@ -595,24 +596,21 @@ Residual standard error: 0.2429 on 172 degrees of freedom</code></pre>
 <h2>Setup for Diagnostics</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(vdemlite)</span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a>model_data2 <span class="ot">&lt;-</span> <span class="fu">fetchdem</span>(</span>
-<span id="cb11-4"><a></a>  <span class="at">indicators =</span> <span class="fu">c</span>(<span class="st">"v2x_libdem"</span>, <span class="st">"e_gdppc"</span>, <span class="st">"v2cacamps"</span>,</span>
-<span id="cb11-5"><a></a>                 <span class="st">"v2x_gender"</span>, <span class="st">"v2x_corr"</span>, <span class="st">"e_regionpol_6C"</span>),</span>
-<span id="cb11-6"><a></a>  <span class="at">start_year =</span> <span class="dv">2006</span>, <span class="at">end_year =</span> <span class="dv">2006</span></span>
-<span id="cb11-7"><a></a>) <span class="sc">|&gt;</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">rename</span>(<span class="at">country =</span> country_name, <span class="at">lib_dem =</span> v2x_libdem,</span>
-<span id="cb11-9"><a></a>         <span class="at">wealth =</span> e_gdppc, <span class="at">polarization =</span> v2cacamps,</span>
-<span id="cb11-10"><a></a>         <span class="at">women_emp =</span> v2x_gender, <span class="at">corruption =</span> v2x_corr,</span>
-<span id="cb11-11"><a></a>         <span class="at">region =</span> e_regionpol_6C) <span class="sc">|&gt;</span></span>
-<span id="cb11-12"><a></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region,</span>
-<span id="cb11-13"><a></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Eastern Europe"</span>, <span class="st">"Latin America"</span>, <span class="st">"MENA"</span>,</span>
-<span id="cb11-14"><a></a>               <span class="st">"SS Africa"</span>, <span class="st">"The West"</span>, <span class="st">"Asia &amp; Pacific"</span>)))</span>
-<span id="cb11-15"><a></a></span>
-<span id="cb11-16"><a></a>democracy_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth) <span class="sc">+</span> polarization <span class="sc">+</span></span>
-<span id="cb11-17"><a></a>                         corruption <span class="sc">+</span> women_emp <span class="sc">+</span> region,</span>
-<span id="cb11-18"><a></a>                       <span class="at">data =</span> model_data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a>model_data2 <span class="ot">&lt;-</span> vdem <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(country_name, v2x_libdem, e_gdppc, v2cacamps,</span>
+<span id="cb11-4"><a aria-label="4"></a>                v2x_gender, v2x_corr, e_regionpol_6C) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a aria-label="5"></a>  <span class="fu">rename</span>(<span class="at">country =</span> country_name, <span class="at">lib_dem =</span> v2x_libdem,</span>
+<span id="cb11-6"><a aria-label="6"></a>         <span class="at">wealth =</span> e_gdppc, <span class="at">polarization =</span> v2cacamps,</span>
+<span id="cb11-7"><a aria-label="7"></a>         <span class="at">women_emp =</span> v2x_gender, <span class="at">corruption =</span> v2x_corr,</span>
+<span id="cb11-8"><a aria-label="8"></a>         <span class="at">region =</span> e_regionpol_6C) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a aria-label="9"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">factor</span>(region,</span>
+<span id="cb11-10"><a aria-label="10"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Eastern Europe"</span>, <span class="st">"Latin America"</span>, <span class="st">"MENA"</span>,</span>
+<span id="cb11-11"><a aria-label="11"></a>               <span class="st">"SS Africa"</span>, <span class="st">"The West"</span>, <span class="st">"Asia &amp; Pacific"</span>)))</span>
+<span id="cb11-12"><a aria-label="12"></a></span>
+<span id="cb11-13"><a aria-label="13"></a>democracy_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth) <span class="sc">+</span> polarization <span class="sc">+</span></span>
+<span id="cb11-14"><a aria-label="14"></a>                         corruption <span class="sc">+</span> women_emp <span class="sc">+</span> region,</span>
+<span id="cb11-15"><a aria-label="15"></a>                       <span class="at">data =</span> model_data2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="exploratory-data-analysis-first" class="slide level2">
@@ -636,9 +634,9 @@ Residual standard error: 0.2429 on 172 degrees of freedom</code></pre>
 <p><br></p>
 <p>You can automate all the diagnostics we just discussed with a single line of code using the <code>performance</code> package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">library</span>(performance)</span>
-<span id="cb12-2"><a></a></span>
-<span id="cb12-3"><a></a><span class="fu">check_model</span>(democracy_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-label="1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb12-2"><a aria-label="2"></a></span>
+<span id="cb12-3"><a aria-label="3"></a><span class="fu">check_model</span>(democracy_model2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section" class="slide level2">
@@ -660,13 +658,13 @@ Residual standard error: 0.2429 on 172 degrees of freedom</code></pre>
 <p><br></p>
 <p>Adding a polynomial term for <code>women_emp</code> to capture a curved relationship:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>democracy_model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb13-2"><a></a>  lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth) <span class="sc">+</span> polarization <span class="sc">+</span> corruption <span class="sc">+</span></span>
-<span id="cb13-3"><a></a>    <span class="fu">log</span>(women_emp) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">log</span>(women_emp)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> region,</span>
-<span id="cb13-4"><a></a>  <span class="at">data =</span> model_data2</span>
-<span id="cb13-5"><a></a>)</span>
-<span id="cb13-6"><a></a></span>
-<span id="cb13-7"><a></a><span class="fu">check_model</span>(democracy_model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-label="1"></a>democracy_model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb13-2"><a aria-label="2"></a>  lib_dem <span class="sc">~</span> <span class="fu">log</span>(wealth) <span class="sc">+</span> polarization <span class="sc">+</span> corruption <span class="sc">+</span></span>
+<span id="cb13-3"><a aria-label="3"></a>    <span class="fu">log</span>(women_emp) <span class="sc">+</span> <span class="fu">I</span>(<span class="fu">log</span>(women_emp)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> region,</span>
+<span id="cb13-4"><a aria-label="4"></a>  <span class="at">data =</span> model_data2</span>
+<span id="cb13-5"><a aria-label="5"></a>)</span>
+<span id="cb13-6"><a aria-label="6"></a></span>
+<span id="cb13-7"><a aria-label="7"></a><span class="fu">check_model</span>(democracy_model3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-1" class="slide level2">
@@ -881,7 +879,7 @@ Residual standard error: 0.2429 on 172 degrees of freedom</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -993,13 +991,14 @@ Residual standard error: 0.2429 on 172 degrees of freedom</code></pre>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

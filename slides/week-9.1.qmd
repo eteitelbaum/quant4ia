@@ -96,6 +96,17 @@ modelData <- vdem |>
 glimpse(modelData)
 ```
 
+## A Note on V-Dem's GDP Measure {.smaller}
+
+<br>
+
+- `e_gdppc` is **not** measured in dollars
+- It is a model-based **index** that combines many GDP sources (World Bank, Maddison, Penn World Tables, etc.) going back to 1789 (Fariss et al. 2022)
+- In 2019 the US scores about `r round(modelData$wealth[modelData$country == "United States of America"])` and India about `r round(modelData$wealth[modelData$country == "India"])`
+  - Not dollars, but the *ratios* are meaningful: the US is about `r round(modelData$wealth[modelData$country == "United States of America"] / modelData$wealth[modelData$country == "India"])`× as wealthy per person as India
+- Because we model **log** GDP, we interpret results as **percentage** changes (e.g., doubling GDP), which doesn't depend on the units
+- Lesson: always check the codebook before putting a dollar sign on a variable!
+
 ## Plot the Relationship
 
 ```{r}
@@ -106,7 +117,7 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 #  geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
   labs(
     title = "Wealth and Democracy, 2019",
-    x = "GPD per capita", 
+    x = "Log GDP per capita (V-Dem index)", 
     y = "Liberal Democracy Index") +
   theme_bw()
 ```
@@ -121,7 +132,7 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
   labs(
     title = "Wealth and Democracy, 2019",
-    x = "GPD per capita", 
+    x = "Log GDP per capita (V-Dem index)", 
     y = "Liberal Democracy Index") +
   theme_bw()
 ```
@@ -138,7 +149,7 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 ggplot(modelData, aes(x = wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GPD per capita", y = "Liberal Democracy Index") +
+  labs(x = "GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme_bw()
 ```
 
@@ -151,10 +162,10 @@ ggplot(modelData, aes(x = wealth, y = lib_dem)) +
 ggplot(modelData, aes(x = wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  scale_x_log10(label = scales::label_dollar(suffix = "k")) +
+  scale_x_log10() +
   labs(
     title = "Wealth and Democracy, 2019",
-    x = "GPD per capita", 
+    x = "GDP per capita (V-Dem index, log scale)", 
     y = "Liberal Democracy Index") +
   theme_bw()
 ```
@@ -172,10 +183,10 @@ ggplot(modelData, aes(x = wealth, y = lib_dem)) +
 ggplot(modelData, aes(x = wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  scale_x_log10(label = scales::label_dollar(suffix = "k")) +
+  scale_x_log10() +
   labs(
     title = "Wealth and Democracy, 2019",
-    x = "GPD per capita", 
+    x = "GDP per capita (V-Dem index, log scale)", 
     y = "Liberal Democracy Index") +
   theme_bw()
 ```
@@ -212,11 +223,11 @@ ggplot(modelData, aes(x = wealth, y = lib_dem)) +
 Linear model with one explanatory variable...
 
 ::: {.incremental}
-- $Y = a + bX$
-- $Y$ is the outcome variable
-- $X$ is the explanatory variable
-- $a$ is the intercept: the predicted value of $Y$ when $X$ is equal to 0
-- $b$ is the slope of the line [remember rise over run!]
+- $y = b_0 + b_1 x$
+- $y$ is the outcome variable
+- $x$ is the explanatory variable
+- $b_0$ is the intercept: the predicted value of $y$ when $x$ is equal to 0
+- $b_1$ is the slope of the line [remember rise over run!]
 :::
 
 ## Quant Lingo {.smaller}
@@ -226,9 +237,9 @@ Linear model with one explanatory variable...
 ::: {.incremental}
 - **Predicted value:** Output of the **model function**
    - The model function gives the typical (expected) value of the response variable *conditioning* on the explanatory variables
-   - We often call this $\hat{Y}$ to differentiate the predicted value from an observed value of Y in the data
+   - We often call this $\hat{y}$ to differentiate the predicted value from an observed value of $y$ in the data
 - **Residuals:** A measure of how far each case is from its predicted value (based on a particular model)
-  - Residual = Observed value ($Y$) - Predicted value ($\hat{Y}$)
+  - Residual = Observed value ($y$) - Predicted value ($\hat{y}$)
   - How far above/below the expected value each case is
 :::
 
@@ -244,15 +255,19 @@ fit_tidy <- tidy(mod_fit$fit)
 fit_aug  <- augment(mod_fit$fit) |>
   mutate(res_cat = ifelse(.resid > 0, TRUE, FALSE))
 
-a <- round(fit_tidy$estimate[1], 2)
-b <- round(fit_tidy$estimate[2], 2)
+b0 <- round(fit_tidy$estimate[1], 2)
+b1 <- round(fit_tidy$estimate[2], 2)
+
+# unrounded values to anchor the rise/run arrows on the fitted line
+slope  <- fit_tidy$estimate[2]
+y_at_2 <- fit_tidy$estimate[1] + slope * 2
 
 ggplot(data = fit_aug) +
   geom_point(aes(x = log_wealth, y = lib_dem, color = res_cat)) +
   geom_line(aes(x = log_wealth, y = .fitted), size = 0.75, color = "#8E2C90") + 
   labs(
     title = "GDP per Capita and Democracy",
-    x = "GDP per Capita",
+    x = "Log GDP per capita (V-Dem index)",
     y = "Libearl Democracy Index"
   ) +
   guides(color = "none") +
@@ -267,15 +282,15 @@ ggplot(data = fit_aug) +
 
 ## Linear Model
 
-$\hat{Y} = a  + b \times X$
+$\hat{y} = b_0 + b_1 \times x$
 
-$\hat{Y} = `r a`  + `r b` \times X$
+$\hat{y} = `r b0` + `r b1` \times x$
 
 ```{r echo=FALSE, out.width = "100%"}
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GPD per capita", y = "Liberal Democracy Index") +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme_bw()
 #+
  # theme(
@@ -288,57 +303,57 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 
 <br>
 
-| $\hat{Y} = a  + b \times X$
-| $\hat{Y} = `r a`  + `r b` \times X$
+| $\hat{y} = b_0 + b_1 \times x$
+| $\hat{y} = `r b0` + `r b1` \times x$
 
-What is the interpretation of our estimate of $a$?
+What is the interpretation of our estimate of $b_0$?
 
 . . .
 
 <br>
 
-| $\hat{Y} = `r a`  + `r b` \times 0$
-| $\hat{Y} = `r a`$
+| $\hat{y} = `r b0` + `r b1` \times 0$
+| $\hat{y} = `r b0`$
 
-$a$ is our predicted level of democracy when GDP per capita is 0.
+$b_0$ is our predicted level of democracy when log GDP per capita is 0 (i.e., when the GDP index equals 1).
 
 
 ## Linear Model: Interpretation 
 <br>
 
 
-| $\hat{Y} = a  + b \times X$
-| $\hat{Y} = `r a`  + `r b` \times X$
+| $\hat{y} = b_0 + b_1 \times x$
+| $\hat{y} = `r b0` + `r b1` \times x$
 
-What is interpretation of our estimate of $b$?
+What is interpretation of our estimate of $b_1$?
 
 . . . 
 
 <br>
 
-| $\hat{Y} = a  + \frac{Rise}{Run} \times X$
-| $\hat{Y} = a  + \frac{Change Y}{Change X} \times X$
+| $\hat{y} = b_0 + \frac{Rise}{Run} \times x$
+| $\hat{y} = b_0 + \frac{Change\ y}{Change\ x} \times x$
 
 ## Linear Model: Interpretation {.smaller}
 
 <br>
 
-| $b = \frac{Change Y}{Change X}$
-| $`r b` = \frac{Change Y}{Change X}$
-| ${Change Y} = `r b` * {ChangeX}$
+| $b_1 = \frac{Change\ y}{Change\ x}$
+| $`r b1` = \frac{Change\ y}{Change\ x}$
+| $Change\ y = `r b1` \times Change\ x$
 
 . . .
 
 <br>
 
-| When $ChangeX = 1$:
-| ${Change Y = `r b`}$
+| When $Change\ x = 1$:
+| $Change\ y = `r b1`$
 
 . . .
 
 <br>
 
-| $b$ is the predicted change in $Y$ **associated with** a ONE unit change in X.
+| $b_1$ is the predicted change in $y$ **associated with** a ONE unit change in $x$.
 
 ## Linear Model: Interpretation
 
@@ -347,7 +362,7 @@ What is interpretation of our estimate of $b$?
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GPD per capita", y = "Liberal Democracy Index") +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
   theme_bw()
 ```
 
@@ -358,11 +373,10 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GPD per capita", y = "Liberal Democracy Index") +
-  geom_segment(aes(x = 2, xend= 3, y=.37, yend=.37), colour="darkblue", linewidth=1.5, arrow = arrow(length = unit(0.5, "cm"))) +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
+  annotate("segment", x = 2, xend = 3, y = y_at_2, yend = y_at_2, colour = "darkblue", linewidth = 1.5, arrow = arrow(length = unit(0.5, "cm"))) +
   theme_bw()
   
-#Ŷ =0.13+0.12×X
 ```
 
 ## Linear Model: Interpretation
@@ -372,13 +386,12 @@ ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
 ggplot(modelData, aes(x = log_wealth, y = lib_dem)) +
   geom_point() +
   geom_smooth(method = "lm", color = "#E48957", se = FALSE) +
-  labs(x = "GPD per capita", y = "Liberal Democracy Index") +
-  geom_segment(aes(x = 2, xend= 3, y=.37, yend=.37), colour="darkblue", linewidth=1.5) +
-  geom_segment(aes(x = 3, xend= 3, y=.37, yend=.49), colour="darkblue", linewidth=1.5, arrow = arrow(length = unit(0.5, "cm"))) +
-  geom_text(x=3.2, y=.43, label="0.12", color="darkblue", size=4) +
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index") +
+  annotate("segment", x = 2, xend = 3, y = y_at_2, yend = y_at_2, colour = "darkblue", linewidth = 1.5) +
+  annotate("segment", x = 3, xend = 3, y = y_at_2, yend = y_at_2 + slope, colour = "darkblue", linewidth = 1.5, arrow = arrow(length = unit(0.5, "cm"))) +
+  annotate("text", x = 3.2, y = y_at_2 + slope / 2, label = b1, color = "darkblue", size = 4) +
   theme_bw()
   
-#Ŷ =0.13+0.12×X
 ```
 
 
@@ -404,21 +417,21 @@ To identify causality we need other methods (beyond the scope of this course).
 
 <br> 
 
-An economist is interested in the relationship between years of education and hourly wages.  They estimate a linear model with estimates of $a$ and $b$ as follows:
+An economist is interested in the relationship between years of education and hourly wages.  They estimate a linear model with estimates of $b_0$ and $b_1$ as follows:
 
 <br>
 
-$\hat{Y} = 9 + 1.60*{YrsEdu}$
+$\hat{y} = 9 + 1.60 \times YrsEdu$
 
 <br>
 
-| 1. Interpret $a$ and $b$
+| 1. Interpret $b_0$ and $b_1$
 | 2. What is the predicted hourly wage for those with 10 years of education?
 
 ## Next step
 
 <br>
 
-- Linear model with one predictor: $Y = a + bX$
+- Linear model with one predictor: $y = b_0 + b_1 x$
 - For any given data...
-- How do we figure out what the best values are for $a$ and $b$??
+- How do we figure out what the best values are for $b_0$ and $b_1$??

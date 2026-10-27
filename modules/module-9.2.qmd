@@ -24,17 +24,12 @@ Run this code chunk to load the necessary packages and data for this module:
 #| code-fold: true
 
 library(tidyverse)
-library(vdemlite)
+library(vdemdata)
 
 # Load V-Dem data for 2019
-model_data <- fetchdem(
-  indicators = c(
-  "v2x_libdem", 
-  "e_gdppc", 
-  "v2cacamps"),
-  start_year = 2019, 
-  end_year = 2019
-  ) |>
+model_data <- vdem |>
+  filter(year == 2019) |>
+  select(country_name, v2x_libdem, e_gdppc, v2cacamps) |>
   rename(
     country = country_name, 
     lib_dem = v2x_libdem, 
@@ -47,7 +42,7 @@ model_data <- fetchdem(
 
 ## Overview
 
-In Module 4.1, you learned how to fit regression lines and interpret them. But how does R actually find the "best" line among all possible lines? This module dives into the mathematical optimization behind least squares regression. You'll understand why it's called "least squares" and develop intuition for the cost function that R minimizes when fitting your models.
+In Module 9.1, you learned how to fit regression lines and interpret them. But how does R actually find the "best" line among all possible lines? This module dives into the mathematical optimization behind least squares regression. You'll understand why it's called "least squares" and develop intuition for the cost function that R minimizes when fitting your models.
 
 By the end of this module, you'll be able to:
 - Explain why we minimize the sum of squared residuals
@@ -57,11 +52,20 @@ By the end of this module, you'll be able to:
 
 ## The Optimization Problem
 
-When we fit a regression line in Module 4.1, we used R's `lm()` function and got specific values for our intercept and slope. But think about it - there are infinitely many possible lines we could draw through any set of points. How does the computer choose which one is "best"?
+When we fit a regression line in Module 9.1, we used R's `lm()` function and got specific values for our intercept and slope. But think about it - there are infinitely many possible lines we could draw through any set of points. How does the computer choose which one is "best"?
 
-Let's return to our democracy and GDP example from Module 4.1. We found that the relationship between log GDP per capita and democracy scores could be modeled as:
+Let's return to our democracy and GDP example from Module 9.1. We found that the relationship between log GDP per capita and democracy scores could be modeled as:
 
-$$\widehat{Democracy}_i = 0.13 + 0.12 \times \log(GDP)_i$$
+```{r}
+#| label: fit-coefs
+#| include: false
+
+democracy_model <- lm(lib_dem ~ log(wealth), data = model_data)
+b0 <- round(coef(democracy_model)[1], 2)
+b1 <- round(coef(democracy_model)[2], 2)
+```
+
+$$\widehat{Democracy}_i = `r b0` + `r b1` \times \log(GDP)_i$$
 
 But why these specific numbers? Why not $\widehat{Democracy}_i = 0.10 + 0.15 \times \log(GDP)_i$ or any other combination?
 
@@ -71,10 +75,10 @@ But why these specific numbers? Why not $\widehat{Democracy}_i = 0.10 + 0.15 \ti
 
 ggplot(model_data, aes(x = log(wealth), y = lib_dem)) +
   geom_point() +
-  geom_abline(intercept = 0.13, slope = 0.12, color = "#E48957", linewidth = 1, alpha = 0.6) +
+  geom_abline(intercept = b0, slope = b1, color = "#E48957", linewidth = 1, alpha = 0.6) +
   geom_abline(intercept = 0.10, slope = 0.2, color = "blue", linewidth = 1, alpha = 0.6) +
   geom_abline(intercept = 0.20, slope = 0.05, color = "red", linewidth = 1, alpha = 0.6) +
-  labs(x = "Log GDP per capita", y = "Liberal Democracy Index",
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index",
        title = "Which Line Should We 'Choose'?") +
   theme_bw()
 ```
@@ -87,7 +91,7 @@ To understand how we measure "best," let's watch Andrew Ng explain the intuition
 
 {{< video "https://www.youtube.com/embed/CFN5zHzEuGY" title = 'Cost Function Intuition' >}}
 
-As Andrew explains, we need a way to measure how well our line fits the data. Remember from Module 4.1 that a **residual** is the difference between an actual value and our predicted value:
+As Andrew explains, we need a way to measure how well our line fits the data. Remember from Module 9.1 that a **residual** is the difference between an actual value and our predicted value:
 
 $$\text{residual}_i = y_i - \hat{y}_i$$
 
@@ -160,11 +164,11 @@ Perfect! This line goes exactly through all points.
 
 This is a steeper line with a slope of 2. Let's calculate the residuals:
 
-- Point (1,1): $\hat{y} = 0 + 0(1) = 0$, residual = $1 - 2 = -1$
-- Point (2,2): $\hat{y} = 0 + 0(2) = 0$, residual = $2 - 4 = -2$
-- Point (3,3): $\hat{y} = 0 + 0(3) = 0$, residual = $3 - 6 = -3$
+- Point (1,1): $\hat{y} = 0 + 2(1) = 2$, residual = $1 - 2 = -1$
+- Point (2,2): $\hat{y} = 0 + 2(2) = 4$, residual = $2 - 4 = -2$
+- Point (3,3): $\hat{y} = 0 + 2(3) = 6$, residual = $3 - 6 = -3$
 
-Sum of squared residuals = $-1^2 + -2^2 + -3^2 = 1 + 4 + 9 = 14$
+Sum of squared residuals = $(-1)^2 + (-2)^2 + (-3)^2 = 1 + 4 + 9 = 14$
 
 Much worse!
 
@@ -274,7 +278,7 @@ server <- function(input, output) {
   })
   
   output$current_equation <- renderText({
-    paste0("Equation: Ŷ = 0 + ", round(input$slope, 2), " * X")
+    paste0("Equation: ŷ = 0 + ", round(input$slope, 2), "x")
   })
   
   # Fixed: Use the corrected reactive calculations
@@ -329,7 +333,7 @@ democracy_model <- lm(lib_dem ~ log(wealth), data = model_data)
 summary(democracy_model)
 ```
 
-The least squares solution is approximately: $\widehat{Democracy} = 0.13 + 0.12 \times \log(GDP)$
+The least squares solution is approximately: $\widehat{Democracy} = `r b0` + `r b1` \times \log(GDP)$
 
 Let's test some alternative lines and see how they compare:
 
@@ -339,9 +343,9 @@ Let's test some alternative lines and see how they compare:
 
 # Different lines parameters
 test_lines <- tibble(
-  intercept = c(0.13, 0.13, 0.13, 0.00),
-  slope = c(0.12, 0.15, 0.08, 0.12),
-  description = c("Least squares", "Steeper slope)", "Gentler slope", "Different intercept")
+  intercept = c(b0, b0, b0, b0 + 0.10),
+  slope = c(b1, b1 + 0.03, b1 - 0.04, b1),
+  description = c("Least squares", "Steeper slope", "Gentler slope", "Different intercept")
 )
 
 # Visualize
@@ -349,7 +353,7 @@ ggplot(model_data, aes(x = log(wealth), y = lib_dem)) +
   geom_point(alpha = 0.6) +
   geom_abline(aes(intercept = intercept, slope = slope, color = description), 
               data = test_lines, size = 1) +
-  labs(x = "Log GDP per capita", y = "Liberal Democracy Index",
+  labs(x = "Log GDP per capita (V-Dem index)", y = "Liberal Democracy Index",
        title = "Comparing different possible regression lines",
        color = "Line type") +
   theme_bw()
@@ -375,14 +379,12 @@ test_lines$ssr <- map2_dbl(test_lines$intercept, test_lines$slope,
 test_lines
 ```
 
-- **Least squares line** (intercept = 0.13, slope = 0.12): SSR = `r round(test_lines$ssr[1], 2)`
-- **Steeper slope line** (intercept = 0.13, slope = 0.15): SSR = `r round(test_lines$ssr[2], 2)`
-- **Gentler slope line** (intercept = 0.13, slope = 0.08): SSR = `r round(test_lines$ssr[3], 2)`
-- **Different intercept line** (intercept = 0.00, slope = 0.12): SSR = `r round(test_lines$ssr[4], 2)`
+- **Least squares line** (intercept = `r test_lines$intercept[1]`, slope = `r test_lines$slope[1]`): SSR = `r round(test_lines$ssr[1], 2)`
+- **Steeper slope line** (intercept = `r test_lines$intercept[2]`, slope = `r test_lines$slope[2]`): SSR = `r round(test_lines$ssr[2], 2)`
+- **Gentler slope line** (intercept = `r test_lines$intercept[3]`, slope = `r test_lines$slope[3]`): SSR = `r round(test_lines$ssr[3], 2)`
+- **Different intercept line** (intercept = `r test_lines$intercept[4]`, slope = `r test_lines$slope[4]`): SSR = `r round(test_lines$ssr[4], 2)`
 
 Notice how the least squares line has the lowest SSR! Any other combination of intercept and slope results in a higher cost, confirming that our optimization algorithm found the truly optimal solution.
-
-Notice how the least squares line has the lowest SSR! Any other combination of intercept and slope will result in a higher cost.
 
 
 ## From Math to R Output

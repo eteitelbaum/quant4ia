@@ -142,7 +142,7 @@ Logistic regression, as part of the GLM family, provides exactly this framework.
 
 ## The Sigmoid Function: The Key to Valid Probabilities
 
-Remember our fundamental problem from Module 5.1: linear regression can predict impossible probabilities like -0.3 or 1.7 when we apply it to binary outcomes. We need a mathematical function that can take any real number (from negative infinity to positive infinity) and transform it into a valid probability between 0 and 1.
+Remember our fundamental problem from earlier in this module: linear regression can predict impossible probabilities like -0.3 or 1.7 when we apply it to binary outcomes. We need a mathematical function that can take any real number (from negative infinity to positive infinity) and transform it into a valid probability between 0 and 1.
 
 Enter the **sigmoid function** (also called the logistic function). The sigmoid function is defined as:
 
@@ -210,7 +210,7 @@ The term $\frac{p}{1-p}$ in the logit function is called the **odds**. When $p =
 
 ## The Complete Logistic Regression Model
 
-Now we can put together the complete picture of how logistic regression works. Remember from Module 5.1 that all GLMs have three components:
+Now we can put together the complete picture of how logistic regression works. Remember from earlier in this module that all GLMs have three components:
 
 1. **Distribution**: $y_i \sim \text{Bernoulli}(p_i)$ (each observation is a Bernoulli trial)
 2. **Linear predictor**: $\eta_i = \beta_0+ \beta_1 x_{1,i} + \cdots + \beta_k x_{k,i}$ (familiar linear combination)

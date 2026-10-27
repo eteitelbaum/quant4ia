@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-09-21">
+  <meta name="dcterms.date" content="2026-10-27">
   <title>IAFF 6501 -- Fall 2026 – Modeling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -191,7 +197,7 @@
     }
   </style>
 <meta property="og:title" content="Modeling – IAFF 6501 – Fall 2026">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Modeling – IAFF 6501 – Fall 2026">
 <meta name="twitter:card" content="summary">
 </head>
@@ -205,7 +211,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">September 21, 2026</p>
+  <p class="date">October 27, 2026</p>
 </section>
 <section id="modeling" class="slide level2">
 <h2>Modeling</h2>
@@ -240,17 +246,17 @@
 <p><br></p>
 <p>What is this code doing?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(vdemdata)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>modelData <span class="ot">&lt;-</span> vdem <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a></a>  <span class="fu">select</span>(</span>
-<span id="cb1-6"><a></a>    <span class="at">country =</span> country_name, </span>
-<span id="cb1-7"><a></a>    <span class="at">lib_dem =</span> v2x_libdem, </span>
-<span id="cb1-8"><a></a>    <span class="at">wealth =</span> e_gdppc) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">mutate</span>(<span class="at">log_wealth =</span> <span class="fu">log</span>(wealth))</span>
-<span id="cb1-10"><a></a></span>
-<span id="cb1-11"><a></a><span class="fu">glimpse</span>(modelData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(vdemdata)</span>
+<span id="cb1-2"><a aria-label="2"></a></span>
+<span id="cb1-3"><a aria-label="3"></a>modelData <span class="ot">&lt;-</span> vdem <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-5"><a aria-label="5"></a>  <span class="fu">select</span>(</span>
+<span id="cb1-6"><a aria-label="6"></a>    <span class="at">country =</span> country_name, </span>
+<span id="cb1-7"><a aria-label="7"></a>    <span class="at">lib_dem =</span> v2x_libdem, </span>
+<span id="cb1-8"><a aria-label="8"></a>    <span class="at">wealth =</span> e_gdppc) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a aria-label="9"></a>  <span class="fu">mutate</span>(<span class="at">log_wealth =</span> <span class="fu">log</span>(wealth))</span>
+<span id="cb1-10"><a aria-label="10"></a></span>
+<span id="cb1-11"><a aria-label="11"></a><span class="fu">glimpse</span>(modelData)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 179
 Columns: 4
@@ -260,6 +266,20 @@ $ wealth     &lt;dbl&gt; 34.308, 24.668, 106.746, 109.451, 10.820, 24.104, 88.83
 $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182378,…</code></pre>
 </div>
 </div>
+</section>
+<section id="a-note-on-v-dems-gdp-measure" class="slide level2 smaller">
+<h2>A Note on V-Dem’s GDP Measure</h2>
+<p><br></p>
+<ul>
+<li><code>e_gdppc</code> is <strong>not</strong> measured in dollars</li>
+<li>It is a model-based <strong>index</strong> that combines many GDP sources (World Bank, Maddison, Penn World Tables, etc.) going back to 1789 (Fariss et al.&nbsp;2022)</li>
+<li>In 2019 the US scores about 144 and India about 16
+<ul>
+<li>Not dollars, but the <em>ratios</em> are meaningful: the US is about 9× as wealthy per person as India</li>
+</ul></li>
+<li>Because we model <strong>log</strong> GDP, we interpret results as <strong>percentage</strong> changes (e.g., doubling GDP), which doesn’t depend on the units</li>
+<li>Lesson: always check the codebook before putting a dollar sign on a variable!</li>
+</ul>
 </section>
 <section id="plot-the-relationship" class="slide level2">
 <h2>Plot the Relationship</h2>
@@ -273,11 +293,11 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
 <h2>Plot the Relationship</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(modelData, <span class="fu">aes</span>(<span class="at">x =</span> wealth, <span class="at">y =</span> lib_dem)) <span class="sc">+</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"#E48957"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb3-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GPD per capita"</span>, <span class="at">y =</span> <span class="st">"Liberal Democracy Index"</span>) <span class="sc">+</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="fu">ggplot</span>(modelData, <span class="fu">aes</span>(<span class="at">x =</span> wealth, <span class="at">y =</span> lib_dem)) <span class="sc">+</span></span>
+<span id="cb3-2"><a aria-label="2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a aria-label="3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"#E48957"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per capita (V-Dem index)"</span>, <span class="at">y =</span> <span class="st">"Liberal Democracy Index"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a aria-label="5"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="using-the-scales-package" class="slide level2">
@@ -288,15 +308,15 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
 <h2>Using the Scales Package</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="1,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(modelData, <span class="fu">aes</span>(<span class="at">x =</span> wealth, <span class="at">y =</span> lib_dem)) <span class="sc">+</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"#E48957"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">scale_x_log10</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">"k"</span>)) <span class="sc">+</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-6"><a></a>    <span class="at">title =</span> <span class="st">"Wealth and Democracy, 2019"</span>,</span>
-<span id="cb4-7"><a></a>    <span class="at">x =</span> <span class="st">"GPD per capita"</span>, </span>
-<span id="cb4-8"><a></a>    <span class="at">y =</span> <span class="st">"Liberal Democracy Index"</span>) <span class="sc">+</span></span>
-<span id="cb4-9"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" data-code-line-numbers="1,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="fu">ggplot</span>(modelData, <span class="fu">aes</span>(<span class="at">x =</span> wealth, <span class="at">y =</span> lib_dem)) <span class="sc">+</span></span>
+<span id="cb4-2"><a aria-label="2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-3"><a aria-label="3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"#E48957"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a aria-label="4"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a aria-label="5"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-6"><a aria-label="6"></a>    <span class="at">title =</span> <span class="st">"Wealth and Democracy, 2019"</span>,</span>
+<span id="cb4-7"><a aria-label="7"></a>    <span class="at">x =</span> <span class="st">"GDP per capita (V-Dem index, log scale)"</span>, </span>
+<span id="cb4-8"><a aria-label="8"></a>    <span class="at">y =</span> <span class="st">"Liberal Democracy Index"</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a aria-label="9"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="models-as-functions" class="slide level2">
@@ -336,11 +356,11 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
 <p><br></p>
 <p>Linear model with one explanatory variable…</p>
 <ul>
-<li class="fragment"><span class="math inline">\(Y = a + bX\)</span></li>
-<li class="fragment"><span class="math inline">\(Y\)</span> is the outcome variable</li>
-<li class="fragment"><span class="math inline">\(X\)</span> is the explanatory variable</li>
-<li class="fragment"><span class="math inline">\(a\)</span> is the intercept: the predicted value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span> is equal to 0</li>
-<li class="fragment"><span class="math inline">\(b\)</span> is the slope of the line [remember rise over run!]</li>
+<li class="fragment"><span class="math inline">\(y = b_0 + b_1 x\)</span></li>
+<li class="fragment"><span class="math inline">\(y\)</span> is the outcome variable</li>
+<li class="fragment"><span class="math inline">\(x\)</span> is the explanatory variable</li>
+<li class="fragment"><span class="math inline">\(b_0\)</span> is the intercept: the predicted value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is equal to 0</li>
+<li class="fragment"><span class="math inline">\(b_1\)</span> is the slope of the line [remember rise over run!]</li>
 </ul>
 </section>
 <section id="quant-lingo-1" class="slide level2 smaller">
@@ -350,11 +370,11 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
 <li class="fragment"><strong>Predicted value:</strong> Output of the <strong>model function</strong>
 <ul>
 <li class="fragment">The model function gives the typical (expected) value of the response variable <em>conditioning</em> on the explanatory variables</li>
-<li class="fragment">We often call this <span class="math inline">\(\hat{Y}\)</span> to differentiate the predicted value from an observed value of Y in the data</li>
+<li class="fragment">We often call this <span class="math inline">\(\hat{y}\)</span> to differentiate the predicted value from an observed value of <span class="math inline">\(y\)</span> in the data</li>
 </ul></li>
 <li class="fragment"><strong>Residuals:</strong> A measure of how far each case is from its predicted value (based on a particular model)
 <ul>
-<li class="fragment">Residual = Observed value (<span class="math inline">\(Y\)</span>) - Predicted value (<span class="math inline">\(\hat{Y}\)</span>)</li>
+<li class="fragment">Residual = Observed value (<span class="math inline">\(y\)</span>) - Predicted value (<span class="math inline">\(\hat{y}\)</span>)</li>
 <li class="fragment">How far above/below the expected value each case is</li>
 </ul></li>
 </ul>
@@ -365,49 +385,49 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
 <img data-src="week-9.1_files/figure-revealjs/unnamed-chunk-1-1.png" style="width:60.0%" class="r-stretch"></section>
 <section id="linear-model" class="slide level2">
 <h2>Linear Model</h2>
-<p><span class="math inline">\(\hat{Y} = a  + b \times X\)</span></p>
-<p><span class="math inline">\(\hat{Y} = 0.01  + 0.13 \times X\)</span></p>
+<p><span class="math inline">\(\hat{y} = b_0 + b_1 \times x\)</span></p>
+<p><span class="math inline">\(\hat{y} = 0.01 + 0.13 \times x\)</span></p>
 
 <img data-src="week-9.1_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="linear-model-interpretation" class="slide level2">
 <h2>Linear Model: Interpretation</h2>
 <p><br></p>
-<div class="line-block"><span class="math inline">\(\hat{Y} = a  + b \times X\)</span><br>
-<span class="math inline">\(\hat{Y} = 0.01  + 0.13 \times X\)</span></div>
-<p>What is the interpretation of our estimate of <span class="math inline">\(a\)</span>?</p>
+<div class="line-block"><span class="math inline">\(\hat{y} = b_0 + b_1 \times x\)</span><br>
+<span class="math inline">\(\hat{y} = 0.01 + 0.13 \times x\)</span></div>
+<p>What is the interpretation of our estimate of <span class="math inline">\(b_0\)</span>?</p>
 <div class="fragment">
 <p><br></p>
-<div class="line-block"><span class="math inline">\(\hat{Y} = 0.01  + 0.13 \times 0\)</span><br>
-<span class="math inline">\(\hat{Y} = 0.01\)</span></div>
-<p><span class="math inline">\(a\)</span> is our predicted level of democracy when GDP per capita is 0.</p>
+<div class="line-block"><span class="math inline">\(\hat{y} = 0.01 + 0.13 \times 0\)</span><br>
+<span class="math inline">\(\hat{y} = 0.01\)</span></div>
+<p><span class="math inline">\(b_0\)</span> is our predicted level of democracy when log GDP per capita is 0 (i.e., when the GDP index equals 1).</p>
 </div>
 </section>
 <section id="linear-model-interpretation-1" class="slide level2">
 <h2>Linear Model: Interpretation</h2>
 <p><br></p>
-<div class="line-block"><span class="math inline">\(\hat{Y} = a  + b \times X\)</span><br>
-<span class="math inline">\(\hat{Y} = 0.01  + 0.13 \times X\)</span></div>
-<p>What is interpretation of our estimate of <span class="math inline">\(b\)</span>?</p>
+<div class="line-block"><span class="math inline">\(\hat{y} = b_0 + b_1 \times x\)</span><br>
+<span class="math inline">\(\hat{y} = 0.01 + 0.13 \times x\)</span></div>
+<p>What is interpretation of our estimate of <span class="math inline">\(b_1\)</span>?</p>
 <div class="fragment">
 <p><br></p>
-<div class="line-block"><span class="math inline">\(\hat{Y} = a  + \frac{Rise}{Run} \times X\)</span><br>
-<span class="math inline">\(\hat{Y} = a  + \frac{Change Y}{Change X} \times X\)</span></div>
+<div class="line-block"><span class="math inline">\(\hat{y} = b_0 + \frac{Rise}{Run} \times x\)</span><br>
+<span class="math inline">\(\hat{y} = b_0 + \frac{Change\ y}{Change\ x} \times x\)</span></div>
 </div>
 </section>
 <section id="linear-model-interpretation-2" class="slide level2 smaller">
 <h2>Linear Model: Interpretation</h2>
 <p><br></p>
-<div class="line-block"><span class="math inline">\(b = \frac{Change Y}{Change X}\)</span><br>
-<span class="math inline">\(0.13 = \frac{Change Y}{Change X}\)</span><br>
-<span class="math inline">\({Change Y} = 0.13 * {ChangeX}\)</span></div>
+<div class="line-block"><span class="math inline">\(b_1 = \frac{Change\ y}{Change\ x}\)</span><br>
+<span class="math inline">\(0.13 = \frac{Change\ y}{Change\ x}\)</span><br>
+<span class="math inline">\(Change\ y = 0.13 \times Change\ x\)</span></div>
 <div class="fragment">
 <p><br></p>
-<div class="line-block">When <span class="math inline">\(ChangeX = 1\)</span>:<br>
-<span class="math inline">\({Change Y = 0.13}\)</span></div>
+<div class="line-block">When <span class="math inline">\(Change\ x = 1\)</span>:<br>
+<span class="math inline">\(Change\ y = 0.13\)</span></div>
 </div>
 <div class="fragment">
 <p><br></p>
-<div class="line-block"><span class="math inline">\(b\)</span> is the predicted change in <span class="math inline">\(Y\)</span> <strong>associated with</strong> a ONE unit change in X.</div>
+<div class="line-block"><span class="math inline">\(b_1\)</span> is the predicted change in <span class="math inline">\(y\)</span> <strong>associated with</strong> a ONE unit change in <span class="math inline">\(x\)</span>.</div>
 </div>
 </section>
 <section id="linear-model-interpretation-3" class="slide level2">
@@ -438,20 +458,20 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
 <section id="your-task" class="slide level2">
 <h2>Your Task</h2>
 <p><br></p>
-<p>An economist is interested in the relationship between years of education and hourly wages. They estimate a linear model with estimates of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> as follows:</p>
+<p>An economist is interested in the relationship between years of education and hourly wages. They estimate a linear model with estimates of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> as follows:</p>
 <p><br></p>
-<p><span class="math inline">\(\hat{Y} = 9 + 1.60*{YrsEdu}\)</span></p>
+<p><span class="math inline">\(\hat{y} = 9 + 1.60 \times YrsEdu\)</span></p>
 <p><br></p>
-<div class="line-block">1. Interpret <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span><br>
+<div class="line-block">1. Interpret <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span><br>
 2. What is the predicted hourly wage for those with 10 years of education?</div>
 </section>
 <section id="next-step" class="slide level2">
 <h2>Next step</h2>
 <p><br></p>
 <ul>
-<li>Linear model with one predictor: <span class="math inline">\(Y = a + bX\)</span></li>
+<li>Linear model with one predictor: <span class="math inline">\(y = b_0 + b_1 x\)</span></li>
 <li>For any given data…</li>
-<li>How do we figure out what the best values are for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>??</li>
+<li>How do we figure out what the best values are for <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>??</li>
 </ul>
 
 
@@ -648,7 +668,7 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -760,13 +780,14 @@ $ log_wealth &lt;dbl&gt; 3.535379, 3.205507, 4.670452, 4.695477, 2.381396, 3.182
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

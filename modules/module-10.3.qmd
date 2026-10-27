@@ -23,20 +23,13 @@ execute:
 #| code-fold: true
 
 library(tidyverse)
-library(vdemlite)
+library(vdemdata)
 
-# Load V-Dem data for 2019
-model_data <- fetchdem(
-  indicators = c(
-  "v2x_libdem", 
-  "e_gdppc", 
-  "v2cacamps",
-  "v2x_gender",
-  "v2x_corr",
-  "e_regionpol_6C"),
-  start_year = 2006, 
-  end_year = 2006
-  ) |>
+# Load V-Dem data for 2006
+model_data <- vdem |>
+  filter(year == 2006) |>
+  select(country_name, v2x_libdem, e_gdppc, v2cacamps,
+         v2x_gender, v2x_corr, e_regionpol_6C) |>
   rename(
     country = country_name, 
     lib_dem = v2x_libdem, 
