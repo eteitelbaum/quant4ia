@@ -9,3 +9,6 @@
 .DS_Store
 
 **/*.quarto_ipynb
+
+# multiplex speaker views contain the presenter secret
+*-speaker.html

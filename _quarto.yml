@@ -5,6 +5,7 @@ project:
     # Orphan draft modules (not in nav/schedule); module-4.11 needs a Census API key.
     - "!modules/module-4.11.qmd"
     - "!modules/module-4.22.qmd"
+  post-render: move-speaker-views.R
 
 website:
   page-navigation: true
