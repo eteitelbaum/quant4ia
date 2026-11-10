@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-09-21">
+  <meta name="dcterms.date" content="2026-11-10">
   <title>IAFF 6501 -- Fall 2026 – Logistic Regression: Motivation and Model</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -193,7 +199,7 @@
   <link href="../site_libs/countdown-0.6.0/countdown.css" rel="stylesheet">
   <script src="../site_libs/countdown-0.6.0/countdown.js"></script>
 <meta property="og:title" content="Logistic Regression: Motivation and Model – IAFF 6501 – Fall 2026">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Logistic Regression: Motivation and Model – IAFF 6501 – Fall 2026">
 <meta name="twitter:card" content="summary">
 </head>
@@ -207,7 +213,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">September 21, 2026</p>
+  <p class="date">November 10, 2026</p>
 </section>
 <section>
 <section id="binary-outcomes" class="title-slide slide level1 center">
@@ -317,6 +323,23 @@
 </ul>
 <p><span class="math display">\[p_i = \frac{\exp(\beta_0+\beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})}{1+\exp(\beta_0+\beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})}\]</span></p>
 </section>
+<section id="how-are-the-coefficients-estimated" class="slide level2 smaller">
+<h2>How Are the Coefficients Estimated?</h2>
+<p><br></p>
+<ul>
+<li>OLS chooses the <span class="math inline">\(\beta\)</span>s that minimize squared errors, but that doesn’t work well for a 0/1 outcome</li>
+<li>Logistic regression uses <strong>maximum likelihood estimation (MLE)</strong></li>
+<li>The idea: find the <span class="math inline">\(\beta\)</span>s that make the outcomes we actually observed <em>most likely</em></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>R tries some <span class="math inline">\(\beta\)</span>s → computes <span class="math inline">\(\eta_i\)</span> → converts to <span class="math inline">\(p_i\)</span> → checks how well the <span class="math inline">\(p_i\)</span> fit the 0s and 1s → adjusts the <span class="math inline">\(\beta\)</span>s and repeats</li>
+<li>If a country had a conflict onset (<span class="math inline">\(y_i = 1\)</span>), we want its <span class="math inline">\(p_i\)</span> to be high; if not (<span class="math inline">\(y_i = 0\)</span>), we want it to be low</li>
+<li><span class="math inline">\(\eta_i\)</span> is never fit to <span class="math inline">\(y_i\)</span> directly—it only connects to the data through <span class="math inline">\(p_i\)</span></li>
+<li><code>glm()</code> does all of this for you</li>
+</ul>
+</div>
+</section>
 <section id="a-worked-example" class="slide level2 smaller">
 <h2>A Worked Example</h2>
 <p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = -1.16 - 0.33 \times \text{logGDPpc}\]</span></p>
@@ -390,17 +413,17 @@
 <h2>Using the <code>peacesciencer</code> Package</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(peacesciencer)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>conflict_df <span class="ot">&lt;-</span> <span class="fu">create_stateyears</span>(<span class="at">system =</span> <span class="st">'gw'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1946</span><span class="sc">:</span><span class="dv">1999</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a></a>  <span class="fu">add_ucdp_acd</span>(<span class="at">type=</span><span class="fu">c</span>(<span class="st">"intrastate"</span>), <span class="at">only_wars =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a></a>  <span class="fu">add_democracy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a></a>  <span class="fu">add_creg_fractionalization</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a></a>  <span class="fu">add_sdp_gdp</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">add_rugged_terrain</span>()</span>
-<span id="cb1-10"><a></a></span>
-<span id="cb1-11"><a></a><span class="fu">glimpse</span>(conflict_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">library</span>(peacesciencer)</span>
+<span id="cb1-2"><a aria-label="2"></a></span>
+<span id="cb1-3"><a aria-label="3"></a>conflict_df <span class="ot">&lt;-</span> <span class="fu">create_stateyears</span>(<span class="at">system =</span> <span class="st">'gw'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1946</span><span class="sc">:</span><span class="dv">1999</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a aria-label="5"></a>  <span class="fu">add_ucdp_acd</span>(<span class="at">type=</span><span class="fu">c</span>(<span class="st">"intrastate"</span>), <span class="at">only_wars =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a aria-label="6"></a>  <span class="fu">add_democracy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a aria-label="7"></a>  <span class="fu">add_creg_fractionalization</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a aria-label="8"></a>  <span class="fu">add_sdp_gdp</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a aria-label="9"></a>  <span class="fu">add_rugged_terrain</span>()</span>
+<span id="cb1-10"><a aria-label="10"></a></span>
+<span id="cb1-11"><a aria-label="11"></a><span class="fu">glimpse</span>(conflict_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,624
 Columns: 22
@@ -412,10 +435,10 @@ $ ucdpongoing    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 $ ucdponset      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
 $ maxintensity   &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
 $ conflict_ids   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ euds           &lt;dbl&gt; 1.293985, 1.308359, 1.343539, 1.330836, 1.354015, 1.350…
-$ aeuds          &lt;dbl&gt; 0.4862558, 0.5006298, 0.5358093, 0.5231064, 0.5462858, …
+$ euds           &lt;dbl&gt; 0.9644538, 0.9644538, 0.9928312, 0.9810480, 1.0013730, …
+$ aeuds          &lt;dbl&gt; 0.5677531, 0.5677531, 0.5961305, 0.5843473, 0.6046723, …
 $ polity2        &lt;dbl&gt; 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9…
-$ v2x_polyarchy  &lt;dbl&gt; 0.603, 0.607, 0.599, 0.580, 0.585, 0.611, 0.611, 0.612,…
+$ v2x_polyarchy  &lt;dbl&gt; 0.602, 0.611, 0.603, 0.580, 0.585, 0.612, 0.611, 0.606,…
 $ ethfrac        &lt;dbl&gt; 0.2226323, 0.2248701, 0.2271561, 0.2294918, 0.2318781, …
 $ ethpol         &lt;dbl&gt; 0.4152487, 0.4186156, 0.4220368, 0.4255134, 0.4290458, …
 $ relfrac        &lt;dbl&gt; 0.4980802, 0.5009111, 0.5037278, 0.5065309, 0.5093204, …
@@ -442,11 +465,11 @@ $ newlmtnest     &lt;dbl&gt; 3.214868, 3.214868, 3.214868, 3.214868, 3.214868, 3
 <h2>Bivariate Logistic Regression</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>conflict_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> wbgdppc2011est,</span>
-<span id="cb3-2"><a></a>                      <span class="at">data =</span> conflict_df,</span>
-<span id="cb3-3"><a></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb3-4"><a></a></span>
-<span id="cb3-5"><a></a><span class="fu">summary</span>(conflict_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>conflict_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> wbgdppc2011est,</span>
+<span id="cb3-2"><a aria-label="2"></a>                      <span class="at">data =</span> conflict_df,</span>
+<span id="cb3-3"><a aria-label="3"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb3-4"><a aria-label="4"></a></span>
+<span id="cb3-5"><a aria-label="5"></a><span class="fu">summary</span>(conflict_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -679,7 +702,7 @@ Number of Fisher Scoring iterations: 7</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -791,13 +814,14 @@ Number of Fisher Scoring iterations: 7</code></pre>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -280,6 +280,8 @@ for logistic regression.
 
 The key changes are switching from `lm()` to `glm()` and adding the `family = "binomial"` argument to specify we're working with binary data. This family specification tells R to use the logit link function automatically, handling all the mathematical transformations we discussed.
 
+There is one more important difference under the hood: how the coefficients are estimated. Linear regression uses ordinary least squares (OLS), which chooses the $\beta$s that minimize the squared distance between the observed and predicted values of $y$. That approach doesn't work well for a binary outcome, so logistic regression uses **maximum likelihood estimation (MLE)** instead. The idea is to find the values of $\beta$ that make the outcomes we actually observed *most likely*. R starts with a guess for the $\beta$s, computes the linear predictor $\eta_i$ for every observation, converts each $\eta_i$ to a probability $p_i$ using the inverse logit, and then checks how well those probabilities match the observed 0s and 1s. Countries that experienced a conflict onset should get high predicted probabilities, and countries that did not should get low ones. R then adjusts the $\beta$s and repeats until it can't improve the fit any further. Notice that $\eta_i$ is never fit to $y_i$ directly—it only connects to the data through $p_i$. You won't need to do any of this by hand, but it helps to know that the coefficients `glm()` reports come from this process rather than from OLS.
+
 Let's start with a simple bivariate example, examining how GDP per capita relates to conflict onset:
 
 ```{r}

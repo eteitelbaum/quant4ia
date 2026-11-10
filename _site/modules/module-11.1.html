@@ -2,14 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.10.19">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Module 11.1 – IAFF 6501 – Fall 2026</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -56,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -89,14 +94,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-6ec1ea2183979a90750e7180bf9040de.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f428fda71a3abb5b1b9c21151da8fd61.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a80805fb9204df0454a85aec670eb5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9bbf5fa004a0676d7f26111dc3fdfdb2.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7c4110837d4a72e4e7962681f07c1561.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-43e62ad85f92e2ddc80fafd6d77450a1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7b232ce752f883ea70c603695f82d85b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d9bc93736d353b3a39c419978f381e19.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -122,7 +127,7 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -133,7 +138,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -151,7 +156,7 @@ window.Quarto = {
 <meta property="og:title" content="Module 11.1 – IAFF 6501 – Fall 2026">
 <meta property="og:description" content="Logistic Regression: Motivation and Model">
 <meta property="og:image" content="https://quant4ia.rocks/modules/module-11.1_files/figure-html/sigmoid_function-1.png">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta property="og:image:height" content="960">
 <meta property="og:image:width" content="1344">
 <meta name="twitter:title" content="Module 11.1 – IAFF 6501 – Fall 2026">
@@ -341,7 +346,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="../images/iaff6501-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://blackboard.gwu.edu" title="Blackboard" class="quarto-navigation-tool px-1" aria-label="Blackboard"><i class="bi bi-mortarboard-fill"></i></a>
     <a href="https://classroom.github.com" title="Github Classroom" class="quarto-navigation-tool px-1" aria-label="Github Classroom"><i class="bi bi-github"></i></a>
@@ -749,7 +754,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Prework
+<span class="screen-reader-only">Tip</span>Prework
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -775,7 +780,7 @@ Prework
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -819,7 +824,7 @@ Your Turn!!
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -852,7 +857,7 @@ Your Turn!!
 </section><section id="the-logistic-regression-model" class="level2"><h2 class="anchored" data-anchor-id="the-logistic-regression-model">The Logistic Regression Model</h2>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/xuTiAW0OR40?si=EAX9wQ6OsZL6wMwn" title="Logistic Regression" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section><section id="the-sigmoid-function-the-key-to-valid-probabilities" class="level2"><h2 class="anchored" data-anchor-id="the-sigmoid-function-the-key-to-valid-probabilities">The Sigmoid Function: The Key to Valid Probabilities</h2>
-<p>Remember our fundamental problem from Module 5.1: linear regression can predict impossible probabilities like -0.3 or 1.7 when we apply it to binary outcomes. We need a mathematical function that can take any real number (from negative infinity to positive infinity) and transform it into a valid probability between 0 and 1.</p>
+<p>Remember our fundamental problem from earlier in this module: linear regression can predict impossible probabilities like -0.3 or 1.7 when we apply it to binary outcomes. We need a mathematical function that can take any real number (from negative infinity to positive infinity) and transform it into a valid probability between 0 and 1.</p>
 <p>Enter the <strong>sigmoid function</strong> (also called the logistic function). The sigmoid function is defined as:</p>
 <p><span class="math display">\[\sigma(z) = \frac{1}{1 + e^{-z}}\]</span></p>
 <p>where <span class="math inline">\(z\)</span> can be any real number, and <span class="math inline">\(\sigma(z)\)</span> will always be between 0 and 1.</p>
@@ -882,7 +887,7 @@ Your Turn!!
 </div>
 <p>The term <span class="math inline">\(\frac{p}{1-p}\)</span> in the logit function is called the <strong>odds</strong>. When <span class="math inline">\(p = 0.5\)</span> (equal chance of success and failure), the odds equal 1, and <span class="math inline">\(\log(1) = 0\)</span>. When <span class="math inline">\(p &gt; 0.5\)</span>, the odds are greater than 1, and the logit is positive. When <span class="math inline">\(p &lt; 0.5\)</span>, the odds are less than 1, and the logit is negative.</p>
 </section><section id="the-complete-logistic-regression-model" class="level2"><h2 class="anchored" data-anchor-id="the-complete-logistic-regression-model">The Complete Logistic Regression Model</h2>
-<p>Now we can put together the complete picture of how logistic regression works. Remember from Module 5.1 that all GLMs have three components:</p>
+<p>Now we can put together the complete picture of how logistic regression works. Remember from earlier in this module that all GLMs have three components:</p>
 <ol type="1">
 <li>
 <strong>Distribution</strong>: <span class="math inline">\(y_i \sim \text{Bernoulli}(p_i)\)</span> (each observation is a Bernoulli trial)</li>
@@ -901,7 +906,7 @@ Your Turn!!
 </section><section id="worked-example-logistic-regression-with-conflict-onset-data" class="level2"><h2 class="anchored" data-anchor-id="worked-example-logistic-regression-with-conflict-onset-data">Worked Example: Logistic Regression with Conflict Onset Data</h2>
 <p>Let’s implement logistic regression using our conflict onset example. We can use data from the <code>peacesciencer</code> package. The <code><a href="https://rdrr.io/pkg/peacesciencer/man/create_stateyears.html">create_stateyears()</a></code> function will help us set up a dataset where each row represents one country in one year, and our binary outcome variable will indicate whether a civil war began in that country in that year. Then we add different sets of predictors using <code>peacesciencer</code> “add” functions like <code><a href="https://rdrr.io/pkg/peacesciencer/man/add_ucdp_acd.html">add_ucdp_acd()</a></code>, <code><a href="https://rdrr.io/pkg/peacesciencer/man/add_democracy.html">add_democracy()</a></code>, and others to create a rich dataset for our analysis.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/svmiller/peacesciencer/">peacesciencer</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/svmiller/peacesciencer/">peacesciencer</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Create the conflict dataset</span></span>
@@ -914,7 +919,7 @@ Your Turn!!
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/peacesciencer/man/add_rugged_terrain.html">add_rugged_terrain</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Take a look at our data</span></span>
-<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">conflict_df</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">conflict_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,624
 Columns: 22
@@ -926,10 +931,10 @@ $ ucdpongoing    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 $ ucdponset      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
 $ maxintensity   &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
 $ conflict_ids   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ euds           &lt;dbl&gt; 1.293985, 1.308359, 1.343539, 1.330836, 1.354015, 1.350…
-$ aeuds          &lt;dbl&gt; 0.4862558, 0.5006298, 0.5358093, 0.5231064, 0.5462858, …
+$ euds           &lt;dbl&gt; 0.9644538, 0.9644538, 0.9928312, 0.9810480, 1.0013730, …
+$ aeuds          &lt;dbl&gt; 0.5677531, 0.5677531, 0.5961305, 0.5843473, 0.6046723, …
 $ polity2        &lt;dbl&gt; 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9…
-$ v2x_polyarchy  &lt;dbl&gt; 0.603, 0.607, 0.599, 0.580, 0.585, 0.611, 0.611, 0.612,…
+$ v2x_polyarchy  &lt;dbl&gt; 0.602, 0.611, 0.603, 0.580, 0.585, 0.612, 0.611, 0.606,…
 $ ethfrac        &lt;dbl&gt; 0.2226323, 0.2248701, 0.2271561, 0.2294918, 0.2318781, …
 $ ethpol         &lt;dbl&gt; 0.4152487, 0.4186156, 0.4220368, 0.4255134, 0.4290458, …
 $ relfrac        &lt;dbl&gt; 0.4980802, 0.5009111, 0.5037278, 0.5065309, 0.5093204, …
@@ -941,8 +946,8 @@ $ wbgdppc2011est &lt;dbl&gt; 9.794, 9.762, 9.764, 9.730, 9.752, 9.803, 9.821, 9.
 $ rugged         &lt;dbl&gt; 1.073, 1.073, 1.073, 1.073, 1.073, 1.073, 1.073, 1.073,…
 $ newlmtnest     &lt;dbl&gt; 3.214868, 3.214868, 3.214868, 3.214868, 3.214868, 3.214…</code></pre>
 </div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Check our binary outcome variable</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">conflict_df</span><span class="op">$</span><span class="va">ucdponset</span>, useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Check our binary outcome variable</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">conflict_df</span><span class="op">$</span><span class="va">ucdponset</span>, useNA <span class="op">=</span> <span class="st">"always"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    0    1 &lt;NA&gt; 
@@ -955,7 +960,7 @@ $ newlmtnest     &lt;dbl&gt; 3.214868, 3.214868, 3.214868, 3.214868, 3.214868, 3
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Understanding the Code
+<span class="screen-reader-only">Important</span>Understanding the Code
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -971,15 +976,16 @@ Understanding the Code
 <p><code>glm(binary_outcome ~ predictor1 + predictor2, data = mydata, family = "binomial")</code></p>
 <p>for logistic regression.</p>
 <p>The key changes are switching from <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> to <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> and adding the <code>family = "binomial"</code> argument to specify we’re working with binary data. This family specification tells R to use the logit link function automatically, handling all the mathematical transformations we discussed.</p>
+<p>There is one more important difference under the hood: how the coefficients are estimated. Linear regression uses ordinary least squares (OLS), which chooses the <span class="math inline">\(\beta\)</span>s that minimize the squared distance between the observed and predicted values of <span class="math inline">\(y\)</span>. That approach doesn’t work well for a binary outcome, so logistic regression uses <strong>maximum likelihood estimation (MLE)</strong> instead. The idea is to find the values of <span class="math inline">\(\beta\)</span> that make the outcomes we actually observed <em>most likely</em>. R starts with a guess for the <span class="math inline">\(\beta\)</span>s, computes the linear predictor <span class="math inline">\(\eta_i\)</span> for every observation, converts each <span class="math inline">\(\eta_i\)</span> to a probability <span class="math inline">\(p_i\)</span> using the inverse logit, and then checks how well those probabilities match the observed 0s and 1s. Countries that experienced a conflict onset should get high predicted probabilities, and countries that did not should get low ones. R then adjusts the <span class="math inline">\(\beta\)</span>s and repeats until it can’t improve the fit any further. Notice that <span class="math inline">\(\eta_i\)</span> is never fit to <span class="math inline">\(y_i\)</span> directly—it only connects to the data through <span class="math inline">\(p_i\)</span>. You won’t need to do any of this by hand, but it helps to know that the coefficients <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> reports come from this process rather than from OLS.</p>
 <p>Let’s start with a simple bivariate example, examining how GDP per capita relates to conflict onset:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fit a logistic regression model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Fit a logistic regression model</span></span>
 <span><span class="va">conflict_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">ucdponset</span> <span class="op">~</span> <span class="va">wbgdppc2011est</span>,</span>
 <span>                      data <span class="op">=</span> <span class="va">conflict_df</span>,</span>
 <span>                      family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Look at the summary</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">conflict_model</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">conflict_model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1012,7 +1018,7 @@ Number of Fisher Scoring iterations: 7</code></pre>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Your Turn!!
+<span class="screen-reader-only">Warning</span>Your Turn!!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1026,7 +1032,7 @@ Your Turn!!
 
 
 
-</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-fearon2003" class="csl-entry" role="listitem">
 Fearon, James D., and David D. Laitin. 2003. <span>“Ethnicity, Insurgency, and Civil War.”</span> <em>American Political Science Review</em> 97 (1): 75–90. <a href="https://doi.org/10.1017/S0003055403000534">https://doi.org/10.1017/S0003055403000534</a>.
 </div>
@@ -1094,13 +1100,14 @@ Fearon, James D., and David D. Laitin. 2003. <span>“Ethnicity, Insurgency, and
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

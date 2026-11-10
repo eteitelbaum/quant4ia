@@ -147,6 +147,21 @@ ggplot(d, aes(x = p, y = logit_p)) +
 
 $$p_i = \frac{\exp(\beta_0+\beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})}{1+\exp(\beta_0+\beta_1 x_{1,i} + \cdots + \beta_k x_{k,i})}$$
 
+## How Are the Coefficients Estimated? {.smaller}
+
+<br>
+
+- OLS chooses the $\beta$s that minimize squared errors, but that doesn't work well for a 0/1 outcome
+- Logistic regression uses **maximum likelihood estimation (MLE)**
+- The idea: find the $\beta$s that make the outcomes we actually observed *most likely*
+
+. . .
+
+- R tries some $\beta$s → computes $\eta_i$ → converts to $p_i$ → checks how well the $p_i$ fit the 0s and 1s → adjusts the $\beta$s and repeats
+- If a country had a conflict onset ($y_i = 1$), we want its $p_i$ to be high; if not ($y_i = 0$), we want it to be low
+- $\eta_i$ is never fit to $y_i$ directly—it only connects to the data through $p_i$
+- `glm()` does all of this for you
+
 ## A Worked Example {.smaller}
 
 $$\log\left(\frac{p}{1-p}\right) = -1.16 - 0.33 \times \text{logGDPpc}$$
