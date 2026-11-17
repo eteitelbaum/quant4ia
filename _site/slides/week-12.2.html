@@ -7,10 +7,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.31">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
-  <meta name="dcterms.date" content="2026-09-21">
+  <meta name="dcterms.date" content="2026-11-17">
   <title>IAFF 6501 -- Fall 2026 – Regression Tables</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,10 +18,16 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-6f686300d895ba9ae85b423acb810ec5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-17d701edc1cdbe1130dafee8120dcae3.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -194,7 +200,7 @@
   <script src="../site_libs/countdown-0.6.0/countdown.js"></script>
 <meta property="og:title" content="Regression Tables – IAFF 6501 – Fall 2026">
 <meta property="og:description" content="How to Interpret and Create">
-<meta property="og:site_name" content="IAFF 6501 -- Fall 2026">
+<meta property="og:site_name" content="IAFF 6501 – Fall 2026">
 <meta name="twitter:title" content="Regression Tables – IAFF 6501 – Fall 2026">
 <meta name="twitter:description" content="How to Interpret and Create">
 <meta name="twitter:card" content="summary">
@@ -210,7 +216,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">September 21, 2026</p>
+  <p class="date">November 17, 2026</p>
 </section>
 <section>
 <section id="multiple-logistic-regression" class="title-slide slide level1 center">
@@ -233,13 +239,13 @@
 <p>Download the data using the <code>peacesciencer</code> package if you haven’t already…</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>conflict_df <span class="ot">&lt;-</span> <span class="fu">create_stateyears</span>(<span class="at">system =</span> <span class="st">'gw'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1946</span><span class="sc">:</span><span class="dv">1999</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">add_ucdp_acd</span>(<span class="at">type=</span><span class="fu">c</span>(<span class="st">"intrastate"</span>), <span class="at">only_wars =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">add_democracy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a></a>  <span class="fu">add_creg_fractionalization</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a></a>  <span class="fu">add_sdp_gdp</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a></a>  <span class="fu">add_rugged_terrain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>conflict_df <span class="ot">&lt;-</span> <span class="fu">create_stateyears</span>(<span class="at">system =</span> <span class="st">'gw'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a aria-label="2"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1946</span><span class="sc">:</span><span class="dv">1999</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="fu">add_ucdp_acd</span>(<span class="at">type=</span><span class="fu">c</span>(<span class="st">"intrastate"</span>), <span class="at">only_wars =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="fu">add_democracy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a aria-label="5"></a>  <span class="fu">add_creg_fractionalization</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a aria-label="6"></a>  <span class="fu">add_sdp_gdp</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a aria-label="7"></a>  <span class="fu">add_rugged_terrain</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-1" class="slide level2">
@@ -247,23 +253,23 @@
 <p><br></p>
 <p>Example, including multiple predictors associated with conflict:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>conflict_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> ethfrac <span class="sc">+</span> relfrac <span class="sc">+</span> v2x_polyarchy <span class="sc">+</span></span>
-<span id="cb2-2"><a></a>                        rugged <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span> wbpopest,</span>
-<span id="cb2-3"><a></a>                      <span class="at">data =</span> conflict_df,</span>
-<span id="cb2-4"><a></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb2-5"><a></a></span>
-<span id="cb2-6"><a></a><span class="fu">tidy</span>(conflict_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>conflict_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> ethfrac <span class="sc">+</span> relfrac <span class="sc">+</span> v2x_polyarchy <span class="sc">+</span></span>
+<span id="cb2-2"><a aria-label="2"></a>                        rugged <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span> wbpopest,</span>
+<span id="cb2-3"><a aria-label="3"></a>                      <span class="at">data =</span> conflict_df,</span>
+<span id="cb2-4"><a aria-label="4"></a>                      <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb2-5"><a aria-label="5"></a></span>
+<span id="cb2-6"><a aria-label="6"></a><span class="fu">tidy</span>(conflict_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 5
   term           estimate std.error statistic   p.value
   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 (Intercept)     -5.38      1.41      -3.81  0.000138 
-2 ethfrac          0.709     0.372      1.91  0.0566   
-3 relfrac         -0.288     0.409     -0.702 0.482    
-4 v2x_polyarchy   -0.652     0.513     -1.27  0.204    
-5 rugged           0.0836    0.0756     1.11  0.269    
-6 wbgdppc2011est  -0.392     0.120     -3.26  0.00110  
-7 wbpopest         0.285     0.0677     4.20  0.0000263</code></pre>
+1 (Intercept)     -5.38      1.41      -3.82  0.000136 
+2 ethfrac          0.708     0.372      1.91  0.0567   
+3 relfrac         -0.287     0.409     -0.701 0.483    
+4 v2x_polyarchy   -0.660     0.514     -1.29  0.199    
+5 rugged           0.0836    0.0756     1.10  0.269    
+6 wbgdppc2011est  -0.391     0.120     -3.26  0.00112  
+7 wbpopest         0.285     0.0677     4.20  0.0000264</code></pre>
 </div>
 </div>
 </section>
@@ -273,29 +279,29 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># load the </span></span>
-<span id="cb4-2"><a></a><span class="fu">library</span>(marginaleffects)</span>
-<span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a><span class="co"># seledct some countries for a given year</span></span>
-<span id="cb4-5"><a></a>selected_countries <span class="ot">&lt;-</span> conflict_df <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a></a>  <span class="fu">filter</span>(</span>
-<span id="cb4-7"><a></a>    gw_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"United States of America"</span>, <span class="st">"Venezuela"</span>, <span class="st">"Rwanda"</span>),</span>
-<span id="cb4-8"><a></a>    year <span class="sc">==</span> <span class="dv">1999</span>)</span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a><span class="co"># calculate margins for the subset</span></span>
-<span id="cb4-11"><a></a>marg_effects <span class="ot">&lt;-</span> <span class="fu">predictions</span>(conflict_model, <span class="at">newdata =</span> selected_countries)</span>
-<span id="cb4-12"><a></a></span>
-<span id="cb4-13"><a></a><span class="co"># tidy the results</span></span>
-<span id="cb4-14"><a></a><span class="fu">tidy</span>(marg_effects) <span class="sc">|&gt;</span></span>
-<span id="cb4-15"><a></a>  <span class="fu">select</span>(estimate, p.value, conf.low, conf.high, gw_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a><span class="co"># load the </span></span>
+<span id="cb4-2"><a aria-label="2"></a><span class="fu">library</span>(marginaleffects)</span>
+<span id="cb4-3"><a aria-label="3"></a></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="co"># seledct some countries for a given year</span></span>
+<span id="cb4-5"><a aria-label="5"></a>selected_countries <span class="ot">&lt;-</span> conflict_df <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a aria-label="6"></a>  <span class="fu">filter</span>(</span>
+<span id="cb4-7"><a aria-label="7"></a>    gw_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"United States of America"</span>, <span class="st">"Venezuela"</span>, <span class="st">"Rwanda"</span>),</span>
+<span id="cb4-8"><a aria-label="8"></a>    year <span class="sc">==</span> <span class="dv">1999</span>)</span>
+<span id="cb4-9"><a aria-label="9"></a></span>
+<span id="cb4-10"><a aria-label="10"></a><span class="co"># calculate margins for the subset</span></span>
+<span id="cb4-11"><a aria-label="11"></a>marg_effects <span class="ot">&lt;-</span> <span class="fu">predictions</span>(conflict_model, <span class="at">newdata =</span> selected_countries)</span>
+<span id="cb4-12"><a aria-label="12"></a></span>
+<span id="cb4-13"><a aria-label="13"></a><span class="co"># tidy the results</span></span>
+<span id="cb4-14"><a aria-label="14"></a><span class="fu">tidy</span>(marg_effects) <span class="sc">|&gt;</span></span>
+<span id="cb4-15"><a aria-label="15"></a>  <span class="fu">select</span>(estimate, p.value, conf.low, conf.high, gw_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 5
   estimate  p.value conf.low conf.high gw_name                 
      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;                   
-1   0.0115 1.63e-28  0.00527    0.0250 United States of America
-2   0.0136 1.88e-79  0.00876    0.0211 Venezuela               
-3   0.0331 3.17e-38  0.0201     0.0541 Rwanda                  </code></pre>
+1   0.0115 1.65e-28  0.00526    0.0249 United States of America
+2   0.0136 5.77e-80  0.00878    0.0210 Venezuela               
+3   0.0331 3.00e-38  0.0201     0.0540 Rwanda                  </code></pre>
 </div>
 </div>
 </section>
@@ -338,227 +344,658 @@
 <h2>Run Multiple Models</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>ethnicity <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> ethfrac <span class="sc">+</span> relfrac <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span> wbpopest, <span class="co"># store each model in an object</span></span>
-<span id="cb6-2"><a></a>                  <span class="at">data =</span> conflict_df,</span>
-<span id="cb6-3"><a></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb6-4"><a></a></span>
-<span id="cb6-5"><a></a>democracy <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> v2x_polyarchy <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span>  wbpopest,</span>
-<span id="cb6-6"><a></a>                  <span class="at">data =</span> conflict_df,</span>
-<span id="cb6-7"><a></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a>terrain <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> rugged <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span> wbpopest ,</span>
-<span id="cb6-10"><a></a>                  <span class="at">data =</span> conflict_df,</span>
-<span id="cb6-11"><a></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb6-12"><a></a></span>
-<span id="cb6-13"><a></a>full_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> ethfrac <span class="sc">+</span> relfrac <span class="sc">+</span> v2x_polyarchy <span class="sc">+</span> rugged <span class="sc">+</span></span>
-<span id="cb6-14"><a></a>                        wbgdppc2011est <span class="sc">+</span> wbpopest,</span>
-<span id="cb6-15"><a></a>                  <span class="at">data =</span> conflict_df,</span>
-<span id="cb6-16"><a></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>ethnicity <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> ethfrac <span class="sc">+</span> relfrac <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span> wbpopest, <span class="co"># store each model in an object</span></span>
+<span id="cb6-2"><a aria-label="2"></a>                  <span class="at">data =</span> conflict_df,</span>
+<span id="cb6-3"><a aria-label="3"></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb6-4"><a aria-label="4"></a></span>
+<span id="cb6-5"><a aria-label="5"></a>democracy <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> v2x_polyarchy <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span>  wbpopest,</span>
+<span id="cb6-6"><a aria-label="6"></a>                  <span class="at">data =</span> conflict_df,</span>
+<span id="cb6-7"><a aria-label="7"></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb6-8"><a aria-label="8"></a></span>
+<span id="cb6-9"><a aria-label="9"></a>terrain <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> rugged <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span> wbpopest ,</span>
+<span id="cb6-10"><a aria-label="10"></a>                  <span class="at">data =</span> conflict_df,</span>
+<span id="cb6-11"><a aria-label="11"></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb6-12"><a aria-label="12"></a></span>
+<span id="cb6-13"><a aria-label="13"></a>full_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> ethfrac <span class="sc">+</span> relfrac <span class="sc">+</span> v2x_polyarchy <span class="sc">+</span> rugged <span class="sc">+</span></span>
+<span id="cb6-14"><a aria-label="14"></a>                        wbgdppc2011est <span class="sc">+</span> wbpopest,</span>
+<span id="cb6-15"><a aria-label="15"></a>                  <span class="at">data =</span> conflict_df,</span>
+<span id="cb6-16"><a aria-label="16"></a>                  <span class="at">family =</span> <span class="st">"binomial"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="prep-data-for-display" class="slide level2">
 <h2>Prep Data for Display</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Ethnicity"</span> <span class="ot">=</span> ethnicity,  <span class="co"># store list of models in an object</span></span>
-<span id="cb7-2"><a></a>               <span class="st">"Democracy"</span> <span class="ot">=</span> democracy, </span>
-<span id="cb7-3"><a></a>               <span class="st">"Terrain"</span> <span class="ot">=</span> terrain, </span>
-<span id="cb7-4"><a></a>               <span class="st">"Full Model"</span> <span class="ot">=</span> full_model)</span>
-<span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a>coef_map <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ethfrac"</span> <span class="ot">=</span> <span class="st">"Ethnic Frac"</span>,  <span class="co"># map coefficients</span></span>
-<span id="cb7-7"><a></a>        <span class="st">"relfrac"</span> <span class="ot">=</span> <span class="st">"Religions Frac"</span>,     <span class="co">#(change names and order)</span></span>
-<span id="cb7-8"><a></a>        <span class="st">"v2x_polyarchy"</span> <span class="ot">=</span> <span class="st">"Polyarchy"</span>,</span>
-<span id="cb7-9"><a></a>        <span class="st">"rugged"</span> <span class="ot">=</span> <span class="st">"Terrain"</span>,</span>
-<span id="cb7-10"><a></a>        <span class="st">"wbgdppc2011est"</span> <span class="ot">=</span> <span class="st">"Per capita GDP"</span>,</span>
-<span id="cb7-11"><a></a>        <span class="st">"wbpopest"</span> <span class="ot">=</span> <span class="st">"Population"</span>,</span>
-<span id="cb7-12"><a></a>        <span class="st">"(Intercept)"</span> <span class="ot">=</span> <span class="st">"Intercept"</span>)</span>
-<span id="cb7-13"><a></a></span>
-<span id="cb7-14"><a></a>caption <span class="ot">=</span> <span class="st">"Table 1: Predictors of Conflict Onset"</span> <span class="co"># store caption</span></span>
-<span id="cb7-15"><a></a>reference <span class="ot">=</span> <span class="st">"See appendix for data sources."</span>      <span class="co"># store reference notes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"Ethnicity"</span> <span class="ot">=</span> ethnicity,  <span class="co"># store list of models in an object</span></span>
+<span id="cb7-2"><a aria-label="2"></a>               <span class="st">"Democracy"</span> <span class="ot">=</span> democracy, </span>
+<span id="cb7-3"><a aria-label="3"></a>               <span class="st">"Terrain"</span> <span class="ot">=</span> terrain, </span>
+<span id="cb7-4"><a aria-label="4"></a>               <span class="st">"Full Model"</span> <span class="ot">=</span> full_model)</span>
+<span id="cb7-5"><a aria-label="5"></a></span>
+<span id="cb7-6"><a aria-label="6"></a>coef_map <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ethfrac"</span> <span class="ot">=</span> <span class="st">"Ethnic Frac"</span>,  <span class="co"># map coefficients</span></span>
+<span id="cb7-7"><a aria-label="7"></a>        <span class="st">"relfrac"</span> <span class="ot">=</span> <span class="st">"Religions Frac"</span>,     <span class="co">#(change names and order)</span></span>
+<span id="cb7-8"><a aria-label="8"></a>        <span class="st">"v2x_polyarchy"</span> <span class="ot">=</span> <span class="st">"Polyarchy"</span>,</span>
+<span id="cb7-9"><a aria-label="9"></a>        <span class="st">"rugged"</span> <span class="ot">=</span> <span class="st">"Terrain"</span>,</span>
+<span id="cb7-10"><a aria-label="10"></a>        <span class="st">"wbgdppc2011est"</span> <span class="ot">=</span> <span class="st">"Per capita GDP"</span>,</span>
+<span id="cb7-11"><a aria-label="11"></a>        <span class="st">"wbpopest"</span> <span class="ot">=</span> <span class="st">"Population"</span>,</span>
+<span id="cb7-12"><a aria-label="12"></a>        <span class="st">"(Intercept)"</span> <span class="ot">=</span> <span class="st">"Intercept"</span>)</span>
+<span id="cb7-13"><a aria-label="13"></a></span>
+<span id="cb7-14"><a aria-label="14"></a>caption <span class="ot">=</span> <span class="st">"Table 1: Predictors of Conflict Onset"</span> <span class="co"># store caption</span></span>
+<span id="cb7-15"><a aria-label="15"></a>reference <span class="ot">=</span> <span class="st">"See appendix for data sources."</span>      <span class="co"># store reference notes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="display-the-models" class="slide level2 smaller">
+<section id="display-the-models" class="slide level2">
+<h2>Display the Models</h2>
+<p><br></p>
+<p>Note that you also need the <code>gt</code> package to display the table in this way…</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a><span class="fu">library</span>(modelsummary)</span>
+<span id="cb8-2"><a aria-label="2"></a><span class="fu">library</span>(gt)</span>
+<span id="cb8-3"><a aria-label="3"></a></span>
+<span id="cb8-4"><a aria-label="4"></a><span class="fu">modelsummary</span>(models,                      <span class="co"># display the table</span></span>
+<span id="cb8-5"><a aria-label="5"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,                <span class="co"># include stars for significance</span></span>
+<span id="cb8-6"><a aria-label="6"></a>             <span class="at">gof_map =</span> <span class="fu">c</span>(<span class="st">"nobs"</span>),         <span class="co"># goodness of fit stats to include</span></span>
+<span id="cb8-7"><a aria-label="7"></a>             <span class="at">coef_map =</span> coef_map,         <span class="co"># coefficient mapping</span></span>
+<span id="cb8-8"><a aria-label="8"></a>             <span class="at">title =</span> caption,             <span class="co"># title</span></span>
+<span id="cb8-9"><a aria-label="9"></a>             <span class="at">notes =</span> reference,           <span class="co"># source note</span></span>
+<span id="cb8-10"><a aria-label="10"></a>             <span class="at">output =</span> <span class="st">"gt"</span>)               <span class="co"># render with gt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="display-the-models-1" class="slide level2">
 <h2>Display the Models</h2>
 <div class="cell">
 <div class="cell-output-display">
-<!-- preamble start -->
+<div id="mcbipijdaz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mcbipijdaz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+#mcbipijdaz thead, #mcbipijdaz tbody, #mcbipijdaz tfoot, #mcbipijdaz tr, #mcbipijdaz td, #mcbipijdaz th {
+  border-style: none;
+}
 
-    <script>
-      // Create table-specific functions using external factory
-      const tableFns_y7blsc4we3k2hv51rs4y = TinyTable.createTableFunctions("tinytable_y7blsc4we3k2hv51rs4y");
-      // tinytable span after
-      window.addEventListener('load', function () {
-          var cellsToStyle = [
-            // tinytable style arrays after
-          { positions: [ { i: '15', j: 2 }, { i: '15', j: 3 }, { i: '15', j: 4 }, { i: '15', j: 5 } ], css_id: 'tinytable_css_m3a2tjv8zgau8gdytg14',}, 
-          { positions: [ { i: '14', j: 2 }, { i: '14', j: 3 }, { i: '14', j: 4 }, { i: '14', j: 5 } ], css_id: 'tinytable_css_djj45i7flzklfx8cio0k',}, 
-          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '9', j: 2 }, { i: '10', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '13', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '8', j: 3 }, { i: '9', j: 3 }, { i: '10', j: 3 }, { i: '11', j: 3 }, { i: '12', j: 3 }, { i: '13', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '6', j: 4 }, { i: '7', j: 4 }, { i: '8', j: 4 }, { i: '9', j: 4 }, { i: '10', j: 4 }, { i: '11', j: 4 }, { i: '12', j: 4 }, { i: '13', j: 4 }, { i: '1', j: 5 }, { i: '2', j: 5 }, { i: '3', j: 5 }, { i: '4', j: 5 }, { i: '5', j: 5 }, { i: '6', j: 5 }, { i: '7', j: 5 }, { i: '8', j: 5 }, { i: '9', j: 5 }, { i: '10', j: 5 }, { i: '11', j: 5 }, { i: '12', j: 5 }, { i: '13', j: 5 } ], css_id: 'tinytable_css_q6mz3sg251vaqxm5yglm',}, 
-          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 } ], css_id: 'tinytable_css_bh5t3nuej2a0tlxazehy',}, 
-          { positions: [ { i: '15', j: 1 } ], css_id: 'tinytable_css_xxf9ave7qiun0efd4orn',}, 
-          { positions: [ { i: '14', j: 1 } ], css_id: 'tinytable_css_bjd1ltgkrs0f6rirgzs6',}, 
-          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '10', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 }, { i: '13', j: 1 } ], css_id: 'tinytable_css_m78k3r5ft4k8bqqbicuy',}, 
-          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_nferj3elylsoex3jcyhx',}, 
-          ];
+#mcbipijdaz p {
+  margin: 0;
+  padding: 0;
+}
 
-          // Loop over the arrays to style the cells
-          cellsToStyle.forEach(function (group) {
-              group.positions.forEach(function (cell) {
-                  tableFns_y7blsc4we3k2hv51rs4y.styleCell(cell.i, cell.j, group.css_id);
-              });
-          });
-      });
-    </script>
+#mcbipijdaz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
-    <style>
-    /* tinytable css entries after */
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_m3a2tjv8zgau8gdytg14, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_m3a2tjv8zgau8gdytg14 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_djj45i7flzklfx8cio0k, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_djj45i7flzklfx8cio0k {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_q6mz3sg251vaqxm5yglm, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_q6mz3sg251vaqxm5yglm { text-align: center }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_bh5t3nuej2a0tlxazehy, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_bh5t3nuej2a0tlxazehy {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_xxf9ave7qiun0efd4orn, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_xxf9ave7qiun0efd4orn {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_bjd1ltgkrs0f6rirgzs6, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_bjd1ltgkrs0f6rirgzs6 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_m78k3r5ft4k8bqqbicuy, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_m78k3r5ft4k8bqqbicuy { text-align: left }
-    #tinytable_y7blsc4we3k2hv51rs4y td.tinytable_css_nferj3elylsoex3jcyhx, #tinytable_y7blsc4we3k2hv51rs4y th.tinytable_css_nferj3elylsoex3jcyhx {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    </style>
-    <div class="container">
-      <table class="tinytable" id="tinytable_y7blsc4we3k2hv51rs4y" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
-        <caption>Table 1: Predictors of Conflict Onset</caption>
-        <thead>
-              <tr>
-                <th scope="col" data-row="0" data-col="1"> </th>
-                <th scope="col" data-row="0" data-col="2">Ethnicity</th>
-                <th scope="col" data-row="0" data-col="3">Democracy</th>
-                <th scope="col" data-row="0" data-col="4">Terrain</th>
-                <th scope="col" data-row="0" data-col="5">Full Model</th>
-              </tr>
-        </thead>
-        <tfoot><tr><td colspan="5">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr>
-<tr><td colspan="5">See appendix for data sources.</td></tr></tfoot>
-        <tbody>
-                <tr>
-                  <td data-row="1" data-col="1">Ethnic Frac</td>
-                  <td data-row="1" data-col="2">0.733*</td>
-                  <td data-row="1" data-col="3"></td>
-                  <td data-row="1" data-col="4"></td>
-                  <td data-row="1" data-col="5">0.709+</td>
-                </tr>
-                <tr>
-                  <td data-row="2" data-col="1"></td>
-                  <td data-row="2" data-col="2">(0.365)</td>
-                  <td data-row="2" data-col="3"></td>
-                  <td data-row="2" data-col="4"></td>
-                  <td data-row="2" data-col="5">(0.372)</td>
-                </tr>
-                <tr>
-                  <td data-row="3" data-col="1">Religions Frac</td>
-                  <td data-row="3" data-col="2">-0.429</td>
-                  <td data-row="3" data-col="3"></td>
-                  <td data-row="3" data-col="4"></td>
-                  <td data-row="3" data-col="5">-0.288</td>
-                </tr>
-                <tr>
-                  <td data-row="4" data-col="1"></td>
-                  <td data-row="4" data-col="2">(0.409)</td>
-                  <td data-row="4" data-col="3"></td>
-                  <td data-row="4" data-col="4"></td>
-                  <td data-row="4" data-col="5">(0.409)</td>
-                </tr>
-                <tr>
-                  <td data-row="5" data-col="1">Polyarchy</td>
-                  <td data-row="5" data-col="2"></td>
-                  <td data-row="5" data-col="3">-0.801*</td>
-                  <td data-row="5" data-col="4"></td>
-                  <td data-row="5" data-col="5">-0.652</td>
-                </tr>
-                <tr>
-                  <td data-row="6" data-col="1"></td>
-                  <td data-row="6" data-col="2"></td>
-                  <td data-row="6" data-col="3">(0.390)</td>
-                  <td data-row="6" data-col="4"></td>
-                  <td data-row="6" data-col="5">(0.513)</td>
-                </tr>
-                <tr>
-                  <td data-row="7" data-col="1">Terrain</td>
-                  <td data-row="7" data-col="2"></td>
-                  <td data-row="7" data-col="3"></td>
-                  <td data-row="7" data-col="4">0.035</td>
-                  <td data-row="7" data-col="5">0.084</td>
-                </tr>
-                <tr>
-                  <td data-row="8" data-col="1"></td>
-                  <td data-row="8" data-col="2"></td>
-                  <td data-row="8" data-col="3"></td>
-                  <td data-row="8" data-col="4">(0.075)</td>
-                  <td data-row="8" data-col="5">(0.076)</td>
-                </tr>
-                <tr>
-                  <td data-row="9" data-col="1">Per capita GDP</td>
-                  <td data-row="9" data-col="2">-0.485***</td>
-                  <td data-row="9" data-col="3">-0.275***</td>
-                  <td data-row="9" data-col="4">-0.553***</td>
-                  <td data-row="9" data-col="5">-0.392**</td>
-                </tr>
-                <tr>
-                  <td data-row="10" data-col="1"></td>
-                  <td data-row="10" data-col="2">(0.104)</td>
-                  <td data-row="10" data-col="3">(0.059)</td>
-                  <td data-row="10" data-col="4">(0.092)</td>
-                  <td data-row="10" data-col="5">(0.120)</td>
-                </tr>
-                <tr>
-                  <td data-row="11" data-col="1">Population</td>
-                  <td data-row="11" data-col="2">0.278***</td>
-                  <td data-row="11" data-col="3">0.300***</td>
-                  <td data-row="11" data-col="4">0.296***</td>
-                  <td data-row="11" data-col="5">0.285***</td>
-                </tr>
-                <tr>
-                  <td data-row="12" data-col="1"></td>
-                  <td data-row="12" data-col="2">(0.067)</td>
-                  <td data-row="12" data-col="3">(0.051)</td>
-                  <td data-row="12" data-col="4">(0.050)</td>
-                  <td data-row="12" data-col="5">(0.068)</td>
-                </tr>
-                <tr>
-                  <td data-row="13" data-col="1">Intercept</td>
-                  <td data-row="13" data-col="2">-4.571***</td>
-                  <td data-row="13" data-col="3">-6.184***</td>
-                  <td data-row="13" data-col="4">-4.166***</td>
-                  <td data-row="13" data-col="5">-5.376***</td>
-                </tr>
-                <tr>
-                  <td data-row="14" data-col="1"></td>
-                  <td data-row="14" data-col="2">(1.323)</td>
-                  <td data-row="14" data-col="3">(0.967)</td>
-                  <td data-row="14" data-col="4">(1.140)</td>
-                  <td data-row="14" data-col="5">(1.410)</td>
-                </tr>
-                <tr>
-                  <td data-row="15" data-col="1">Num.Obs.</td>
-                  <td data-row="15" data-col="2">6364</td>
-                  <td data-row="15" data-col="3">6955</td>
-                  <td data-row="15" data-col="4">6840</td>
-                  <td data-row="15" data-col="5">6129</td>
-                </tr>
-        </tbody>
-      </table>
-    </div>
-<!-- hack to avoid NA insertion in last line -->
+#mcbipijdaz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mcbipijdaz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mcbipijdaz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mcbipijdaz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mcbipijdaz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mcbipijdaz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mcbipijdaz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mcbipijdaz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mcbipijdaz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mcbipijdaz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mcbipijdaz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mcbipijdaz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mcbipijdaz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mcbipijdaz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mcbipijdaz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcbipijdaz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mcbipijdaz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mcbipijdaz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mcbipijdaz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcbipijdaz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mcbipijdaz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcbipijdaz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mcbipijdaz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcbipijdaz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mcbipijdaz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcbipijdaz .gt_left {
+  text-align: left;
+}
+
+#mcbipijdaz .gt_center {
+  text-align: center;
+}
+
+#mcbipijdaz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mcbipijdaz .gt_font_normal {
+  font-weight: normal;
+}
+
+#mcbipijdaz .gt_font_bold {
+  font-weight: bold;
+}
+
+#mcbipijdaz .gt_font_italic {
+  font-style: italic;
+}
+
+#mcbipijdaz .gt_super {
+  font-size: 65%;
+}
+
+#mcbipijdaz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mcbipijdaz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mcbipijdaz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mcbipijdaz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mcbipijdaz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mcbipijdaz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mcbipijdaz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mcbipijdaz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mcbipijdaz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
+<caption>Table 1: Predictors of Conflict Onset</caption>
+<thead>
+<tr class="gt_col_headings header">
+<th id="a-" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Ethnicity" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Ethnicity</th>
+<th id="Democracy" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Democracy</th>
+<th id="Terrain" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Terrain</th>
+<th id="Full-Model" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Full Model</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Ethnic Frac</td>
+<td class="gt_row gt_center" headers="Ethnicity">0.733*</td>
+<td class="gt_row gt_center" headers="Democracy"></td>
+<td class="gt_row gt_center" headers="Terrain"></td>
+<td class="gt_row gt_center" headers="Full Model">0.708+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Ethnicity">(0.365)</td>
+<td class="gt_row gt_center" headers="Democracy"></td>
+<td class="gt_row gt_center" headers="Terrain"></td>
+<td class="gt_row gt_center" headers="Full Model">(0.372)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Religions Frac</td>
+<td class="gt_row gt_center" headers="Ethnicity">-0.429</td>
+<td class="gt_row gt_center" headers="Democracy"></td>
+<td class="gt_row gt_center" headers="Terrain"></td>
+<td class="gt_row gt_center" headers="Full Model">-0.287</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Ethnicity">(0.409)</td>
+<td class="gt_row gt_center" headers="Democracy"></td>
+<td class="gt_row gt_center" headers="Terrain"></td>
+<td class="gt_row gt_center" headers="Full Model">(0.409)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Polyarchy</td>
+<td class="gt_row gt_center" headers="Ethnicity"></td>
+<td class="gt_row gt_center" headers="Democracy">-0.806*</td>
+<td class="gt_row gt_center" headers="Terrain"></td>
+<td class="gt_row gt_center" headers="Full Model">-0.660</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Ethnicity"></td>
+<td class="gt_row gt_center" headers="Democracy">(0.391)</td>
+<td class="gt_row gt_center" headers="Terrain"></td>
+<td class="gt_row gt_center" headers="Full Model">(0.514)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Terrain</td>
+<td class="gt_row gt_center" headers="Ethnicity"></td>
+<td class="gt_row gt_center" headers="Democracy"></td>
+<td class="gt_row gt_center" headers="Terrain">0.035</td>
+<td class="gt_row gt_center" headers="Full Model">0.084</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Ethnicity"></td>
+<td class="gt_row gt_center" headers="Democracy"></td>
+<td class="gt_row gt_center" headers="Terrain">(0.075)</td>
+<td class="gt_row gt_center" headers="Full Model">(0.076)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Per capita GDP</td>
+<td class="gt_row gt_center" headers="Ethnicity">-0.485***</td>
+<td class="gt_row gt_center" headers="Democracy">-0.274***</td>
+<td class="gt_row gt_center" headers="Terrain">-0.553***</td>
+<td class="gt_row gt_center" headers="Full Model">-0.391**</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Ethnicity">(0.104)</td>
+<td class="gt_row gt_center" headers="Democracy">(0.059)</td>
+<td class="gt_row gt_center" headers="Terrain">(0.092)</td>
+<td class="gt_row gt_center" headers="Full Model">(0.120)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Population</td>
+<td class="gt_row gt_center" headers="Ethnicity">0.278***</td>
+<td class="gt_row gt_center" headers="Democracy">0.300***</td>
+<td class="gt_row gt_center" headers="Terrain">0.296***</td>
+<td class="gt_row gt_center" headers="Full Model">0.285***</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" "></td>
+<td class="gt_row gt_center" headers="Ethnicity">(0.067)</td>
+<td class="gt_row gt_center" headers="Democracy">(0.051)</td>
+<td class="gt_row gt_center" headers="Terrain">(0.050)</td>
+<td class="gt_row gt_center" headers="Full Model">(0.068)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Intercept</td>
+<td class="gt_row gt_center" headers="Ethnicity">-4.571***</td>
+<td class="gt_row gt_center" headers="Democracy">-6.185***</td>
+<td class="gt_row gt_center" headers="Terrain">-4.166***</td>
+<td class="gt_row gt_center" headers="Full Model">-5.380***</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=" " style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000"></td>
+<td class="gt_row gt_center" headers="Ethnicity" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">(1.323)</td>
+<td class="gt_row gt_center" headers="Democracy" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">(0.968)</td>
+<td class="gt_row gt_center" headers="Terrain" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">(1.140)</td>
+<td class="gt_row gt_center" headers="Full Model" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000">(1.410)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers=" ">Num.Obs.</td>
+<td class="gt_row gt_center" headers="Ethnicity">6364</td>
+<td class="gt_row gt_center" headers="Democracy">6955</td>
+<td class="gt_row gt_center" headers="Terrain">6840</td>
+<td class="gt_row gt_center" headers="Full Model">6129</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="5" class="gt_sourcenote">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td>
+</tr>
+<tr class="gt_sourcenotes even">
+<td colspan="5" class="gt_sourcenote">See appendix for data sources.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
 </div>
 </div>
 </section>
-<section id="your-turn-1" class="slide level2">
+<section id="your-turn-1" class="slide level2 smaller">
 <h2>Your Turn!</h2>
 <p><br></p>
 <ul>
-<li>Got to the <a href="https://svmiller.com/peacesciencer/reference/index.html">peacesciencer</a> documentation</li>
+<li>Go to the <a href="https://svmiller.com/peacesciencer/reference/index.html">peacesciencer</a> documentation</li>
 <li>How close are our data to F&amp;L’s?</li>
 <li>Could we change something to better approximate their results?</li>
 <li>Run multiple models using different predictors</li>
-<li>Display the models using <code>modelsummary</code></li>
+<li>Display the models in a regression table using <code>modelsummary</code></li>
+<li>Try rerunning with <code>exponentiate = TRUE</code></li>
 <li>Try to get as close to F&amp;L as you can!</li>
 </ul>
 <div class="cell">
@@ -579,39 +1016,37 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">modelsummary</span>(conflict_model, </span>
-<span id="cb8-2"><a></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,  </span>
-<span id="cb8-3"><a></a>             <span class="at">gof_map =</span> <span class="fu">c</span>(<span class="st">"nobs"</span>),</span>
-<span id="cb8-4"><a></a>             <span class="at">coef_map =</span> coef_map,</span>
-<span id="cb8-5"><a></a>             <span class="at">title =</span> caption, </span>
-<span id="cb8-6"><a></a>             <span class="at">notes =</span> reference)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a><span class="fu">modelsummary</span>(conflict_model, </span>
+<span id="cb9-2"><a aria-label="2"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,  </span>
+<span id="cb9-3"><a aria-label="3"></a>             <span class="at">gof_map =</span> <span class="fu">c</span>(<span class="st">"nobs"</span>),</span>
+<span id="cb9-4"><a aria-label="4"></a>             <span class="at">coef_map =</span> coef_map,</span>
+<span id="cb9-5"><a aria-label="5"></a>             <span class="at">title =</span> caption, </span>
+<span id="cb9-6"><a aria-label="6"></a>             <span class="at">notes =</span> reference)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<!-- preamble start -->
-
-    <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script>
 
     <script>
       // Create table-specific functions using external factory
-      const tableFns_ozfsxxzo0ak42msn6pky = TinyTable.createTableFunctions("tinytable_ozfsxxzo0ak42msn6pky");
+      const tableFns_c0xiagntwupptdfqqoey = TinyTable.createTableFunctions("tinytable_c0xiagntwupptdfqqoey");
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '15', j: 2 } ], css_id: 'tinytable_css_mlysmc5r0vjff2fhcq92',}, 
-          { positions: [ { i: '14', j: 2 } ], css_id: 'tinytable_css_btdzr4b2p6x5zksdawpz',}, 
-          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '9', j: 2 }, { i: '10', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '13', j: 2 } ], css_id: 'tinytable_css_tqwrwcug3ctojewpb5az',}, 
-          { positions: [ { i: '0', j: 2 } ], css_id: 'tinytable_css_wrtnh5deevb2vq2o0gvr',}, 
-          { positions: [ { i: '15', j: 1 } ], css_id: 'tinytable_css_8ktn35q6qmfzntbbw73r',}, 
-          { positions: [ { i: '14', j: 1 } ], css_id: 'tinytable_css_24t1evguixto0ufeluij',}, 
-          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '10', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 }, { i: '13', j: 1 } ], css_id: 'tinytable_css_9mwf6ja9bh23gosy7ll2',}, 
-          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_nxmmgfou71dcob8csgpv',}, 
+          { positions: [ { i: '15', j: 2 } ], css_id: 'tinytable_css_ci7jukxeo0iepp92f9pn',}, 
+          { positions: [ { i: '14', j: 2 } ], css_id: 'tinytable_css_x8238zmlez4ka951usbk',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '9', j: 2 }, { i: '10', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '13', j: 2 } ], css_id: 'tinytable_css_tpvslik8jxalb8dzpqga',}, 
+          { positions: [ { i: '0', j: 2 } ], css_id: 'tinytable_css_5cu119nnlwxx3hfs01nv',}, 
+          { positions: [ { i: '15', j: 1 } ], css_id: 'tinytable_css_536ha5wj4oi7afxkp5r5',}, 
+          { positions: [ { i: '14', j: 1 } ], css_id: 'tinytable_css_fchidve502g6m7yik1qi',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '10', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 }, { i: '13', j: 1 } ], css_id: 'tinytable_css_95d0utor8k23lui4rurf',}, 
+          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_w4zoex0hytav0apvnno2',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  tableFns_ozfsxxzo0ak42msn6pky.styleCell(cell.i, cell.j, group.css_id);
+                  tableFns_c0xiagntwupptdfqqoey.styleCell(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -620,17 +1055,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
     /* tinytable css entries after */
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_mlysmc5r0vjff2fhcq92, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_mlysmc5r0vjff2fhcq92 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_btdzr4b2p6x5zksdawpz, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_btdzr4b2p6x5zksdawpz {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_tqwrwcug3ctojewpb5az, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_tqwrwcug3ctojewpb5az { text-align: center }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_wrtnh5deevb2vq2o0gvr, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_wrtnh5deevb2vq2o0gvr {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_8ktn35q6qmfzntbbw73r, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_8ktn35q6qmfzntbbw73r {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_24t1evguixto0ufeluij, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_24t1evguixto0ufeluij {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_9mwf6ja9bh23gosy7ll2, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_9mwf6ja9bh23gosy7ll2 { text-align: left }
-    #tinytable_ozfsxxzo0ak42msn6pky td.tinytable_css_nxmmgfou71dcob8csgpv, #tinytable_ozfsxxzo0ak42msn6pky th.tinytable_css_nxmmgfou71dcob8csgpv {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_ci7jukxeo0iepp92f9pn, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_ci7jukxeo0iepp92f9pn {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_x8238zmlez4ka951usbk, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_x8238zmlez4ka951usbk {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_tpvslik8jxalb8dzpqga, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_tpvslik8jxalb8dzpqga { text-align: center }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_5cu119nnlwxx3hfs01nv, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_5cu119nnlwxx3hfs01nv {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_536ha5wj4oi7afxkp5r5, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_536ha5wj4oi7afxkp5r5 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_fchidve502g6m7yik1qi, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_fchidve502g6m7yik1qi {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_95d0utor8k23lui4rurf, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_95d0utor8k23lui4rurf { text-align: left }
+    #tinytable_c0xiagntwupptdfqqoey td.tinytable_css_w4zoex0hytav0apvnno2, #tinytable_c0xiagntwupptdfqqoey th.tinytable_css_w4zoex0hytav0apvnno2 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --line-type-bottom: solid; --line-type-left: solid; --line-type-right: solid; --line-type-top: solid; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
     </style>
     <div class="container">
-      <table class="tinytable" id="tinytable_ozfsxxzo0ak42msn6pky" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_c0xiagntwupptdfqqoey" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <caption>Table 1: Predictors of Conflict Onset</caption>
         <thead>
               <tr>
@@ -643,7 +1078,7 @@
         <tbody>
                 <tr>
                   <td data-row="1" data-col="1">Ethnic Frac</td>
-                  <td data-row="1" data-col="2">0.709+</td>
+                  <td data-row="1" data-col="2">0.708+</td>
                 </tr>
                 <tr>
                   <td data-row="2" data-col="1"></td>
@@ -651,7 +1086,7 @@
                 </tr>
                 <tr>
                   <td data-row="3" data-col="1">Religions Frac</td>
-                  <td data-row="3" data-col="2">-0.288</td>
+                  <td data-row="3" data-col="2">-0.287</td>
                 </tr>
                 <tr>
                   <td data-row="4" data-col="1"></td>
@@ -659,11 +1094,11 @@
                 </tr>
                 <tr>
                   <td data-row="5" data-col="1">Polyarchy</td>
-                  <td data-row="5" data-col="2">-0.652</td>
+                  <td data-row="5" data-col="2">-0.660</td>
                 </tr>
                 <tr>
                   <td data-row="6" data-col="1"></td>
-                  <td data-row="6" data-col="2">(0.513)</td>
+                  <td data-row="6" data-col="2">(0.514)</td>
                 </tr>
                 <tr>
                   <td data-row="7" data-col="1">Terrain</td>
@@ -675,7 +1110,7 @@
                 </tr>
                 <tr>
                   <td data-row="9" data-col="1">Per capita GDP</td>
-                  <td data-row="9" data-col="2">-0.392**</td>
+                  <td data-row="9" data-col="2">-0.391**</td>
                 </tr>
                 <tr>
                   <td data-row="10" data-col="1"></td>
@@ -691,7 +1126,7 @@
                 </tr>
                 <tr>
                   <td data-row="13" data-col="1">Intercept</td>
-                  <td data-row="13" data-col="2">-5.376***</td>
+                  <td data-row="13" data-col="2">-5.380***</td>
                 </tr>
                 <tr>
                   <td data-row="14" data-col="1"></td>
@@ -715,17 +1150,17 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="fu">modelplot</span>(conflict_model, </span>
-<span id="cb9-4"><a></a>          <span class="at">coef_map =</span> <span class="fu">rev</span>(coef_map), <span class="co"># rev() reverses list order</span></span>
-<span id="cb9-5"><a></a>          <span class="at">coef_omit =</span> <span class="st">"Intercept"</span>, </span>
-<span id="cb9-6"><a></a>          <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="co"># use plus to add customizations like any ggplot object</span></span>
-<span id="cb9-7"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> .<span class="dv">75</span>) <span class="sc">+</span> <span class="co"># red 0 line</span></span>
-<span id="cb9-8"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-9"><a></a>    <span class="at">title =</span> <span class="st">"Figure 1: Predictors of Conflict Onset"</span>,</span>
-<span id="cb9-10"><a></a>    <span class="at">caption =</span> <span class="st">"See appendix for data sources."</span></span>
-<span id="cb9-11"><a></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a aria-label="2"></a></span>
+<span id="cb10-3"><a aria-label="3"></a><span class="fu">modelplot</span>(conflict_model, </span>
+<span id="cb10-4"><a aria-label="4"></a>          <span class="at">coef_map =</span> <span class="fu">rev</span>(coef_map), <span class="co"># rev() reverses list order</span></span>
+<span id="cb10-5"><a aria-label="5"></a>          <span class="at">coef_omit =</span> <span class="st">"Intercept"</span>, </span>
+<span id="cb10-6"><a aria-label="6"></a>          <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="co"># use plus to add customizations like any ggplot object</span></span>
+<span id="cb10-7"><a aria-label="7"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> .<span class="dv">75</span>) <span class="sc">+</span> <span class="co"># red 0 line</span></span>
+<span id="cb10-8"><a aria-label="8"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-9"><a aria-label="9"></a>    <span class="at">title =</span> <span class="st">"Figure 1: Predictors of Conflict Onset"</span>,</span>
+<span id="cb10-10"><a aria-label="10"></a>    <span class="at">caption =</span> <span class="st">"See appendix for data sources."</span></span>
+<span id="cb10-11"><a aria-label="11"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -742,6 +1177,145 @@
 <div class="cell">
 <div class="cell-output-display">
 <countdown-timer class="countdown" id="timer3" minutes="12" seconds="0" update-every="1" tabindex="0" style="right:10%;bottom:5%;"></countdown-timer>
+</div>
+</div>
+</section></section>
+<section>
+<section id="interactions" class="title-slide slide level1 center">
+<h1>Interactions</h1>
+
+</section>
+<section id="additive-vs.-interactive-models" class="slide level2">
+<h2>Additive vs.&nbsp;Interactive Models</h2>
+<p><br></p>
+<ul>
+<li class="fragment">So far our models have been <strong>additive</strong>: each predictor has the same effect no matter what values the other predictors take</li>
+<li class="fragment">But what if the effect of one variable <strong>depends on</strong> the level of another?</li>
+<li class="fragment">Example: does mountainous terrain raise the risk of conflict everywhere, or only in non-democracies?
+<ul>
+<li class="fragment">In autocracies, remote populations have no political voice, and rebels can hide in the mountains</li>
+<li class="fragment">In democracies, the same populations have peaceful ways to press their grievances</li>
+</ul></li>
+<li class="fragment">An <strong>interaction term</strong> lets us test whether one variable’s effect is <em>conditional</em> on another</li>
+</ul>
+</section>
+<section id="interactions-in-r" class="slide level2">
+<h2>Interactions in R</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Put <code>*</code> between two variables in the model formula</li>
+<li class="fragment"><code>democracy * newlmtnest</code> is shorthand for <code>democracy + newlmtnest + democracy:newlmtnest</code></li>
+<li class="fragment"><code>democracy:newlmtnest</code> is the <strong>interaction term</strong> (the product of the two variables)</li>
+<li class="fragment">Always include both “main effects” along with the interaction (<code>*</code> does this for you)</li>
+<li class="fragment">Interactions should be motivated by <strong>theory</strong>, not found by trying every combination</li>
+</ul>
+</section>
+<section id="fit-an-interaction-model" class="slide level2 smaller">
+<h2>Fit an Interaction Model</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a><span class="co"># create a binary democracy measure</span></span>
+<span id="cb11-2"><a aria-label="2"></a>conflict_df <span class="ot">&lt;-</span> conflict_df <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">democracy =</span> <span class="fu">ifelse</span>(v2x_polyarchy <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb11-4"><a aria-label="4"></a></span>
+<span id="cb11-5"><a aria-label="5"></a><span class="co"># interact democracy with mountainous terrain</span></span>
+<span id="cb11-6"><a aria-label="6"></a>terrain_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(ucdponset <span class="sc">~</span> democracy <span class="sc">*</span> newlmtnest <span class="sc">+</span> wbgdppc2011est <span class="sc">+</span></span>
+<span id="cb11-7"><a aria-label="7"></a>                       wbpopest <span class="sc">+</span> ethfrac <span class="sc">+</span> relfrac,</span>
+<span id="cb11-8"><a aria-label="8"></a>                     <span class="at">data =</span> conflict_df,</span>
+<span id="cb11-9"><a aria-label="9"></a>                     <span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb11-10"><a aria-label="10"></a></span>
+<span id="cb11-11"><a aria-label="11"></a><span class="fu">tidy</span>(terrain_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  term                 estimate std.error statistic   p.value
+  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)           -6.08      1.41      -4.30  0.0000171
+2 democracy              0.0978    0.492      0.199 0.843    
+3 newlmtnest             0.191     0.0772     2.47  0.0135   
+4 wbgdppc2011est        -0.297     0.118     -2.51  0.0120   
+5 wbpopest               0.254     0.0712     3.56  0.000367 
+6 ethfrac                0.682     0.378      1.81  0.0708   
+7 relfrac               -0.206     0.403     -0.510 0.610    
+8 democracy:newlmtnest  -0.474     0.220     -2.16  0.0311   </code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-the-interaction" class="slide level2">
+<h2>Interpreting the Interaction</h2>
+<p><span class="math display">\[\text{logit}(p) = \beta_0 + \beta_1\text{Dem} + \beta_2\text{Terrain} + \beta_3(\text{Dem} \times \text{Terrain}) + \text{controls}\]</span></p>
+<ul>
+<li class="fragment"><strong>Non-democracies</strong> (Dem = 0): <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_3\)</span> drop out, so the effect of terrain is <span class="math inline">\(\beta_2\)</span> = 0.191</li>
+<li class="fragment"><strong>Democracies</strong> (Dem = 1): the effect of terrain is <span class="math inline">\(\beta_2 + \beta_3\)</span> = 0.191 + (-0.474) = -0.283</li>
+<li class="fragment">So the interaction coefficient <span class="math inline">\(\beta_3\)</span> is the <strong>difference</strong> between the two slopes</li>
+<li class="fragment">The interaction works both ways: the effect of democracy also depends on terrain</li>
+</ul>
+</section>
+<section id="conditional-effects-with-marginaleffects" class="slide level2 smaller">
+<h2>Conditional Effects with <code>marginaleffects</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-label="1"></a><span class="fu">library</span>(marginaleffects)</span>
+<span id="cb13-2"><a aria-label="2"></a></span>
+<span id="cb13-3"><a aria-label="3"></a>terrain_slopes <span class="ot">&lt;-</span> <span class="fu">slopes</span>(terrain_model,</span>
+<span id="cb13-4"><a aria-label="4"></a>                         <span class="at">variables =</span> <span class="st">"newlmtnest"</span>, <span class="co"># effect of terrain...</span></span>
+<span id="cb13-5"><a aria-label="5"></a>                         <span class="at">by =</span> <span class="st">"democracy"</span>,         <span class="co"># ...separately by regime type</span></span>
+<span id="cb13-6"><a aria-label="6"></a>                         <span class="at">type =</span> <span class="st">"link"</span>) <span class="sc">|&gt;</span>         <span class="co"># on the log-odds scale</span></span>
+<span id="cb13-7"><a aria-label="7"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a aria-label="8"></a>  <span class="fu">mutate</span>(<span class="at">odds.ratio =</span> <span class="fu">exp</span>(estimate),</span>
+<span id="cb13-9"><a aria-label="9"></a>         <span class="at">or.low =</span> <span class="fu">exp</span>(conf.low),</span>
+<span id="cb13-10"><a aria-label="10"></a>         <span class="at">or.high =</span> <span class="fu">exp</span>(conf.high))</span>
+<span id="cb13-11"><a aria-label="11"></a></span>
+<span id="cb13-12"><a aria-label="12"></a>terrain_slopes <span class="sc">|&gt;</span></span>
+<span id="cb13-13"><a aria-label="13"></a>  <span class="fu">select</span>(democracy, estimate, std.error, odds.ratio, or.low, or.high)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  democracy estimate std.error odds.ratio or.low or.high
+      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1         0    0.191    0.0772      1.21   1.04     1.41
+2         1   -0.283    0.207       0.754  0.502    1.13</code></pre>
+</div>
+</div>
+</section>
+<section id="what-does-this-tell-us" class="slide level2">
+<h2>What Does This Tell Us?</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Non-democracies:</strong> each one-unit increase in (logged) mountainous terrain multiplies the odds of conflict onset by 1.21 (95% CI: 1.04–1.41)</li>
+<li class="fragment"><strong>Democracies:</strong> the odds ratio is 0.75 (95% CI: 0.5–1.13)</li>
+<li class="fragment">The difference between the two is statistically significant…</li>
+<li class="fragment">…but in democracies the CI includes 1, so we can’t say terrain <em>reduces</em> risk there, only that it doesn’t raise it the way it does in autocracies</li>
+</ul>
+</section>
+<section id="visualizing-the-interaction" class="slide level2">
+<h2>Visualizing the Interaction</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a><span class="fu">plot_predictions</span>(terrain_model,</span>
+<span id="cb15-2"><a aria-label="2"></a>                 <span class="at">condition =</span> <span class="fu">list</span>(<span class="st">"newlmtnest"</span>, <span class="at">democracy =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb15-3"><a aria-label="3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#D55E00"</span>, <span class="st">"#0072B2"</span>),</span>
+<span id="cb15-4"><a aria-label="4"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Non-democracy"</span>, <span class="st">"Democracy"</span>),</span>
+<span id="cb15-5"><a aria-label="5"></a>                     <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb15-6"><a aria-label="6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mountainous terrain (logged % of territory)"</span>,</span>
+<span id="cb15-7"><a aria-label="7"></a>       <span class="at">y =</span> <span class="st">"Predicted probability of conflict onset"</span>,</span>
+<span id="cb15-8"><a aria-label="8"></a>       <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb15-9"><a aria-label="9"></a>       <span class="at">title =</span> <span class="st">"Figure 2: Terrain and Conflict Onset by Regime Type"</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a aria-label="10"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="week-12.2_files/figure-revealjs/terrain_plot-1.png" width="960" class="r-stretch"></section>
+<section id="your-turn-3" class="slide level2 smaller">
+<h2>Your Turn!</h2>
+<p><br></p>
+<ul>
+<li>Put the additive model and the <code>democracy * newlmtnest</code> model side by side in a <code>modelsummary</code> table</li>
+<li>Now interact the <strong>continuous</strong> democracy measure with wealth: <code>v2x_polyarchy * wbgdppc2011est</code></li>
+<li>With a continuous moderator there’s no “0 vs.&nbsp;1,” so use <code>slopes()</code> with <code>newdata = datagrid(v2x_polyarchy = c(0.1, 0.5, 0.9))</code> to get the effect of GDP at different levels of democracy</li>
+<li>Visualize it with <code>plot_predictions()</code></li>
+<li>Is there a good theoretical reason to expect this interaction?</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<countdown-timer class="countdown" id="timer4" minutes="12" seconds="0" update-every="1" tabindex="0" style="right:10%;bottom:5%;"></countdown-timer>
 </div>
 </div>
 
@@ -939,7 +1513,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1051,13 +1625,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
